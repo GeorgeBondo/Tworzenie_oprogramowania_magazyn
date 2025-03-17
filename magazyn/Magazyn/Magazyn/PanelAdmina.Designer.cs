@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.button_testujPolaczenie = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // button_testujPolaczenie
+            // 
+            this.button_testujPolaczenie.Location = new System.Drawing.Point(214, 66);
+            this.button_testujPolaczenie.Name = "button_testujPolaczenie";
+            this.button_testujPolaczenie.Size = new System.Drawing.Size(75, 23);
+            this.button_testujPolaczenie.TabIndex = 0;
+            this.button_testujPolaczenie.Text = "text bazy";
+            this.button_testujPolaczenie.UseVisualStyleBackColor = true;
+            this.button_testujPolaczenie.Click += new System.EventHandler(this.button_testujPolaczenie_Click);
             // 
             // PanelAdmina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button_testujPolaczenie);
             this.Name = "PanelAdmina";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -42,5 +54,7 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button button_testujPolaczenie;
     }
 }

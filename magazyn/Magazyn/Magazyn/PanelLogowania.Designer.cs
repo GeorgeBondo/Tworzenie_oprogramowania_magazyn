@@ -71,11 +71,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(176, 74);
+            this.label1.Location = new System.Drawing.Point(124, 71);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 16);
+            this.label1.Size = new System.Drawing.Size(98, 16);
             this.label1.TabIndex = 3;
-            this.label1.Text = "Login";
+            this.label1.Text = "ID Użytkownika";
             // 
             // label2
             // 
@@ -90,6 +90,7 @@
             // 
             this.textbox_haslo.Location = new System.Drawing.Point(245, 104);
             this.textbox_haslo.Name = "textbox_haslo";
+            this.textbox_haslo.PasswordChar = '*';
             this.textbox_haslo.Size = new System.Drawing.Size(130, 22);
             this.textbox_haslo.TabIndex = 5;
             // 
@@ -115,7 +116,7 @@
             this.Controls.Add(this.button_zaloguj);
             this.Name = "PanelLogowania";
             this.Text = "Form1";
-            this.Load += new System.EventHandler(this.Form1_Load);
+            this.Load += new System.EventHandler(this.PanelLogowania_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
