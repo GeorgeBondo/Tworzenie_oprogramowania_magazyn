@@ -12,7 +12,7 @@ namespace Magazyn
             InitializeComponent();
         }
 
-        // Przycisk "Wyczyść"
+        
         private void button_wyczysc_Click(object sender, EventArgs e)
         {
             textbox_login.Clear();
@@ -20,7 +20,7 @@ namespace Magazyn
             textbox_login.Focus();
         }
 
-        // Przycisk "Zaloguj"
+
         private void button_zaloguj_Click(object sender, EventArgs e)
         {
             string login = textbox_login.Text.Trim();
@@ -38,13 +38,12 @@ namespace Magazyn
                 {
                     conn.Open();
 
-                    // Sprawdź czy użytkownik istnieje i nie jest zapomniany
+                    // Sprawdź, czy użytkownik istnieje i nie jest zapomniany
                     string query = @"
-                        SELECT U.*, S.Status 
-                        FROM Uzytkownik U
-                        LEFT JOIN Status S ON U.ID_Status = S.ID_Status
-                        WHERE U.ID_Uzytkownik = @Login"; // Używamy ID_Uzytkownik jako loginu
-                    
+                SELECT U.*, S.Status 
+                FROM Uzytkownik U
+                LEFT JOIN Status S ON U.ID_Status = S.ID_Status
+                WHERE U.ID_Uzytkownik = @Login";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Login", login);
@@ -53,12 +52,12 @@ namespace Magazyn
                     {
                         if (reader.Read())
                         {
-                            // Sprawdź hasło (załóżmy że hasło jest zahashowane BCryptem)
-                            string storedHash = reader["Haslo"].ToString();
+                            // Zakładamy, że hasło w bazie danych jest przechowywane jako zwykły tekst
+                            string storedPassword = reader["Haslo"].ToString();
 
-                            if (BCrypt.Net.BCrypt.Verify(haslo, storedHash))
+                            // Porównanie hasła wprowadzonego przez użytkownika z przechowywanym hasłem
+                            if (haslo == storedPassword)
                             {
-                                // Logowanie udane - otwórz panel administratora
                                 PanelAdmina adminPanel = new PanelAdmina();
                                 adminPanel.Show();
                                 this.Hide();
@@ -80,6 +79,7 @@ namespace Magazyn
                 MessageBox.Show($"Błąd logowania: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
 
         // Przycisk "Resetuj hasło"
         private void button_haslo_Click(object sender, EventArgs e)

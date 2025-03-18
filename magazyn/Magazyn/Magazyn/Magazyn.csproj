@@ -56,6 +56,9 @@
       <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
     </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Data.SqlClient, Version=4.6.2.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Data.SqlClient.4.9.0\lib\net462\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
     </Reference>
@@ -89,7 +92,13 @@
     <Compile Include="EdytujUzytkownika.Designer.cs">
       <DependentUpon>EdytujUzytkownika.cs</DependentUpon>
     </Compile>
-    <Compile Include="Helpers\DatabaseHelper.cs" />
+    <Compile Include="Helpers\DatabaseHelpers.cs" />
+    <Compile Include="NoweHasloForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="NoweHasloForm.Designer.cs">
+      <DependentUpon>NoweHasloForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uprawnienia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -133,6 +142,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EdytujUzytkownika.resx">
       <DependentUpon>EdytujUzytkownika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="NoweHasloForm.resx">
+      <DependentUpon>NoweHasloForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uprawnienia.resx">
       <DependentUpon>Uprawnienia.cs</DependentUpon>

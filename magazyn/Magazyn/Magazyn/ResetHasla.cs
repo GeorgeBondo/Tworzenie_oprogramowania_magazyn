@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Magazyn.Helpers;
+using System;
+using System.Data.SqlClient;
 using System.Windows.Forms;
 
 namespace Magazyn
@@ -14,23 +9,83 @@ namespace Magazyn
     {
         private PanelLogowania panelLogowania;
 
-        public ResetHasla(PanelLogowania logowanie)
+        public ResetHasla(PanelLogowania panelLogowania)
         {
-            InitializeComponent(); 
-            panelLogowania = logowanie;
+            InitializeComponent();
+            this.panelLogowania = panelLogowania;
         }
 
-        
-      
 
-        private void button_wroc_Click(object sender, EventArgs e)
+     
+
+        private string GenerujLosoweHaslo()
         {
-            panelLogowania.Show();
-            this.Close();
+            Random rand = new Random();
+            string haslo = "";
+            for (int i = 0; i < 10; i++)
+            {
+                haslo += rand.Next(0, 10).ToString();
+            }
+            return haslo;
         }
 
         private void ResetHasla_Load(object sender, EventArgs e)
         {
+
+        }
+
+        private void btnWroc_Click(object sender, EventArgs e)
+        {
+            panelLogowania.Show();
+            this.Hide();
+        }
+
+        private void btnGeneruj_Click_1(object sender, EventArgs e)
+        {
+            string login = txtLogin.Text.Trim();
+            string email = txtEmail.Text.Trim();
+
+            if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(email))
+            {
+                MessageBox.Show("Wprowadź login i email!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+
+                    // Sprawdź, czy login i email pasują
+                    string query = "SELECT COUNT(*) FROM Uzytkownik WHERE ID_Uzytkownik = @ID_Uzytkownik AND Email = @Email";
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@ID_Uzytkownik", login);
+                    cmd.Parameters.AddWithValue("@Email", email);
+
+                    int count = (int)cmd.ExecuteScalar();
+
+                    if (count == 0)
+                    {
+                        MessageBox.Show("Nieprawidłowy login lub email!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    // Generuj nowe hasło
+                    string noweHaslo = GenerujLosoweHaslo();
+
+                    // Otwórz formularz z nowym hasłem
+                    NoweHasloForm noweHasloForm = new NoweHasloForm(noweHaslo, login);
+                    noweHasloForm.ShowDialog();
+
+                    this.Close();
+                    panelLogowania.Show();
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
         }
     }

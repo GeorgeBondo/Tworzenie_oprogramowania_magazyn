@@ -28,3 +28,6 @@ D:\magazyn\Magazyn\Magazyn\bin\Debug\System.Runtime.CompilerServices.Unsafe.xml
 D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.csproj.Up2Date
 D:\magazyn\Magazyn\Magazyn\bin\Debug\magazyn.mdf
 D:\magazyn\Magazyn\Magazyn\bin\Debug\magazyn_log.ldf
+D:\magazyn\Magazyn\Magazyn\bin\Debug\System.Data.SqlClient.dll
+D:\magazyn\Magazyn\Magazyn\bin\Debug\System.Data.SqlClient.xml
+D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.NoweHasloForm.resources

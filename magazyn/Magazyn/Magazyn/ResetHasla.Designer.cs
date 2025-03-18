@@ -32,10 +32,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
-            this.button2 = new System.Windows.Forms.Button();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.button_wroc = new System.Windows.Forms.Button();
+            this.btnGeneruj = new System.Windows.Forms.Button();
+            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.btnWroc = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
@@ -65,39 +65,40 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Email";
             // 
-            // button2
+            // btnGeneruj
             // 
-            this.button2.Location = new System.Drawing.Point(291, 146);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(120, 29);
-            this.button2.TabIndex = 5;
-            this.button2.Text = "Odzyskaj hasło";
-            this.button2.UseVisualStyleBackColor = true;
+            this.btnGeneruj.Location = new System.Drawing.Point(291, 146);
+            this.btnGeneruj.Name = "btnGeneruj";
+            this.btnGeneruj.Size = new System.Drawing.Size(120, 29);
+            this.btnGeneruj.TabIndex = 5;
+            this.btnGeneruj.Text = "Odzyskaj hasło";
+            this.btnGeneruj.UseVisualStyleBackColor = true;
+            this.btnGeneruj.Click += new System.EventHandler(this.btnGeneruj_Click_1);
             // 
-            // textBox1
+            // txtLogin
             // 
-            this.textBox1.Location = new System.Drawing.Point(279, 65);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(148, 22);
-            this.textBox1.TabIndex = 6;
+            this.txtLogin.Location = new System.Drawing.Point(279, 65);
+            this.txtLogin.Name = "txtLogin";
+            this.txtLogin.Size = new System.Drawing.Size(148, 22);
+            this.txtLogin.TabIndex = 6;
             // 
-            // textBox2
+            // txtEmail
             // 
-            this.textBox2.Location = new System.Drawing.Point(279, 106);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(148, 22);
-            this.textBox2.TabIndex = 7;
+            this.txtEmail.Location = new System.Drawing.Point(279, 106);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(148, 22);
+            this.txtEmail.TabIndex = 7;
             // 
-            // button_wroc
+            // btnWroc
             // 
-            this.button_wroc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.button_wroc.Location = new System.Drawing.Point(352, 210);
-            this.button_wroc.Name = "button_wroc";
-            this.button_wroc.Size = new System.Drawing.Size(75, 23);
-            this.button_wroc.TabIndex = 9;
-            this.button_wroc.Text = "wróć";
-            this.button_wroc.UseVisualStyleBackColor = true;
-            this.button_wroc.Click += new System.EventHandler(this.button_wroc_Click);
+            this.btnWroc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.btnWroc.Location = new System.Drawing.Point(352, 210);
+            this.btnWroc.Name = "btnWroc";
+            this.btnWroc.Size = new System.Drawing.Size(75, 23);
+            this.btnWroc.TabIndex = 9;
+            this.btnWroc.Text = "Wróć";
+            this.btnWroc.UseVisualStyleBackColor = true;
+            this.btnWroc.Click += new System.EventHandler(this.btnWroc_Click);
             // 
             // ResetHasla
             // 
@@ -105,10 +106,10 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(624, 296);
-            this.Controls.Add(this.button_wroc);
-            this.Controls.Add(this.textBox2);
-            this.Controls.Add(this.textBox1);
-            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnWroc);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtLogin);
+            this.Controls.Add(this.btnGeneruj);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -125,9 +126,9 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Button button2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.Button button_wroc;
+        private System.Windows.Forms.Button btnGeneruj;
+        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.Button btnWroc;
     }
 }
