@@ -55,19 +55,19 @@
             this.comboPlec = new System.Windows.Forms.ComboBox();
             this.txtDataUrodzenia = new System.Windows.Forms.DateTimePicker();
             this.btnZapisz = new System.Windows.Forms.Button();
-            this.btnAnuluj = new System.Windows.Forms.Button();
+            this.btnWroc = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(248, 132);
+            this.txtLogin.Location = new System.Drawing.Point(248, 141);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(100, 22);
             this.txtLogin.TabIndex = 0;
             // 
             // txtImie
             // 
-            this.txtImie.Location = new System.Drawing.Point(248, 200);
+            this.txtImie.Location = new System.Drawing.Point(248, 206);
             this.txtImie.Name = "txtImie";
             this.txtImie.Size = new System.Drawing.Size(100, 22);
             this.txtImie.TabIndex = 1;
@@ -138,7 +138,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(103, 138);
+            this.label1.Location = new System.Drawing.Point(115, 141);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(40, 16);
             this.label1.TabIndex = 13;
@@ -276,21 +276,23 @@
             this.btnZapisz.Text = "Zapisz";
             this.btnZapisz.UseVisualStyleBackColor = true;
             // 
-            // btnAnuluj
+            // btnWroc
             // 
-            this.btnAnuluj.Location = new System.Drawing.Point(772, 519);
-            this.btnAnuluj.Name = "btnAnuluj";
-            this.btnAnuluj.Size = new System.Drawing.Size(75, 23);
-            this.btnAnuluj.TabIndex = 29;
-            this.btnAnuluj.Text = "Anuluj";
-            this.btnAnuluj.UseVisualStyleBackColor = true;
+            this.btnWroc.Location = new System.Drawing.Point(772, 519);
+            this.btnWroc.Name = "btnWroc";
+            this.btnWroc.Size = new System.Drawing.Size(75, 23);
+            this.btnWroc.TabIndex = 29;
+            this.btnWroc.Text = "Wróć";
+            this.btnWroc.UseVisualStyleBackColor = true;
+            this.btnWroc.Click += new System.EventHandler(this.btnWroc_Click);
             // 
             // DodajUzytkownika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.Color.Coral;
             this.ClientSize = new System.Drawing.Size(929, 639);
-            this.Controls.Add(this.btnAnuluj);
+            this.Controls.Add(this.btnWroc);
             this.Controls.Add(this.btnZapisz);
             this.Controls.Add(this.txtDataUrodzenia);
             this.Controls.Add(this.comboPlec);
@@ -355,6 +357,6 @@
         private System.Windows.Forms.ComboBox comboPlec;
         private System.Windows.Forms.DateTimePicker txtDataUrodzenia;
         private System.Windows.Forms.Button btnZapisz;
-        private System.Windows.Forms.Button btnAnuluj;
+        private System.Windows.Forms.Button btnWroc;
     }
 }

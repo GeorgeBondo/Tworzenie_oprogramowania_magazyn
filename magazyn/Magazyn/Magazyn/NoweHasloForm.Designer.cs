@@ -28,23 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(NoweHasloForm));
             this.btnKopiuj = new System.Windows.Forms.Button();
             this.lblHaslo = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // btnKopiuj
             // 
-            this.btnKopiuj.Location = new System.Drawing.Point(487, 132);
+            this.btnKopiuj.Location = new System.Drawing.Point(357, 113);
             this.btnKopiuj.Name = "btnKopiuj";
             this.btnKopiuj.Size = new System.Drawing.Size(146, 45);
             this.btnKopiuj.TabIndex = 0;
             this.btnKopiuj.Text = "Skopiuj i kontynuuj";
             this.btnKopiuj.UseVisualStyleBackColor = true;
+            this.btnKopiuj.Click += new System.EventHandler(this.btnKopiuj_Click_1);
             // 
             // lblHaslo
             // 
             this.lblHaslo.AutoSize = true;
-            this.lblHaslo.Location = new System.Drawing.Point(209, 161);
+            this.lblHaslo.Location = new System.Drawing.Point(107, 113);
             this.lblHaslo.Name = "lblHaslo";
             this.lblHaslo.Size = new System.Drawing.Size(135, 16);
             this.lblHaslo.TabIndex = 1;
@@ -54,7 +56,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.ClientSize = new System.Drawing.Size(621, 293);
             this.Controls.Add(this.lblHaslo);
             this.Controls.Add(this.btnKopiuj);
             this.Name = "NoweHasloForm";

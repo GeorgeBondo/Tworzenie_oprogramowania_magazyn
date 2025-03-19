@@ -34,5 +34,29 @@ namespace Magazyn
                 }
             }
         }
+
+        private void btnWyloguj_Click(object sender, EventArgs e)
+        {
+            PanelLogowania loginForm = new PanelLogowania();
+            loginForm.Show();
+            this.Close(); 
+        }
+
+
+        private void btnDodaj_Click(object sender, EventArgs e)
+        {
+            DodajUzytkownika dodajForm = new DodajUzytkownika();
+            dodajForm.Show();
+            this.Hide(); 
+        }
+
+
+        private void btnLista_Click_1(object sender, EventArgs e)
+        {
+            ListaUzytkownikow listaForm = new ListaUzytkownikow();
+            listaForm.Show();
+            this.Hide();
+        }
     }
+    
 }

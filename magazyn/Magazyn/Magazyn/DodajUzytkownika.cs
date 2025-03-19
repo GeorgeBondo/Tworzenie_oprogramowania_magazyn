@@ -180,5 +180,12 @@ namespace Magazyn
         {
 
         }
+
+        private void btnWroc_Click(object sender, EventArgs e)
+        {
+            PanelAdmina adminPanel = new PanelAdmina();
+            adminPanel.Show();
+            this.Hide();
+        }
     }
 }

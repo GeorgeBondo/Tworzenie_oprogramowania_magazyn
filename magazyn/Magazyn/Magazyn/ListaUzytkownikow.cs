@@ -16,5 +16,16 @@ namespace Magazyn
         {
             InitializeComponent();
         }
+        private void ListaUzytkownikow_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btwWroc_Click(object sender, EventArgs e)
+        {
+            PanelAdmina adminPanel = new PanelAdmina();
+            adminPanel.Show();
+            this.Hide();
+        }
     }
 }
