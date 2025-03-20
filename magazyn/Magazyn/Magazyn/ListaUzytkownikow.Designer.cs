@@ -28,49 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaUzytkownikow));
-            this.label1 = new System.Windows.Forms.Label();
-            this.btwWroc = new System.Windows.Forms.Button();
+            this.btnWroc = new System.Windows.Forms.Button();
+            this.dataGridViewUzytkownicy = new System.Windows.Forms.DataGridView();
+            this.btnOdswiez = new System.Windows.Forms.Button();
+            this.btnEdytuj = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUzytkownicy)).BeginInit();
             this.SuspendLayout();
             // 
-            // label1
+            // btnWroc
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(122, 52);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(127, 16);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Liasta użytkowników";
+            this.btnWroc.Location = new System.Drawing.Point(1110, 28);
+            this.btnWroc.Name = "btnWroc";
+            this.btnWroc.Size = new System.Drawing.Size(75, 32);
+            this.btnWroc.TabIndex = 1;
+            this.btnWroc.Text = "Wróć";
+            this.btnWroc.UseVisualStyleBackColor = true;
+            this.btnWroc.Click += new System.EventHandler(this.btnWroc_Click);
             // 
-            // btwWroc
+            // dataGridViewUzytkownicy
             // 
-            this.btwWroc.Location = new System.Drawing.Point(391, 161);
-            this.btwWroc.Name = "btwWroc";
-            this.btwWroc.Size = new System.Drawing.Size(75, 32);
-            this.btwWroc.TabIndex = 1;
-            this.btwWroc.Text = "Wróć";
-            this.btwWroc.UseVisualStyleBackColor = true;
-            this.btwWroc.Click += new System.EventHandler(this.btwWroc_Click);
+            this.dataGridViewUzytkownicy.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridViewUzytkownicy.Location = new System.Drawing.Point(12, 105);
+            this.dataGridViewUzytkownicy.Name = "dataGridViewUzytkownicy";
+            this.dataGridViewUzytkownicy.RowHeadersWidth = 51;
+            this.dataGridViewUzytkownicy.RowTemplate.Height = 24;
+            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(1237, 646);
+            this.dataGridViewUzytkownicy.TabIndex = 2;
+            // 
+            // btnOdswiez
+            // 
+            this.btnOdswiez.Location = new System.Drawing.Point(55, 28);
+            this.btnOdswiez.Name = "btnOdswiez";
+            this.btnOdswiez.Size = new System.Drawing.Size(75, 32);
+            this.btnOdswiez.TabIndex = 3;
+            this.btnOdswiez.Text = "Odśwież ";
+            this.btnOdswiez.UseVisualStyleBackColor = true;
+            this.btnOdswiez.Click += new System.EventHandler(this.btnOdswiez_Click);
+            // 
+            // btnEdytuj
+            // 
+            this.btnEdytuj.Location = new System.Drawing.Point(563, 19);
+            this.btnEdytuj.Name = "btnEdytuj";
+            this.btnEdytuj.Size = new System.Drawing.Size(142, 51);
+            this.btnEdytuj.TabIndex = 4;
+            this.btnEdytuj.Text = "Edytuj dane";
+            this.btnEdytuj.UseVisualStyleBackColor = true;
+            this.btnEdytuj.Click += new System.EventHandler(this.btnEdytuj_Click);
             // 
             // ListaUzytkownikow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.ClientSize = new System.Drawing.Size(623, 290);
-            this.Controls.Add(this.btwWroc);
-            this.Controls.Add(this.label1);
+            this.BackColor = System.Drawing.Color.LightCoral;
+            this.ClientSize = new System.Drawing.Size(1261, 763);
+            this.Controls.Add(this.btnEdytuj);
+            this.Controls.Add(this.btnOdswiez);
+            this.Controls.Add(this.dataGridViewUzytkownicy);
+            this.Controls.Add(this.btnWroc);
             this.Name = "ListaUzytkownikow";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.ListaUzytkownikow_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUzytkownicy)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
-
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Button btwWroc;
+        private System.Windows.Forms.Button btnWroc;
+        private System.Windows.Forms.DataGridView dataGridViewUzytkownicy;
+        private System.Windows.Forms.Button btnOdswiez;
+        private System.Windows.Forms.Button btnEdytuj;
     }
 }

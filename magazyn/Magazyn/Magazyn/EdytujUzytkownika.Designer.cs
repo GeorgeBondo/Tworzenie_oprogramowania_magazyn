@@ -28,13 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.btnWroc = new System.Windows.Forms.Button();
+            this.button2 = new System.Windows.Forms.Button();
             this.SuspendLayout();
+            // 
+            // btnWroc
+            // 
+            this.btnWroc.Location = new System.Drawing.Point(713, 415);
+            this.btnWroc.Name = "btnWroc";
+            this.btnWroc.Size = new System.Drawing.Size(75, 23);
+            this.btnWroc.TabIndex = 0;
+            this.btnWroc.Text = "Wróć";
+            this.btnWroc.UseVisualStyleBackColor = true;
+            this.btnWroc.Click += new System.EventHandler(this.btnWroc_Click);
+            // 
+            // button2
+            // 
+            this.button2.Location = new System.Drawing.Point(713, 12);
+            this.button2.Name = "button2";
+            this.button2.Size = new System.Drawing.Size(75, 23);
+            this.button2.TabIndex = 1;
+            this.button2.Text = "button2";
+            this.button2.UseVisualStyleBackColor = true;
             // 
             // EdytujUzytkownika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 450);
+            this.Controls.Add(this.button2);
+            this.Controls.Add(this.btnWroc);
             this.Name = "EdytujUzytkownika";
             this.Text = "Form1";
             this.ResumeLayout(false);
@@ -42,5 +65,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Button btnWroc;
+        private System.Windows.Forms.Button button2;
     }
 }

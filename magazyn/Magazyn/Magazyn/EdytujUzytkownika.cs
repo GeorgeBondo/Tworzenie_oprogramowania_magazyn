@@ -16,5 +16,12 @@ namespace Magazyn
         {
             InitializeComponent();
         }
+
+        private void btnWroc_Click(object sender, EventArgs e)
+        {
+            ListaUzytkownikow listaForm = new ListaUzytkownikow();
+            listaForm.Show();
+            this.Hide();
+        }
     }
 }
