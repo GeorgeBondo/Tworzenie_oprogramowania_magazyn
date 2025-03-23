@@ -57,6 +57,11 @@ namespace Magazyn
             listaForm.Show();
             this.Hide();
         }
+
+        private void PanelAdmina_Load(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }

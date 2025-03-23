@@ -52,7 +52,7 @@
             this.dataGridViewUzytkownicy.Name = "dataGridViewUzytkownicy";
             this.dataGridViewUzytkownicy.RowHeadersWidth = 51;
             this.dataGridViewUzytkownicy.RowTemplate.Height = 24;
-            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(1237, 646);
+            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(1264, 646);
             this.dataGridViewUzytkownicy.TabIndex = 2;
             // 
             // btnOdswiez
@@ -80,7 +80,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.LightCoral;
-            this.ClientSize = new System.Drawing.Size(1261, 763);
+            this.ClientSize = new System.Drawing.Size(1285, 763);
             this.Controls.Add(this.btnEdytuj);
             this.Controls.Add(this.btnOdswiez);
             this.Controls.Add(this.dataGridViewUzytkownicy);

@@ -28,7 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtLogin = new System.Windows.Forms.TextBox();
+            this.txtHaslo = new System.Windows.Forms.TextBox();
             this.txtImie = new System.Windows.Forms.TextBox();
             this.txtNazwisko = new System.Windows.Forms.TextBox();
             this.txtPesel = new System.Windows.Forms.TextBox();
@@ -56,14 +56,17 @@
             this.txtDataUrodzenia = new System.Windows.Forms.DateTimePicker();
             this.btnZapisz = new System.Windows.Forms.Button();
             this.btnWroc = new System.Windows.Forms.Button();
+            this.btnWyczysc = new System.Windows.Forms.Button();
+            this.Label = new System.Windows.Forms.Label();
+            this.txtUprawnienia = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
-            // txtLogin
+            // txtHaslo
             // 
-            this.txtLogin.Location = new System.Drawing.Point(248, 141);
-            this.txtLogin.Name = "txtLogin";
-            this.txtLogin.Size = new System.Drawing.Size(100, 22);
-            this.txtLogin.TabIndex = 0;
+            this.txtHaslo.Location = new System.Drawing.Point(248, 141);
+            this.txtHaslo.Name = "txtHaslo";
+            this.txtHaslo.Size = new System.Drawing.Size(100, 22);
+            this.txtHaslo.TabIndex = 0;
             // 
             // txtImie
             // 
@@ -140,9 +143,9 @@
             this.label1.AutoSize = true;
             this.label1.Location = new System.Drawing.Point(115, 141);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 16);
+            this.label1.Size = new System.Drawing.Size(46, 16);
             this.label1.TabIndex = 13;
-            this.label1.Text = "Login";
+            this.label1.Text = "Hasło";
             // 
             // label2
             // 
@@ -269,22 +272,49 @@
             // 
             // btnZapisz
             // 
-            this.btnZapisz.Location = new System.Drawing.Point(567, 520);
+            this.btnZapisz.Location = new System.Drawing.Point(680, 596);
             this.btnZapisz.Name = "btnZapisz";
-            this.btnZapisz.Size = new System.Drawing.Size(75, 23);
+            this.btnZapisz.Size = new System.Drawing.Size(75, 31);
             this.btnZapisz.TabIndex = 28;
             this.btnZapisz.Text = "Zapisz";
             this.btnZapisz.UseVisualStyleBackColor = true;
+            this.btnZapisz.Click += new System.EventHandler(this.btnZapisz_Click);
             // 
             // btnWroc
             // 
-            this.btnWroc.Location = new System.Drawing.Point(772, 519);
+            this.btnWroc.Location = new System.Drawing.Point(842, 596);
             this.btnWroc.Name = "btnWroc";
-            this.btnWroc.Size = new System.Drawing.Size(75, 23);
+            this.btnWroc.Size = new System.Drawing.Size(75, 31);
             this.btnWroc.TabIndex = 29;
             this.btnWroc.Text = "Wróć";
             this.btnWroc.UseVisualStyleBackColor = true;
             this.btnWroc.Click += new System.EventHandler(this.btnWroc_Click);
+            // 
+            // btnWyczysc
+            // 
+            this.btnWyczysc.Location = new System.Drawing.Point(761, 596);
+            this.btnWyczysc.Name = "btnWyczysc";
+            this.btnWyczysc.Size = new System.Drawing.Size(75, 31);
+            this.btnWyczysc.TabIndex = 30;
+            this.btnWyczysc.Text = "Wyczyść";
+            this.btnWyczysc.UseVisualStyleBackColor = true;
+            this.btnWyczysc.Click += new System.EventHandler(this.btnWyczysc_Click);
+            // 
+            // Label
+            // 
+            this.Label.AutoSize = true;
+            this.Label.Location = new System.Drawing.Point(772, 416);
+            this.Label.Name = "Label";
+            this.Label.Size = new System.Drawing.Size(82, 16);
+            this.Label.TabIndex = 31;
+            this.Label.Text = "Uprawnienia";
+            // 
+            // txtUprawnienia
+            // 
+            this.txtUprawnienia.Location = new System.Drawing.Point(633, 409);
+            this.txtUprawnienia.Name = "txtUprawnienia";
+            this.txtUprawnienia.Size = new System.Drawing.Size(100, 22);
+            this.txtUprawnienia.TabIndex = 32;
             // 
             // DodajUzytkownika
             // 
@@ -292,6 +322,9 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Coral;
             this.ClientSize = new System.Drawing.Size(929, 639);
+            this.Controls.Add(this.txtUprawnienia);
+            this.Controls.Add(this.Label);
+            this.Controls.Add(this.btnWyczysc);
             this.Controls.Add(this.btnWroc);
             this.Controls.Add(this.btnZapisz);
             this.Controls.Add(this.txtDataUrodzenia);
@@ -319,7 +352,7 @@
             this.Controls.Add(this.txtPesel);
             this.Controls.Add(this.txtNazwisko);
             this.Controls.Add(this.txtImie);
-            this.Controls.Add(this.txtLogin);
+            this.Controls.Add(this.txtHaslo);
             this.Name = "DodajUzytkownika";
             this.Text = "Form1";
             this.Load += new System.EventHandler(this.DodajUzytkownika_Load);
@@ -330,7 +363,7 @@
 
         #endregion
 
-        private System.Windows.Forms.TextBox txtLogin;
+        private System.Windows.Forms.TextBox txtHaslo;
         private System.Windows.Forms.TextBox txtImie;
         private System.Windows.Forms.TextBox txtNazwisko;
         private System.Windows.Forms.TextBox txtPesel;
@@ -358,5 +391,8 @@
         private System.Windows.Forms.DateTimePicker txtDataUrodzenia;
         private System.Windows.Forms.Button btnZapisz;
         private System.Windows.Forms.Button btnWroc;
+        private System.Windows.Forms.Button btnWyczysc;
+        private System.Windows.Forms.Label Label;
+        private System.Windows.Forms.TextBox txtUprawnienia;
     }
 }

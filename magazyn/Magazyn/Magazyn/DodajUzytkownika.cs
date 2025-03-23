@@ -1,7 +1,7 @@
 ﻿using Magazyn.Helpers;
 using System;
 using System.Data.SqlClient;
-using System.Linq;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Magazyn
@@ -11,169 +11,139 @@ namespace Magazyn
         public DodajUzytkownika()
         {
             InitializeComponent();
-            InicjalizujComboPlec();
-        }
-
-        // Inicjalizacja ComboBox dla płci
-        private void InicjalizujComboPlec()
-        {
             comboPlec.Items.Add("Kobieta");
             comboPlec.Items.Add("Mężczyzna");
             comboPlec.SelectedIndex = 0;
         }
 
-        // Przycisk "Zapisz"
-        private void btnZapisz_Click(object sender, EventArgs e)
-        {
-            if (!WalidujDane()) return;
-            if (!SprawdzUnikalnoscLoginu(txtLogin.Text)) return;
-            if (!WalidujPESEL(txtPesel.Text))
-            {
-                MessageBox.Show("Niepoprawny numer PESEL!");
-                return;
-            }
-
-            try
-            {
-                ZapiszUzytkownikaDoBazy();
-                MessageBox.Show("Użytkownik dodany pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                this.Close();
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        // Przycisk "Anuluj"
-        private void btnAnuluj_Click(object sender, EventArgs e)
-        {
-            this.Close();
-        }
-
-        // Walidacja wymaganych pól
         private bool WalidujDane()
         {
-            if (string.IsNullOrEmpty(txtLogin.Text) ||
-                string.IsNullOrEmpty(txtImie.Text) ||
-                string.IsNullOrEmpty(txtNazwisko.Text) ||
-                string.IsNullOrEmpty(txtPesel.Text) ||
-                string.IsNullOrEmpty(txtEmail.Text) ||
-                string.IsNullOrEmpty(txtTelefon.Text) ||
-                string.IsNullOrEmpty(txtMiejscowosc.Text) ||
-                string.IsNullOrEmpty(txtKodPocztowy.Text) ||
-                string.IsNullOrEmpty(txtNumerPosesji.Text))
+            // Sprawdź wymagane pola
+            if (string.IsNullOrWhiteSpace(txtImie.Text) ||
+                string.IsNullOrWhiteSpace(txtNazwisko.Text) ||
+                string.IsNullOrWhiteSpace(txtPesel.Text) ||
+                string.IsNullOrWhiteSpace(txtEmail.Text) ||
+                string.IsNullOrWhiteSpace(txtTelefon.Text) ||
+                string.IsNullOrWhiteSpace(txtMiejscowosc.Text) ||
+                string.IsNullOrWhiteSpace(txtKodPocztowy.Text) ||
+                string.IsNullOrWhiteSpace(txtNumerPosesji.Text))
             {
                 MessageBox.Show("Wypełnij wszystkie wymagane pola!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
+
+            // Walidacja PESEL (11 cyfr)
+            if (!Regex.IsMatch(txtPesel.Text, @"^\d{11}$"))
+            {
+                MessageBox.Show("Nieprawidłowy numer PESEL!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Walidacja email
+            if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            {
+                MessageBox.Show("Nieprawidłowy adres email!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Walidacja telefonu (9 cyfr)
+            if (!Regex.IsMatch(txtTelefon.Text, @"^\d{9}$"))
+            {
+                MessageBox.Show("Nieprawidłowy numer telefonu!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Walidacja kod pocztowy (format XX-XXX)
+            if (!Regex.IsMatch(txtKodPocztowy.Text, @"^\d{2}-\d{3}$"))
+            {
+                MessageBox.Show("Nieprawidłowy format kodu pocztowego!\nPoprawny format: 00-000", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Zmodyfikowane walidacje dla liter i niektórych znaków specjalnych
+            if (!Regex.IsMatch(txtImie.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
+                !Regex.IsMatch(txtNazwisko.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
+                !Regex.IsMatch(txtMiejscowosc.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$"))
+            {
+                MessageBox.Show("Imię, nazwisko i miejscowość mogą zawierać tylko litery, spacje, myślniki i apostrofy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
             return true;
         }
 
-        // Sprawdź unikalność loginu
-        private bool SprawdzUnikalnoscLoginu(string login)
-        {
-            using (SqlConnection conn = DatabaseHelper.GetConnection())
-            {
-                conn.Open();
-                string query = "SELECT COUNT(*) FROM Uzytkownik WHERE Login = @Login";
-                SqlCommand cmd = new SqlCommand(query, conn);
-                cmd.Parameters.AddWithValue("@Login", login);
-                int count = (int)cmd.ExecuteScalar();
 
-                if (count > 0)
-                {
-                    MessageBox.Show("Login już istnieje w systemie!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return false;
-                }
-                return true;
-            }
-        }
 
-        // Walidacja numeru PESEL
-        private bool WalidujPESEL(string pesel)
-        {
-            if (pesel.Length != 11 || !pesel.All(char.IsDigit)) return false;
-
-            int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3, 1 };
-            int sum = 0;
-            for (int i = 0; i < 10; i++)
-            {
-                sum += (pesel[i] - '0') * weights[i];
-            }
-            int controlDigit = (10 - (sum % 10)) % 10;
-            return controlDigit == (pesel[10] - '0');
-        }
-
-        // Zapis do bazy z transakcją
-        private void ZapiszUzytkownikaDoBazy()
-        {
-            using (SqlConnection conn = DatabaseHelper.GetConnection())
-            {
-                conn.Open();
-                SqlTransaction transaction = conn.BeginTransaction();
-
-                try
-                {
-                    // 1. Dodaj adres
-                    int adresId = DodajAdres(conn, transaction);
-
-                    // 2. Dodaj użytkownika
-                    string query = @"
-                        INSERT INTO Uzytkownik 
-                        (Login, Haslo, Imię, Nazwisko, PESEL, Data_urodzenia, Płeć, Email, Numer_Telefonu, ID_Adres)
-                        VALUES 
-                        (@Login, @Haslo, @Imie, @Nazwisko, @PESEL, @DataUrodzenia, @Plec, @Email, @Telefon, @AdresId)";
-
-                    SqlCommand cmd = new SqlCommand(query, conn, transaction);
-                    cmd.Parameters.AddWithValue("@Login", txtLogin.Text);
-                    cmd.Parameters.AddWithValue("@Haslo", HaszujHaslo("tymczasowe_haslo")); // TODO: Zastąp rzeczywistym hasłem
-                    cmd.Parameters.AddWithValue("@Imie", txtImie.Text);
-                    cmd.Parameters.AddWithValue("@Nazwisko", txtNazwisko.Text);
-                    cmd.Parameters.AddWithValue("@PESEL", txtPesel.Text);
-                    cmd.Parameters.AddWithValue("@DataUrodzenia", txtDataUrodzenia.Value);
-                    cmd.Parameters.AddWithValue("@Plec", comboPlec.SelectedItem.ToString());
-                    cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
-                    cmd.Parameters.AddWithValue("@Telefon", txtTelefon.Text);
-                    cmd.Parameters.AddWithValue("@AdresId", adresId);
-
-                    cmd.ExecuteNonQuery();
-                    transaction.Commit();
-                }
-                catch (Exception)
-                {
-                    transaction.Rollback();
-                    throw;
-                }
-            }
-        }
-
-        // Dodawanie adresu (metoda pomocnicza)
         private int DodajAdres(SqlConnection conn, SqlTransaction transaction)
         {
             string query = @"
                 INSERT INTO Adres 
                 (Miejscowość, Kod_pocztowy, Ulica, Numer_posesji, Numer_lokalu)
                 OUTPUT INSERTED.ID_Adres
-                VALUES 
-                (@Miejscowosc, @KodPocztowy, @Ulica, @NumerPosesji, @NumerLokalu)";
+                VALUES (@Miejscowosc, @KodPocztowy, @Ulica, @NumerPosesji, @NumerLokalu)";
 
             SqlCommand cmd = new SqlCommand(query, conn, transaction);
             cmd.Parameters.AddWithValue("@Miejscowosc", txtMiejscowosc.Text);
             cmd.Parameters.AddWithValue("@KodPocztowy", txtKodPocztowy.Text);
-            cmd.Parameters.AddWithValue("@Ulica", string.IsNullOrEmpty(txtUlica.Text) ? (object)DBNull.Value : txtUlica.Text);
+            cmd.Parameters.AddWithValue("@Ulica", string.IsNullOrEmpty(txtUlica.Text) ? DBNull.Value : (object)txtUlica.Text);
             cmd.Parameters.AddWithValue("@NumerPosesji", txtNumerPosesji.Text);
-            cmd.Parameters.AddWithValue("@NumerLokalu", string.IsNullOrEmpty(txtNumerLokalu.Text) ? (object)DBNull.Value : txtNumerLokalu.Text);
+            cmd.Parameters.AddWithValue("@NumerLokalu", string.IsNullOrEmpty(txtNumerLokalu.Text) ? DBNull.Value : (object)txtNumerLokalu.Text);
 
             return Convert.ToInt32(cmd.ExecuteScalar());
         }
 
-        // Metoda do haszowania hasła (do implementacji)
-        private string HaszujHaslo(string haslo)
+        private int DodajUprawnienia(SqlConnection conn, SqlTransaction transaction)
         {
-            // Przykład użycia BCrypt.Net (wymaga instalacji paczki NuGet)
-            // return BCrypt.Net.BCrypt.HashPassword(haslo);
-            return "temp_haslo"; // Tymczasowe rozwiązanie
+            string query = @"
+                INSERT INTO Uprawnienia 
+                (nazwa)
+                OUTPUT INSERTED.ID_Uprawnienia
+                VALUES (@Nazwa)";
+
+            SqlCommand cmd = new SqlCommand(query, conn, transaction);
+            cmd.Parameters.AddWithValue("@Nazwa", txtUprawnienia.Text);
+
+            return Convert.ToInt32(cmd.ExecuteScalar());
+        }
+
+        private bool SprawdzUnikalnoscPesel(string pesel, SqlConnection conn, SqlTransaction transaction)
+        {
+            string query = "SELECT COUNT(*) FROM Uzytkownik WHERE PESEL = @PESEL";
+            SqlCommand cmd = new SqlCommand(query, conn, transaction);
+            cmd.Parameters.AddWithValue("@PESEL", pesel);
+            return (int)cmd.ExecuteScalar() == 0;
+        }
+
+        private void DodajUzytkownikaDoBazy(SqlConnection conn, SqlTransaction transaction, int adresId, int uprawnieniaId)
+        {
+            string query = @"
+                INSERT INTO Uzytkownik 
+                (Haslo, Imię, Nazwisko, PESEL, Data_urodzenia, Pieć, Email, Numer_Telefonu, ID_Adres, ID_Status, ID_Uprawnienia)
+                VALUES 
+                (@Haslo, @Imie, @Nazwisko, @PESEL, @DataUrodzenia, @Plec, @Email, @Telefon, @AdresId, 1, @UprawnieniaId)";
+
+            SqlCommand cmd = new SqlCommand(query, conn, transaction);
+            cmd.Parameters.AddWithValue("@Haslo", txtHaslo.Text);
+            cmd.Parameters.AddWithValue("@Imie", txtImie.Text);
+            cmd.Parameters.AddWithValue("@Nazwisko", txtNazwisko.Text);
+            cmd.Parameters.AddWithValue("@PESEL", txtPesel.Text);
+            cmd.Parameters.AddWithValue("@DataUrodzenia", txtDataUrodzenia.Value);
+            cmd.Parameters.AddWithValue("@Plec", comboPlec.SelectedItem.ToString() == "Kobieta" ? "K" : "M");
+            cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
+            cmd.Parameters.AddWithValue("@Telefon", txtTelefon.Text);
+            cmd.Parameters.AddWithValue("@AdresId", adresId);
+            cmd.Parameters.AddWithValue("@UprawnieniaId", uprawnieniaId);
+
+            cmd.ExecuteNonQuery();
+        }
+
+        
+
+        private void btnWroc_Click(object sender, EventArgs e)
+        {
+            PanelAdmina adminPanel = new PanelAdmina();
+            adminPanel.Show();
+            this.Hide();
         }
 
         private void DodajUzytkownika_Load(object sender, EventArgs e)
@@ -181,11 +151,72 @@ namespace Magazyn
 
         }
 
-        private void btnWroc_Click(object sender, EventArgs e)
+        
+
+        private void btnWyczysc_Click(object sender, EventArgs e)
         {
-            PanelAdmina adminPanel = new PanelAdmina();
-            adminPanel.Show();
-            this.Hide();
+            // Wyczyść wszystkie pola
+            foreach (Control control in this.Controls)
+            {
+                if (control is TextBox)
+                {
+                    ((TextBox)control).Clear();
+                }
+            }
+            comboPlec.SelectedIndex = 0;
+            txtDataUrodzenia.Value = DateTime.Now;
+        }
+
+        private void btnZapisz_Click(object sender, EventArgs e)
+        {
+            if (!WalidujDane()) return;
+
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                try
+                {
+                    conn.Open();
+                    using (SqlTransaction transaction = conn.BeginTransaction()) // using dla transakcji
+                    {
+                        try
+                        {
+                            // Krok 1: Dodaj adres
+                            int adresId = DodajAdres(conn, transaction);
+
+                            // Krok 2: Dodaj uprawnienia
+                            int uprawnieniaId = DodajUprawnienia(conn, transaction);
+
+                            // Krok 3: Sprawdź unikalność PESEL
+                            if (!SprawdzUnikalnoscPesel(txtPesel.Text, conn, transaction))
+                            {
+                                MessageBox.Show("Użytkownik o podanym numerze PESEL już istnieje!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                transaction.Rollback();
+                                return;
+                            }
+
+                            // Krok 4: Dodaj użytkownika
+                            DodajUzytkownikaDoBazy(conn, transaction, adresId, uprawnieniaId);
+
+                            transaction.Commit();
+                            MessageBox.Show("Użytkownik dodany pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                            // Przejdź do listy użytkowników
+                            ListaUzytkownikow listaForm = new ListaUzytkownikow();
+                            listaForm.Show();
+                            this.Close(); // Zamknij formularz zamiast Hide()
+                        }
+                        catch (Exception ex)
+                        {
+                            transaction.Rollback();
+                            MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                finally
+                {
+                    conn.Close(); // Dodatkowe zabezpieczenie
+                }
+            }
         }
     }
 }

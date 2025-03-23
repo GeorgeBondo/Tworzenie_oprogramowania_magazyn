@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Data.SqlClient;
+using System.Drawing;
 using System.Windows.Forms;
 
 namespace Magazyn
@@ -11,20 +12,23 @@ namespace Magazyn
         public ListaUzytkownikow()
         {
             InitializeComponent();
+            dataGridViewUzytkownicy.CellFormatting += dataGridViewUzytkownicy_CellFormatting;
         }
+
+
 
         private void ListaUzytkownikow_Load(object sender, EventArgs e)
         {
             WczytajUzytkownikow();
         }
 
-        
         private void WczytajUzytkownikow()
         {
             try
             {
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
+                    // Zapytanie z dynamicznym statusem
                     string query = @"
                         SELECT 
                             ID_Uzytkownik AS 'ID',
@@ -33,11 +37,11 @@ namespace Magazyn
                             Email,
                             Numer_Telefonu AS 'Telefon',
                             Data_urodzenia AS 'Data urodzenia',
-                            PESEL,
-                            Pieć,
-                            ID_Status AS 'Status'
-                        FROM Uzytkownik
-                        WHERE ID_Status = 1"; 
+                            CASE 
+                                WHEN ID_Status = 1 THEN 'Aktywny'
+                                ELSE 'Nieaktywny'
+                            END AS 'Status'
+                        FROM Uzytkownik";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
@@ -52,7 +56,22 @@ namespace Magazyn
             }
         }
 
-        
+        // Formatowanie koloru dla kolumny "Status"
+        private void dataGridViewUzytkownicy_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridViewUzytkownicy.Columns[e.ColumnIndex].Name == "Status")
+            {
+                if (e.Value?.ToString() == "Aktywny")
+                {
+                    e.CellStyle.ForeColor = Color.Green;
+                }
+                else
+                {
+                    e.CellStyle.ForeColor = Color.Red;
+                }
+            }
+        }
+
         private void btnWroc_Click(object sender, EventArgs e)
         {
             PanelAdmina adminPanel = new PanelAdmina();
@@ -60,7 +79,6 @@ namespace Magazyn
             this.Hide();
         }
 
-        
         public void OdswiezDane()
         {
             WczytajUzytkownikow();

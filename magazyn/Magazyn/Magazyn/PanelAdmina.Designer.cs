@@ -87,6 +87,7 @@
             this.Controls.Add(this.button_testujPolaczenie);
             this.Name = "PanelAdmina";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.PanelAdmina_Load);
             this.ResumeLayout(false);
 
         }
