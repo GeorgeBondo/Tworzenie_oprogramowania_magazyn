@@ -28,45 +28,316 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnWroc = new System.Windows.Forms.Button();
-            this.button2 = new System.Windows.Forms.Button();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdytujUzytkownika));
+            this.btnAnuluj = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
+            this.txtImie = new System.Windows.Forms.TextBox();
+            this.txtNazwisko = new System.Windows.Forms.TextBox();
+            this.txtPesel = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtTelefon = new System.Windows.Forms.TextBox();
+            this.txtMiejscowosc = new System.Windows.Forms.TextBox();
+            this.txtKodPocztowy = new System.Windows.Forms.TextBox();
+            this.txtNumerPosesji = new System.Windows.Forms.TextBox();
+            this.txtUlica = new System.Windows.Forms.TextBox();
+            this.txtNumerLokalu = new System.Windows.Forms.TextBox();
+            this.comboPlec = new System.Windows.Forms.ComboBox();
+            this.txtDataUrodzenia = new System.Windows.Forms.DateTimePicker();
+            this.label1 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label8 = new System.Windows.Forms.Label();
+            this.label9 = new System.Windows.Forms.Label();
+            this.label10 = new System.Windows.Forms.Label();
+            this.label11 = new System.Windows.Forms.Label();
+            this.label12 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
-            // btnWroc
+            // btnAnuluj
             // 
-            this.btnWroc.Location = new System.Drawing.Point(713, 415);
-            this.btnWroc.Name = "btnWroc";
-            this.btnWroc.Size = new System.Drawing.Size(75, 23);
-            this.btnWroc.TabIndex = 0;
-            this.btnWroc.Text = "Wróć";
-            this.btnWroc.UseVisualStyleBackColor = true;
-            this.btnWroc.Click += new System.EventHandler(this.btnWroc_Click);
+            this.btnAnuluj.Location = new System.Drawing.Point(467, 474);
+            this.btnAnuluj.Name = "btnAnuluj";
+            this.btnAnuluj.Size = new System.Drawing.Size(75, 23);
+            this.btnAnuluj.TabIndex = 0;
+            this.btnAnuluj.Text = "Anuluj";
+            this.btnAnuluj.UseVisualStyleBackColor = true;
+            this.btnAnuluj.Click += new System.EventHandler(this.btnAnuluj_Click_1);
             // 
-            // button2
+            // button1
             // 
-            this.button2.Location = new System.Drawing.Point(713, 12);
-            this.button2.Name = "button2";
-            this.button2.Size = new System.Drawing.Size(75, 23);
-            this.button2.TabIndex = 1;
-            this.button2.Text = "button2";
-            this.button2.UseVisualStyleBackColor = true;
+            this.button1.Location = new System.Drawing.Point(467, 427);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 2;
+            this.button1.Text = "Zapisz";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // txtImie
+            // 
+            this.txtImie.Location = new System.Drawing.Point(157, 49);
+            this.txtImie.Name = "txtImie";
+            this.txtImie.Size = new System.Drawing.Size(100, 22);
+            this.txtImie.TabIndex = 3;
+            // 
+            // txtNazwisko
+            // 
+            this.txtNazwisko.Location = new System.Drawing.Point(157, 105);
+            this.txtNazwisko.Name = "txtNazwisko";
+            this.txtNazwisko.Size = new System.Drawing.Size(100, 22);
+            this.txtNazwisko.TabIndex = 4;
+            // 
+            // txtPesel
+            // 
+            this.txtPesel.Location = new System.Drawing.Point(157, 162);
+            this.txtPesel.Name = "txtPesel";
+            this.txtPesel.Size = new System.Drawing.Size(100, 22);
+            this.txtPesel.TabIndex = 5;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Location = new System.Drawing.Point(157, 226);
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(100, 22);
+            this.txtEmail.TabIndex = 6;
+            // 
+            // txtTelefon
+            // 
+            this.txtTelefon.Location = new System.Drawing.Point(157, 290);
+            this.txtTelefon.Name = "txtTelefon";
+            this.txtTelefon.Size = new System.Drawing.Size(100, 22);
+            this.txtTelefon.TabIndex = 7;
+            // 
+            // txtMiejscowosc
+            // 
+            this.txtMiejscowosc.Location = new System.Drawing.Point(852, 70);
+            this.txtMiejscowosc.Name = "txtMiejscowosc";
+            this.txtMiejscowosc.Size = new System.Drawing.Size(100, 22);
+            this.txtMiejscowosc.TabIndex = 8;
+            // 
+            // txtKodPocztowy
+            // 
+            this.txtKodPocztowy.Location = new System.Drawing.Point(852, 133);
+            this.txtKodPocztowy.Name = "txtKodPocztowy";
+            this.txtKodPocztowy.Size = new System.Drawing.Size(100, 22);
+            this.txtKodPocztowy.TabIndex = 9;
+            // 
+            // txtNumerPosesji
+            // 
+            this.txtNumerPosesji.Location = new System.Drawing.Point(852, 196);
+            this.txtNumerPosesji.Name = "txtNumerPosesji";
+            this.txtNumerPosesji.Size = new System.Drawing.Size(100, 22);
+            this.txtNumerPosesji.TabIndex = 10;
+            // 
+            // txtUlica
+            // 
+            this.txtUlica.Location = new System.Drawing.Point(852, 260);
+            this.txtUlica.Name = "txtUlica";
+            this.txtUlica.Size = new System.Drawing.Size(100, 22);
+            this.txtUlica.TabIndex = 11;
+            // 
+            // txtNumerLokalu
+            // 
+            this.txtNumerLokalu.Location = new System.Drawing.Point(852, 331);
+            this.txtNumerLokalu.Name = "txtNumerLokalu";
+            this.txtNumerLokalu.Size = new System.Drawing.Size(100, 22);
+            this.txtNumerLokalu.TabIndex = 12;
+            // 
+            // comboPlec
+            // 
+            this.comboPlec.FormattingEnabled = true;
+            this.comboPlec.Location = new System.Drawing.Point(157, 352);
+            this.comboPlec.Name = "comboPlec";
+            this.comboPlec.Size = new System.Drawing.Size(121, 24);
+            this.comboPlec.TabIndex = 13;
+            // 
+            // txtDataUrodzenia
+            // 
+            this.txtDataUrodzenia.Location = new System.Drawing.Point(157, 413);
+            this.txtDataUrodzenia.Name = "txtDataUrodzenia";
+            this.txtDataUrodzenia.Size = new System.Drawing.Size(200, 22);
+            this.txtDataUrodzenia.TabIndex = 14;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(25, 49);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(32, 16);
+            this.label1.TabIndex = 15;
+            this.label1.Text = "Imie";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(28, 110);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(65, 16);
+            this.label2.TabIndex = 16;
+            this.label2.Text = "Nazwisko";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(28, 167);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(50, 16);
+            this.label3.TabIndex = 17;
+            this.label3.Text = "PESEL";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(28, 231);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(41, 16);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Email";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(28, 285);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(53, 16);
+            this.label5.TabIndex = 19;
+            this.label5.Text = "Telefon";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(31, 352);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(37, 16);
+            this.label6.TabIndex = 20;
+            this.label6.Text = "Płeć";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(28, 418);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(101, 16);
+            this.label7.TabIndex = 21;
+            this.label7.Text = "Data Urodzenia";
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(735, 76);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(85, 16);
+            this.label8.TabIndex = 22;
+            this.label8.Text = "Miejscowość";
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(735, 139);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(90, 16);
+            this.label9.TabIndex = 23;
+            this.label9.Text = "Kod pocztowy";
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(735, 202);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(94, 16);
+            this.label10.TabIndex = 24;
+            this.label10.Text = "Numer posesji";
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(735, 266);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(38, 16);
+            this.label11.TabIndex = 25;
+            this.label11.Text = "Ulica";
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(735, 331);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(86, 16);
+            this.label12.TabIndex = 26;
+            this.label12.Text = "Numer lokalu";
             // 
             // EdytujUzytkownika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.button2);
-            this.Controls.Add(this.btnWroc);
+            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.ClientSize = new System.Drawing.Size(1011, 617);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.label11);
+            this.Controls.Add(this.label10);
+            this.Controls.Add(this.label9);
+            this.Controls.Add(this.label8);
+            this.Controls.Add(this.label7);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.label3);
+            this.Controls.Add(this.label2);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.txtDataUrodzenia);
+            this.Controls.Add(this.comboPlec);
+            this.Controls.Add(this.txtNumerLokalu);
+            this.Controls.Add(this.txtUlica);
+            this.Controls.Add(this.txtNumerPosesji);
+            this.Controls.Add(this.txtKodPocztowy);
+            this.Controls.Add(this.txtMiejscowosc);
+            this.Controls.Add(this.txtTelefon);
+            this.Controls.Add(this.txtEmail);
+            this.Controls.Add(this.txtPesel);
+            this.Controls.Add(this.txtNazwisko);
+            this.Controls.Add(this.txtImie);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnAnuluj);
             this.Name = "EdytujUzytkownika";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.EdytujUzytkownika_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private System.Windows.Forms.Button btnWroc;
-        private System.Windows.Forms.Button button2;
+        private System.Windows.Forms.Button btnAnuluj;
+        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.TextBox txtImie;
+        private System.Windows.Forms.TextBox txtNazwisko;
+        private System.Windows.Forms.TextBox txtPesel;
+        private System.Windows.Forms.TextBox txtEmail;
+        private System.Windows.Forms.TextBox txtTelefon;
+        private System.Windows.Forms.TextBox txtMiejscowosc;
+        private System.Windows.Forms.TextBox txtKodPocztowy;
+        private System.Windows.Forms.TextBox txtNumerPosesji;
+        private System.Windows.Forms.TextBox txtUlica;
+        private System.Windows.Forms.TextBox txtNumerLokalu;
+        private System.Windows.Forms.ComboBox comboPlec;
+        private System.Windows.Forms.DateTimePicker txtDataUrodzenia;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.Label label12;
     }
 }

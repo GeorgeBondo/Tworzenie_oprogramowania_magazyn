@@ -12,6 +12,8 @@ namespace Magazyn
         public ListaUzytkownikow()
         {
             InitializeComponent();
+            dataGridViewUzytkownicy.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Zaznacz cały wiersz
+            dataGridViewUzytkownicy.MultiSelect = false; // Wyłącz wielokrotne zaznaczanie
             dataGridViewUzytkownicy.CellFormatting += dataGridViewUzytkownicy_CellFormatting;
         }
 
@@ -91,7 +93,14 @@ namespace Magazyn
 
         private void btnEdytuj_Click(object sender, EventArgs e)
         {
-            EdytujUzytkownika edytujForm = new EdytujUzytkownika();
+            if (dataGridViewUzytkownicy.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz użytkownika do edycji!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            int selectedUserId = Convert.ToInt32(dataGridViewUzytkownicy.SelectedRows[0].Cells["ID"].Value);
+            EdytujUzytkownika edytujForm = new EdytujUzytkownika(selectedUserId);
             edytujForm.Show();
             this.Hide();
         }
