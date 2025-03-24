@@ -39,6 +39,7 @@ namespace Magazyn
                             Email,
                             Numer_Telefonu AS 'Telefon',
                             Data_urodzenia AS 'Data urodzenia',
+                            PESEL,
                             CASE 
                                 WHEN ID_Status = 1 THEN 'Aktywny'
                                 ELSE 'Nieaktywny'

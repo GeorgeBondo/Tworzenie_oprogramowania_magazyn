@@ -18,7 +18,7 @@ namespace Magazyn
 
         private bool WalidujDane()
         {
-            // Sprawdź wymagane pola
+            // 1. Sprawdź wymagane pola (oprócz hasła, jeśli nie jest obowiązkowe w edycji)
             if (string.IsNullOrWhiteSpace(txtImie.Text) ||
                 string.IsNullOrWhiteSpace(txtNazwisko.Text) ||
                 string.IsNullOrWhiteSpace(txtPesel.Text) ||
@@ -32,35 +32,35 @@ namespace Magazyn
                 return false;
             }
 
-            // Walidacja PESEL (11 cyfr)
+            // 2. Walidacja PESEL (11 cyfr)
             if (!Regex.IsMatch(txtPesel.Text, @"^\d{11}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer PESEL!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Walidacja email
+            // 3. Walidacja email
             if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Nieprawidłowy adres email!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Walidacja telefonu (9 cyfr)
+            // 4. Walidacja telefonu (9 cyfr)
             if (!Regex.IsMatch(txtTelefon.Text, @"^\d{9}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer telefonu!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Walidacja kod pocztowy (format XX-XXX)
+            // 5. Walidacja kod pocztowy (format XX-XXX)
             if (!Regex.IsMatch(txtKodPocztowy.Text, @"^\d{2}-\d{3}$"))
             {
                 MessageBox.Show("Nieprawidłowy format kodu pocztowego!\nPoprawny format: 00-000", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Zmodyfikowane walidacje dla liter i niektórych znaków specjalnych
+            // 6. Walidacja liter w imieniu, nazwisku i miejscowości
             if (!Regex.IsMatch(txtImie.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtNazwisko.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtMiejscowosc.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$"))
@@ -69,7 +69,30 @@ namespace Magazyn
                 return false;
             }
 
-            return true;
+            // 7. Walidacja hasła (tylko jeśli pole jest widoczne i wymagane)
+            if (!string.IsNullOrEmpty(txtHaslo.Text)) // Usuń ten warunek, jeśli hasło jest obowiązkowe
+            {
+                string haslo = txtHaslo.Text;
+                bool isPasswordValid = Regex.IsMatch(haslo, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-_!*#$&]).{8,15}$");
+
+                if (!isPasswordValid)
+                {
+                    MessageBox.Show(
+                        "Hasło musi spełniać wymagania:\n" +
+                        "- 8-15 znaków\n" +
+                        "- co najmniej 1 wielka litera\n" +
+                        "- co najmniej 1 mała litera\n" +
+                        "- co najmniej 1 cyfra\n" +
+                        "- co najmniej 1 znak specjalny (-, _, !, *, #, $, &)",
+                        "Błąd hasła",
+                        MessageBoxButtons.OK,
+                        MessageBoxIcon.Error
+                    );
+                    return false;
+                }
+            }
+
+            return true; // Wszystkie walidacje przeszły pomyślnie
         }
 
 

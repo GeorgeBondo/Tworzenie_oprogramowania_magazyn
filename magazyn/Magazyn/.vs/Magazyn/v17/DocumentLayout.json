@@ -3,24 +3,12 @@
   "WorkspaceRootPath": "D:\\magazyn\\Magazyn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|D:\\magazyn\\Magazyn\\magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|D:\\magazyn\\Magazyn\\magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\edytujuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\edytujuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\listauzytkownikow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\listauzytkownikow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\edytujuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\edytujuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\listauzytkownikow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\listauzytkownikow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -30,7 +18,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Bookmark",
@@ -38,64 +26,27 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "DodajUzytkownika.cs",
-              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
-              "RelativeDocumentMoniker": "Magazyn\\DodajUzytkownika.cs",
-              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
-              "RelativeToolTip": "Magazyn\\DodajUzytkownika.cs",
-              "ViewState": "AgIAABMAAAAAAAAAAAAAwJYAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T23:11:23.836Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "DodajUzytkownika.cs [Projekt]",
-              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
-              "RelativeDocumentMoniker": "Magazyn\\DodajUzytkownika.cs",
-              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs [Projekt]",
-              "RelativeToolTip": "Magazyn\\DodajUzytkownika.cs [Projekt]",
+              "Title": "ListaUzytkownikow.cs",
+              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\ListaUzytkownikow.cs",
+              "RelativeDocumentMoniker": "Magazyn\\ListaUzytkownikow.cs",
+              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\ListaUzytkownikow.cs",
+              "RelativeToolTip": "Magazyn\\ListaUzytkownikow.cs",
+              "ViewState": "AgIAABMAAAAAAAAAAAAAACkAAAAiAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T23:11:22.704Z",
-              "EditorCaption": " [Projekt]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EdytujUzytkownika.cs",
-              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\EdytujUzytkownika.cs",
-              "RelativeDocumentMoniker": "Magazyn\\EdytujUzytkownika.cs",
-              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\EdytujUzytkownika.cs",
-              "RelativeToolTip": "Magazyn\\EdytujUzytkownika.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAJAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T23:16:24.601Z",
+              "WhenOpened": "2025-03-24T10:50:31.665Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "EdytujUzytkownika.cs [Projekt]",
-              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\EdytujUzytkownika.cs",
-              "RelativeDocumentMoniker": "Magazyn\\EdytujUzytkownika.cs",
-              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\EdytujUzytkownika.cs [Projekt]",
-              "RelativeToolTip": "Magazyn\\EdytujUzytkownika.cs [Projekt]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T23:16:23.434Z",
-              "EditorCaption": " [Projekt]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 0,
               "Title": "ListaUzytkownikow.cs [Projekt]",
               "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\ListaUzytkownikow.cs",
               "RelativeDocumentMoniker": "Magazyn\\ListaUzytkownikow.cs",
               "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\ListaUzytkownikow.cs [Projekt]",
               "RelativeToolTip": "Magazyn\\ListaUzytkownikow.cs [Projekt]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-23T23:16:07.129Z",
+              "WhenOpened": "2025-03-24T10:49:40.759Z",
               "EditorCaption": " [Projekt]"
             }
           ]

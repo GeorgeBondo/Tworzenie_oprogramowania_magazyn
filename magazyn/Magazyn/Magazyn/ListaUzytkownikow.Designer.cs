@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(ListaUzytkownikow));
             this.btnWroc = new System.Windows.Forms.Button();
             this.dataGridViewUzytkownicy = new System.Windows.Forms.DataGridView();
             this.btnOdswiez = new System.Windows.Forms.Button();
@@ -38,7 +37,7 @@
             // 
             // btnWroc
             // 
-            this.btnWroc.Location = new System.Drawing.Point(627, 37);
+            this.btnWroc.Location = new System.Drawing.Point(786, 37);
             this.btnWroc.Name = "btnWroc";
             this.btnWroc.Size = new System.Drawing.Size(75, 32);
             this.btnWroc.TabIndex = 1;
@@ -54,12 +53,12 @@
             this.dataGridViewUzytkownicy.Name = "dataGridViewUzytkownicy";
             this.dataGridViewUzytkownicy.RowHeadersWidth = 51;
             this.dataGridViewUzytkownicy.RowTemplate.Height = 24;
-            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(1003, 646);
+            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(1141, 646);
             this.dataGridViewUzytkownicy.TabIndex = 2;
             // 
             // btnOdswiez
             // 
-            this.btnOdswiez.Location = new System.Drawing.Point(325, 37);
+            this.btnOdswiez.Location = new System.Drawing.Point(474, 37);
             this.btnOdswiez.Name = "btnOdswiez";
             this.btnOdswiez.Size = new System.Drawing.Size(75, 32);
             this.btnOdswiez.TabIndex = 3;
@@ -69,7 +68,7 @@
             // 
             // btnEdytuj
             // 
-            this.btnEdytuj.Location = new System.Drawing.Point(440, 28);
+            this.btnEdytuj.Location = new System.Drawing.Point(598, 28);
             this.btnEdytuj.Name = "btnEdytuj";
             this.btnEdytuj.Size = new System.Drawing.Size(142, 51);
             this.btnEdytuj.TabIndex = 4;
@@ -82,9 +81,8 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
-            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.ClientSize = new System.Drawing.Size(1028, 763);
+            this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
+            this.ClientSize = new System.Drawing.Size(1166, 763);
             this.Controls.Add(this.btnEdytuj);
             this.Controls.Add(this.btnOdswiez);
             this.Controls.Add(this.dataGridViewUzytkownicy);
