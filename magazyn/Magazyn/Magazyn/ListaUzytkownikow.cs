@@ -12,25 +12,28 @@ namespace Magazyn
         public ListaUzytkownikow()
         {
             InitializeComponent();
-            dataGridViewUzytkownicy.SelectionMode = DataGridViewSelectionMode.FullRowSelect; // Zaznacz cały wiersz
-            dataGridViewUzytkownicy.MultiSelect = false; // Wyłącz wielokrotne zaznaczanie
+            dataGridViewUzytkownicy.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
+            dataGridViewUzytkownicy.MultiSelect = false;
             dataGridViewUzytkownicy.CellFormatting += dataGridViewUzytkownicy_CellFormatting;
+
+            // Dodaj obsługę zdarzeń dla filtrów
+            txtFiltrImie.TextChanged += FiltrujUzytkownikow;
+            txtFiltrNazwisko.TextChanged += FiltrujUzytkownikow;
+            txtFiltrPesel.TextChanged += FiltrujUzytkownikow;
         }
-
-
 
         private void ListaUzytkownikow_Load(object sender, EventArgs e)
         {
             WczytajUzytkownikow();
         }
 
-        private void WczytajUzytkownikow()
+        // Zmodyfikowana metoda z parametrami filtrowania
+        private void WczytajUzytkownikow(string filtrImie = "", string filtrNazwisko = "", string filtrPesel = "")
         {
             try
             {
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
-                    // Zapytanie z dynamicznym statusem
                     string query = @"
                         SELECT 
                             ID_Uzytkownik AS 'ID',
@@ -42,9 +45,17 @@ namespace Magazyn
                                 WHEN ID_Status = 1 THEN 'Aktywny'
                                 ELSE 'Nieaktywny'
                             END AS 'Status'
-                        FROM Uzytkownik";
+                        FROM Uzytkownik
+                        WHERE 
+                            (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') AND
+                            (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') AND
+                            (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", filtrImie);
+                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrNazwisko", filtrNazwisko);
+                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrPesel", filtrPesel);
+
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
@@ -57,7 +68,25 @@ namespace Magazyn
             }
         }
 
-        // Formatowanie koloru dla kolumny "Status"
+        // Zdarzenie filtrowania
+        private void FiltrujUzytkownikow(object sender, EventArgs e)
+        {
+            WczytajUzytkownikow(
+                txtFiltrImie.Text.Trim(),
+                txtFiltrNazwisko.Text.Trim(),
+                txtFiltrPesel.Text.Trim()
+            );
+        }
+
+        // Przycisk "Wyczyść filtry"
+        private void btnWyczyscFiltry_Click(object sender, EventArgs e)
+        {
+            txtFiltrImie.Clear();
+            txtFiltrNazwisko.Clear();
+            txtFiltrPesel.Clear();
+        }
+
+        // Reszta istniejących metod (bez zmian)
         private void dataGridViewUzytkownicy_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridViewUzytkownicy.Columns[e.ColumnIndex].Name == "Status")
@@ -102,6 +131,13 @@ namespace Magazyn
             EdytujUzytkownika edytujForm = new EdytujUzytkownika(selectedUserId);
             edytujForm.Show();
             this.Hide();
+        }
+
+        private void btnWyczyśćFiltry_Click(object sender, EventArgs e)
+        {
+                txtFiltrImie.Clear();
+                txtFiltrNazwisko.Clear();
+                txtFiltrPesel.Clear();
         }
     }
 }
