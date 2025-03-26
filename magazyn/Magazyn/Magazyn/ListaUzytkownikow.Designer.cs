@@ -44,7 +44,7 @@
             // 
             // btnWroc
             // 
-            this.btnWroc.Location = new System.Drawing.Point(896, 41);
+            this.btnWroc.Location = new System.Drawing.Point(532, 25);
             this.btnWroc.Name = "btnWroc";
             this.btnWroc.Size = new System.Drawing.Size(75, 32);
             this.btnWroc.TabIndex = 1;
@@ -60,12 +60,12 @@
             this.dataGridViewUzytkownicy.Name = "dataGridViewUzytkownicy";
             this.dataGridViewUzytkownicy.RowHeadersWidth = 51;
             this.dataGridViewUzytkownicy.RowTemplate.Height = 24;
-            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(1141, 523);
+            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(845, 523);
             this.dataGridViewUzytkownicy.TabIndex = 2;
             // 
             // btnOdswiez
             // 
-            this.btnOdswiez.Location = new System.Drawing.Point(223, 31);
+            this.btnOdswiez.Location = new System.Drawing.Point(223, 25);
             this.btnOdswiez.Name = "btnOdswiez";
             this.btnOdswiez.Size = new System.Drawing.Size(75, 32);
             this.btnOdswiez.TabIndex = 3;
@@ -75,7 +75,7 @@
             // 
             // btnEdytuj
             // 
-            this.btnEdytuj.Location = new System.Drawing.Point(477, 15);
+            this.btnEdytuj.Location = new System.Drawing.Point(317, 12);
             this.btnEdytuj.Name = "btnEdytuj";
             this.btnEdytuj.Size = new System.Drawing.Size(196, 58);
             this.btnEdytuj.TabIndex = 4;
@@ -85,7 +85,7 @@
             // 
             // btnWyczyśćFiltry
             // 
-            this.btnWyczyśćFiltry.Location = new System.Drawing.Point(867, 181);
+            this.btnWyczyśćFiltry.Location = new System.Drawing.Point(614, 122);
             this.btnWyczyśćFiltry.Name = "btnWyczyśćFiltry";
             this.btnWyczyśćFiltry.Size = new System.Drawing.Size(128, 41);
             this.btnWyczyśćFiltry.TabIndex = 5;
@@ -135,7 +135,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(647, 178);
+            this.label3.Location = new System.Drawing.Point(653, 178);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(50, 16);
             this.label3.TabIndex = 11;
@@ -145,9 +145,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.Control;
+            this.BackColor = System.Drawing.Color.Salmon;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(1166, 763);
+            this.ClientSize = new System.Drawing.Size(869, 763);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);

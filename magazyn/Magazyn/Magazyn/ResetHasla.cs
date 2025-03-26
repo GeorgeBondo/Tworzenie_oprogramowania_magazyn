@@ -57,7 +57,7 @@ namespace Magazyn
                 {
                     conn.Open();
 
-                    // Sprawdź, czy login i email pasują
+                   
                     string query = "SELECT COUNT(*) FROM Uzytkownik WHERE ID_Uzytkownik = @ID_Uzytkownik AND Email = @Email";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@ID_Uzytkownik", login);
@@ -71,10 +71,10 @@ namespace Magazyn
                         return;
                     }
 
-                    // Generuj nowe hasło
+                   
                     string noweHaslo = GenerujLosoweHaslo();
 
-                    // Otwórz formularz z nowym hasłem
+                   
                     NoweHasloForm noweHasloForm = new NoweHasloForm(noweHaslo, login);
                     noweHasloForm.ShowDialog();
 

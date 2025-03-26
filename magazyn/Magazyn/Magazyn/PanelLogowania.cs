@@ -38,7 +38,7 @@ namespace Magazyn
                 {
                     conn.Open();
 
-                    // Sprawdź, czy użytkownik istnieje i nie jest zapomniany
+                    
                     string query = @"
                 SELECT U.*, S.Status 
                 FROM Uzytkownik U
@@ -52,10 +52,10 @@ namespace Magazyn
                     {
                         if (reader.Read())
                         {
-                            // Zakładamy, że hasło w bazie danych jest przechowywane jako zwykły tekst
+                           
                             string storedPassword = reader["Haslo"].ToString();
 
-                            // Porównanie hasła wprowadzonego przez użytkownika z przechowywanym hasłem
+                            
                             if (haslo == storedPassword)
                             {
                                 PanelAdmina adminPanel = new PanelAdmina();
@@ -81,7 +81,7 @@ namespace Magazyn
         }
 
 
-        // Przycisk "Resetuj hasło"
+       
         private void button_haslo_Click(object sender, EventArgs e)
         {
             ResetHasla resetForm = new ResetHasla(this);

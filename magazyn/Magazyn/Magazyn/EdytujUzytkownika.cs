@@ -87,7 +87,7 @@ namespace Magazyn
 
         private bool WalidujDane()
         {
-            // 1. Sprawdź wymagane pola (oprócz hasła, jeśli nie jest obowiązkowe w edycji)
+           
             if (string.IsNullOrWhiteSpace(txtImie.Text) ||
                 string.IsNullOrWhiteSpace(txtNazwisko.Text) ||
                 string.IsNullOrWhiteSpace(txtPesel.Text) ||
@@ -101,35 +101,35 @@ namespace Magazyn
                 return false;
             }
 
-            // 2. Walidacja PESEL (11 cyfr)
+           
             if (!Regex.IsMatch(txtPesel.Text, @"^\d{11}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer PESEL!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // 3. Walidacja email
+            
             if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Nieprawidłowy adres email!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // 4. Walidacja telefonu (9 cyfr)
+            
             if (!Regex.IsMatch(txtTelefon.Text, @"^\d{9}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer telefonu!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // 5. Walidacja kod pocztowy (format XX-XXX)
+            
             if (!Regex.IsMatch(txtKodPocztowy.Text, @"^\d{2}-\d{3}$"))
             {
                 MessageBox.Show("Nieprawidłowy format kodu pocztowego!\nPoprawny format: 00-000", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // 6. Walidacja liter w imieniu, nazwisku i miejscowości
+            
             if (!Regex.IsMatch(txtImie.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtNazwisko.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtMiejscowosc.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$"))
@@ -137,7 +137,7 @@ namespace Magazyn
                 MessageBox.Show("Imię, nazwisko i miejscowość mogą zawierać tylko litery, spacje, myślniki i apostrofy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
-            return true; // Wszystkie walidacje przeszły pomyślnie
+            return true; 
         }
 
 

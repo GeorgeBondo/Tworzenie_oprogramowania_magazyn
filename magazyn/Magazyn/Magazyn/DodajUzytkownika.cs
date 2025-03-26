@@ -178,7 +178,7 @@ namespace Magazyn
 
         private void btnWyczysc_Click(object sender, EventArgs e)
         {
-            // Wyczyść wszystkie pola
+            
             foreach (Control control in this.Controls)
             {
                 if (control is TextBox)
@@ -199,17 +199,17 @@ namespace Magazyn
                 try
                 {
                     conn.Open();
-                    using (SqlTransaction transaction = conn.BeginTransaction()) // using dla transakcji
+                    using (SqlTransaction transaction = conn.BeginTransaction()) 
                     {
                         try
                         {
-                            // Krok 1: Dodaj adres
+                            
                             int adresId = DodajAdres(conn, transaction);
 
-                            // Krok 2: Dodaj uprawnienia
+                            
                             int uprawnieniaId = DodajUprawnienia(conn, transaction);
 
-                            // Krok 3: Sprawdź unikalność PESEL
+                            
                             if (!SprawdzUnikalnoscPesel(txtPesel.Text, conn, transaction))
                             {
                                 MessageBox.Show("Użytkownik o podanym numerze PESEL już istnieje!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -217,16 +217,16 @@ namespace Magazyn
                                 return;
                             }
 
-                            // Krok 4: Dodaj użytkownika
+                            
                             DodajUzytkownikaDoBazy(conn, transaction, adresId, uprawnieniaId);
 
                             transaction.Commit();
                             MessageBox.Show("Użytkownik dodany pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                            // Przejdź do listy użytkowników
+                           
                             ListaUzytkownikow listaForm = new ListaUzytkownikow();
                             listaForm.Show();
-                            this.Close(); // Zamknij formularz zamiast Hide()
+                            this.Close(); 
                         }
                         catch (Exception ex)
                         {
@@ -237,7 +237,7 @@ namespace Magazyn
                 }
                 finally
                 {
-                    conn.Close(); // Dodatkowe zabezpieczenie
+                    conn.Close(); 
                 }
             }
         }

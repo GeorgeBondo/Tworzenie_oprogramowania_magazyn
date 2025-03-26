@@ -16,7 +16,7 @@ namespace Magazyn
             dataGridViewUzytkownicy.MultiSelect = false;
             dataGridViewUzytkownicy.CellFormatting += dataGridViewUzytkownicy_CellFormatting;
 
-            // Dodaj obsługę zdarzeń dla filtrów
+            
             txtFiltrImie.TextChanged += FiltrujUzytkownikow;
             txtFiltrNazwisko.TextChanged += FiltrujUzytkownikow;
             txtFiltrPesel.TextChanged += FiltrujUzytkownikow;
@@ -27,7 +27,7 @@ namespace Magazyn
             WczytajUzytkownikow();
         }
 
-        // Zmodyfikowana metoda z parametrami filtrowania
+        
         private void WczytajUzytkownikow(string filtrImie = "", string filtrNazwisko = "", string filtrPesel = "")
         {
             try
@@ -68,7 +68,7 @@ namespace Magazyn
             }
         }
 
-        // Zdarzenie filtrowania
+        
         private void FiltrujUzytkownikow(object sender, EventArgs e)
         {
             WczytajUzytkownikow(
@@ -78,7 +78,7 @@ namespace Magazyn
             );
         }
 
-        // Przycisk "Wyczyść filtry"
+        
         private void btnWyczyscFiltry_Click(object sender, EventArgs e)
         {
             txtFiltrImie.Clear();
@@ -86,7 +86,7 @@ namespace Magazyn
             txtFiltrPesel.Clear();
         }
 
-        // Reszta istniejących metod (bez zmian)
+        
         private void dataGridViewUzytkownicy_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridViewUzytkownicy.Columns[e.ColumnIndex].Name == "Status")
