@@ -43,7 +43,7 @@ namespace Magazyn
                 SELECT U.*, S.Status 
                 FROM Uzytkownik U
                 LEFT JOIN Status S ON U.ID_Status = S.ID_Status
-                WHERE U.ID_Uzytkownik = @Login";
+                WHERE U.Login = @Login";
 
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Login", login);
