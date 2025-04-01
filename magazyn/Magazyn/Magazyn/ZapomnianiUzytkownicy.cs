@@ -14,7 +14,7 @@ namespace Magazyn
             InitializeComponent();
             dataGridViewZapomniani.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewZapomniani.MultiSelect = false;
-            dataGridViewZapomniani.CellFormatting += DataGridViewZapomniani_CellFormatting;
+            dataGridViewZapomniani.CellFormatting += dataGridViewZapomniani_CellFormatting;
 
             txtFiltrImie.TextChanged += FiltrujUzytkownikow;
             txtFiltrNazwisko.TextChanged += FiltrujUzytkownikow;
@@ -33,20 +33,21 @@ namespace Magazyn
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     string query = @"
-                        SELECT 
-                            ID_Uzytkownik AS 'ID',
-                            Imię,
-                            Nazwisko,
-                            Email,
-                            Numer_Telefonu AS 'Telefon',
-                            Data_urodzenia AS 'Data urodzenia',
-                            'Nieaktywny' AS 'Status'
-                        FROM Uzytkownik
-                        WHERE 
-                            ID_Status = 2 AND
-                            (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') AND
-                            (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') AND
-                            (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
+                SELECT 
+                    U.ID_Uzytkownik AS 'ID',
+                    U.Imię,
+                    U.Nazwisko,
+                    U.PESEL,
+                    U.Email,
+                    S.data_zapomnienia AS 'Data zapomnienia',
+                    'Nieaktywny' AS 'Status'
+                FROM Uzytkownik U
+                INNER JOIN Status S ON U.ID_Status = S.ID_Status
+                WHERE 
+                    U.ID_Status = 2 AND
+                    (U.Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') AND
+                    (U.Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') AND
+                    (U.PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", filtrImie);
@@ -65,6 +66,14 @@ namespace Magazyn
             }
         }
 
+        private void DataGridViewZapomniani_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (dataGridViewZapomniani.Columns[e.ColumnIndex].Name == "Status")
+            {
+                e.CellStyle.ForeColor = Color.Red;
+            }
+        }
+
         private void FiltrujUzytkownikow(object sender, EventArgs e)
         {
             WczytajZapomnianych(
@@ -74,26 +83,27 @@ namespace Magazyn
             );
         }
 
-        private void btnWyczyscFiltry_Click(object sender, EventArgs e)
+
+        private void dataGridViewZapomniani_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            txtFiltrImie.Clear();
-            txtFiltrNazwisko.Clear();
-            txtFiltrPesel.Clear();
+            if (dataGridViewZapomniani.Columns[e.ColumnIndex].Name == "Status")
+            {
+                e.CellStyle.ForeColor = Color.Red;
+            }
         }
 
-        private void btnPowrot_Click(object sender, EventArgs e)
+        private void btnPowrot_Click_1(object sender, EventArgs e)
         {
             ListaUzytkownikow lista = new ListaUzytkownikow();
             lista.Show();
             this.Close();
         }
 
-        private void DataGridViewZapomniani_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void btnWyczyscFiltry_Click_1(object sender, EventArgs e)
         {
-            if (dataGridViewZapomniani.Columns[e.ColumnIndex].Name == "Status")
-            {
-                e.CellStyle.ForeColor = Color.Red;
-            }
+            txtFiltrImie.Clear();
+            txtFiltrNazwisko.Clear();
+            txtFiltrPesel.Clear();
         }
     }
 }

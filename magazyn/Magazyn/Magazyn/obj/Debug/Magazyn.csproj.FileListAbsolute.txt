@@ -31,3 +31,4 @@ D:\magazyn\Magazyn\Magazyn\bin\Debug\magazyn_log.ldf
 D:\magazyn\Magazyn\Magazyn\bin\Debug\System.Data.SqlClient.dll
 D:\magazyn\Magazyn\Magazyn\bin\Debug\System.Data.SqlClient.xml
 D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.NoweHasloForm.resources
+D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.ZapomnianiUzytkownicy.resources

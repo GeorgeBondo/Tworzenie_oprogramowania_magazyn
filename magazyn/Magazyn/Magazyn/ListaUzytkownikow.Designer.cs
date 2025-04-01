@@ -40,7 +40,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.btnZapomniani = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.btnZapomnij = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUzytkownicy)).BeginInit();
             this.SuspendLayout();
             // 
@@ -153,14 +153,15 @@
             this.btnZapomniani.UseVisualStyleBackColor = true;
             this.btnZapomniani.Click += new System.EventHandler(this.btnZapomniani_Click);
             // 
-            // button1
+            // btnZapomnij
             // 
-            this.button1.Location = new System.Drawing.Point(31, 83);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(100, 43);
-            this.button1.TabIndex = 13;
-            this.button1.Text = "Zapomnij";
-            this.button1.UseVisualStyleBackColor = true;
+            this.btnZapomnij.Location = new System.Drawing.Point(31, 83);
+            this.btnZapomnij.Name = "btnZapomnij";
+            this.btnZapomnij.Size = new System.Drawing.Size(100, 43);
+            this.btnZapomnij.TabIndex = 13;
+            this.btnZapomnij.Text = "Zapomnij";
+            this.btnZapomnij.UseVisualStyleBackColor = true;
+            this.btnZapomnij.Click += new System.EventHandler(this.btnZapomnij_Click_1);
             // 
             // ListaUzytkownikow
             // 
@@ -169,7 +170,7 @@
             this.BackColor = System.Drawing.Color.Salmon;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(869, 763);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnZapomnij);
             this.Controls.Add(this.btnZapomniani);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
@@ -204,6 +205,6 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnZapomniani;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button btnZapomnij;
     }
 }
