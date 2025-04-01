@@ -12,13 +12,23 @@ namespace Magazyn
         public ZapomnianiUzytkownicy()
         {
             InitializeComponent();
+            ConfigureDataGridView();
+            WireUpEventHandlers();
+        }
+
+        private void ConfigureDataGridView()
+        {
             dataGridViewZapomniani.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewZapomniani.MultiSelect = false;
             dataGridViewZapomniani.CellFormatting += dataGridViewZapomniani_CellFormatting;
+        }
 
+        private void WireUpEventHandlers()
+        {
             txtFiltrImie.TextChanged += FiltrujUzytkownikow;
             txtFiltrNazwisko.TextChanged += FiltrujUzytkownikow;
             txtFiltrPesel.TextChanged += FiltrujUzytkownikow;
+            btnWyczyscFiltry.Click += btnWyczyscFiltry_Click;
         }
 
         private void ZapomnianiUzytkownicy_Load(object sender, EventArgs e)
@@ -34,20 +44,19 @@ namespace Magazyn
                 {
                     string query = @"
                 SELECT 
-                    U.ID_Uzytkownik AS 'ID',
-                    U.Imię,
-                    U.Nazwisko,
-                    U.PESEL,
-                    U.Email,
-                    S.data_zapomnienia AS 'Data zapomnienia',
+                    ID_Uzytkownik AS 'ID',
+                    Imię,
+                    Nazwisko,
+                    PESEL,
+                    Email,
+                    Data_zapomnienia AS 'DataZapomnienia',
                     'Nieaktywny' AS 'Status'
-                FROM Uzytkownik U
-                INNER JOIN Status S ON U.ID_Status = S.ID_Status
+                FROM Uzytkownik
                 WHERE 
-                    U.ID_Status = 2 AND
-                    (U.Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') AND
-                    (U.Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') AND
-                    (U.PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
+                    ID_Status = 2 
+                    AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
+                    AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
+                    AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", filtrImie);
@@ -57,16 +66,20 @@ namespace Magazyn
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
+                    // Debug: sprawdź liczbę rekordów
+                    Console.WriteLine($"Liczba rekordów: {dt.Rows.Count}");
+
+                    dataGridViewZapomniani.AutoGenerateColumns = true; // Dodaj tę linię!
                     dataGridViewZapomniani.DataSource = dt;
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd ładowania danych: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-        private void DataGridViewZapomniani_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void dataGridViewZapomniani_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridViewZapomniani.Columns[e.ColumnIndex].Name == "Status")
             {
@@ -83,27 +96,20 @@ namespace Magazyn
             );
         }
 
-
-        private void dataGridViewZapomniani_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void btnWyczyscFiltry_Click(object sender, EventArgs e)
         {
-            if (dataGridViewZapomniani.Columns[e.ColumnIndex].Name == "Status")
-            {
-                e.CellStyle.ForeColor = Color.Red;
-            }
+            txtFiltrImie.Clear();
+            txtFiltrNazwisko.Clear();
+            txtFiltrPesel.Clear();
         }
+
+        
 
         private void btnPowrot_Click_1(object sender, EventArgs e)
         {
             ListaUzytkownikow lista = new ListaUzytkownikow();
             lista.Show();
             this.Close();
-        }
-
-        private void btnWyczyscFiltry_Click_1(object sender, EventArgs e)
-        {
-            txtFiltrImie.Clear();
-            txtFiltrNazwisko.Clear();
-            txtFiltrPesel.Clear();
         }
     }
 }

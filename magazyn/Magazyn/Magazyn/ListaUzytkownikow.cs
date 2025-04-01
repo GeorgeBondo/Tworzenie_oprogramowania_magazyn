@@ -12,13 +12,23 @@ namespace Magazyn
         public ListaUzytkownikow()
         {
             InitializeComponent();
+            ConfigureDataGridView();
+            WireUpEventHandlers();
+        }
+
+        private void ConfigureDataGridView()
+        {
             dataGridViewUzytkownicy.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewUzytkownicy.MultiSelect = false;
             dataGridViewUzytkownicy.CellFormatting += dataGridViewUzytkownicy_CellFormatting;
+        }
 
+        private void WireUpEventHandlers()
+        {
             txtFiltrImie.TextChanged += FiltrujUzytkownikow;
             txtFiltrNazwisko.TextChanged += FiltrujUzytkownikow;
             txtFiltrPesel.TextChanged += FiltrujUzytkownikow;
+            btnWyczyśćFiltry.Click += btnWyczyśćFiltry_Click;
         }
 
         private void ListaUzytkownikow_Load(object sender, EventArgs e)
@@ -42,7 +52,8 @@ namespace Magazyn
                             CASE 
                                 WHEN ID_Status = 1 THEN 'Aktywny'
                                 ELSE 'Nieaktywny'
-                            END AS 'Status'
+                            END AS 'Status',
+                            Data_zapomnienia
                         FROM Uzytkownik
                         WHERE 
                             ID_Status = 1 AND
@@ -59,6 +70,7 @@ namespace Magazyn
                     adapter.Fill(dt);
 
                     dataGridViewUzytkownicy.DataSource = dt;
+                    dataGridViewUzytkownicy.Columns["Data_zapomnienia"].Visible = false;
                 }
             }
             catch (Exception ex)
@@ -76,15 +88,13 @@ namespace Magazyn
             );
         }
 
-        
-        private void btnWyczyscFiltry_Click(object sender, EventArgs e)
+        private void btnWyczyśćFiltry_Click(object sender, EventArgs e)
         {
             txtFiltrImie.Clear();
             txtFiltrNazwisko.Clear();
             txtFiltrPesel.Clear();
         }
 
-        
         private void dataGridViewUzytkownicy_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
             if (dataGridViewUzytkownicy.Columns[e.ColumnIndex].Name == "Status")
@@ -102,89 +112,128 @@ namespace Magazyn
 
         private void btnWroc_Click(object sender, EventArgs e)
         {
-            PanelAdmina adminPanel = new PanelAdmina();
-            adminPanel.Show();
-            this.Hide();
-        }
-
-        public void OdswiezDane()
-        {
-            WczytajUzytkownikow();
+            OpenForm(new PanelAdmina());
         }
 
         private void btnOdswiez_Click(object sender, EventArgs e)
         {
-            OdswiezDane();
+            WczytajUzytkownikow();
         }
 
         private void btnEdytuj_Click(object sender, EventArgs e)
         {
-            if (dataGridViewUzytkownicy.SelectedRows.Count == 0)
-            {
-                MessageBox.Show("Wybierz użytkownika do edycji!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+            if (!ValidateSelection()) return;
 
-            int selectedUserId = Convert.ToInt32(dataGridViewUzytkownicy.SelectedRows[0].Cells["ID"].Value);
-            EdytujUzytkownika edytujForm = new EdytujUzytkownika(selectedUserId);
-            edytujForm.Show();
-            this.Hide();
-        }
-
-        private void btnWyczyśćFiltry_Click(object sender, EventArgs e)
-        {
-                txtFiltrImie.Clear();
-                txtFiltrNazwisko.Clear();
-                txtFiltrPesel.Clear();
+            int selectedUserId = GetSelectedUserId();
+            OpenForm(new EdytujUzytkownika(selectedUserId));
         }
 
         private void btnZapomniani_Click(object sender, EventArgs e)
         {
-            ZapomnianiUzytkownicy zapomnianiForm = new ZapomnianiUzytkownicy();
-            zapomnianiForm.Show();
+            OpenForm(new ZapomnianiUzytkownicy());
+        }
+
+        
+
+        private bool ValidateSelection()
+        {
+            if (dataGridViewUzytkownicy.SelectedRows.Count == 0)
+            {
+                MessageBox.Show("Wybierz użytkownika z listy!", "Błąd",
+                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
+            return true;
+        }
+
+        private int GetSelectedUserId()
+        {
+            return Convert.ToInt32(dataGridViewUzytkownicy.SelectedRows[0].Cells["ID"].Value);
+        }
+
+        private void OpenForm(Form form)
+        {
+            form.Show();
             this.Hide();
+        }
+
+        private void ZapomnijUzytkownika(int userId)
+        {
+            try
+            {
+                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                {
+                    conn.Open();
+                    using (SqlCommand cmd = new SqlCommand())
+                    {
+                        cmd.Connection = conn;
+                        cmd.CommandText = @"
+                    UPDATE Uzytkownik 
+                    SET 
+                        ID_Status = 2,
+                        Data_zapomnienia = GETDATE()
+                    WHERE ID_Uzytkownik = @UserId";
+
+                        cmd.Parameters.AddWithValue("@UserId", userId);
+
+                        int affectedRows = cmd.ExecuteNonQuery();
+
+                        if (affectedRows > 0)
+                        {
+                            // Ręczne odświeżenie danych
+                            var bindingSource = new BindingSource();
+                            bindingSource.DataSource = dataGridViewUzytkownicy.DataSource;
+                            bindingSource.ResetBindings(false);
+
+                            WczytajUzytkownikow();
+                        }
+                        else
+                        {
+                            MessageBox.Show("Nie znaleziono użytkownika o podanym ID!",
+                                          "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        }
+                    }
+                }
+            }
+            catch (SqlException sqlEx)
+            {
+                MessageBox.Show($"Błąd bazy danych: {sqlEx.Message}\nKod błędu: {sqlEx.Number}",
+                              "Błąd SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd ogólny: {ex.Message}",
+                              "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btnZapomnij_Click_1(object sender, EventArgs e)
         {
-            if (dataGridViewUzytkownicy.SelectedRows.Count == 0)
+            try
             {
-                MessageBox.Show("Wybierz użytkownika!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
+                if (!ValidateSelection()) return;
 
-            int selectedUserId = Convert.ToInt32(dataGridViewUzytkownicy.SelectedRows[0].Cells["ID"].Value);
+                var selectedRow = dataGridViewUzytkownicy.SelectedRows[0];
+                int userId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
+                string userName = $"{selectedRow.Cells["Imię"].Value} {selectedRow.Cells["Nazwisko"].Value}";
 
-            using (SqlConnection conn = DatabaseHelper.GetConnection())
-            {
-                conn.Open();
-                using (SqlTransaction transaction = conn.BeginTransaction())
+                var result = MessageBox.Show(
+                    $"Czy na pewno chcesz oznaczyć użytkownika {userName} jako zapomnianego?",
+                    "Potwierdzenie operacji",
+                    MessageBoxButtons.YesNo,
+                    MessageBoxIcon.Warning
+                );
+
+                if (result == DialogResult.Yes)
                 {
-                    try
-                    {
-                        string query = @"
-                            UPDATE Uzytkownik 
-                            SET ID_Status = 2 
-                            WHERE ID_Uzytkownik = @UserId;
-
-                            UPDATE Status 
-                            SET Data_zapomnienia = GETDATE() 
-                            WHERE ID_Status = 2;";
-
-                        SqlCommand cmd = new SqlCommand(query, conn, transaction);
-                        cmd.Parameters.AddWithValue("@UserId", selectedUserId);
-                        cmd.ExecuteNonQuery();
-                        transaction.Commit();
-
-                        MessageBox.Show("Użytkownik został oznaczony jako zapomniany!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        WczytajUzytkownikow();
-                    }
-                    catch (Exception ex)
-                    {
-                        transaction.Rollback();
-                        MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    ZapomnijUzytkownika(userId);
+                    MessageBox.Show("Operacja zakończona pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd: {ex.Message}\nSzczegóły: {ex.StackTrace}",
+                              "Krytyczny błąd aplikacji", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

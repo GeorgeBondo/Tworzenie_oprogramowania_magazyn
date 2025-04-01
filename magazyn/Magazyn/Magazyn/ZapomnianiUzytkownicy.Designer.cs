@@ -51,7 +51,7 @@
             this.dataGridViewZapomniani.Name = "dataGridViewZapomniani";
             this.dataGridViewZapomniani.RowHeadersWidth = 51;
             this.dataGridViewZapomniani.RowTemplate.Height = 24;
-            this.dataGridViewZapomniani.Size = new System.Drawing.Size(776, 231);
+            this.dataGridViewZapomniani.Size = new System.Drawing.Size(1244, 331);
             this.dataGridViewZapomniani.TabIndex = 0;
             // 
             // magazynDataSetBindingSource
@@ -103,13 +103,12 @@
             this.btnWyczyscFiltry.TabIndex = 5;
             this.btnWyczyscFiltry.Text = "Wyczyść filtry";
             this.btnWyczyscFiltry.UseVisualStyleBackColor = true;
-            this.btnWyczyscFiltry.Click += new System.EventHandler(this.btnWyczyscFiltry_Click_1);
             // 
             // ZapomnianiUzytkownicy
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(1268, 550);
             this.Controls.Add(this.btnWyczyscFiltry);
             this.Controls.Add(this.txtFiltrPesel);
             this.Controls.Add(this.txtFiltrNazwisko);
