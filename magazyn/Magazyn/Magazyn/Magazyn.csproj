@@ -93,6 +93,11 @@
       <DependentUpon>EdytujUzytkownika.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DatabaseHelpers.cs" />
+    <Compile Include="magazynDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>magazynDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="NoweHasloForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -104,6 +109,12 @@
     </Compile>
     <Compile Include="Uprawnienia.Designer.cs">
       <DependentUpon>Uprawnienia.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ZapomnianiUzytkownicy.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZapomnianiUzytkownicy.Designer.cs">
+      <DependentUpon>ZapomnianiUzytkownicy.cs</DependentUpon>
     </Compile>
     <Compile Include="ZapomnijUzytkownika.cs">
       <SubType>Form</SubType>
@@ -149,6 +160,9 @@
     <EmbeddedResource Include="Uprawnienia.resx">
       <DependentUpon>Uprawnienia.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ZapomnianiUzytkownicy.resx">
+      <DependentUpon>ZapomnianiUzytkownicy.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="ZapomnijUzytkownika.resx">
       <DependentUpon>ZapomnijUzytkownika.cs</DependentUpon>
     </EmbeddedResource>
@@ -173,6 +187,17 @@
     <EmbeddedResource Include="ResetHasla.resx">
       <DependentUpon>ResetHasla.cs</DependentUpon>
     </EmbeddedResource>
+    <None Include="magazynDataSet.xsc">
+      <DependentUpon>magazynDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="magazynDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>magazynDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="magazynDataSet.xss">
+      <DependentUpon>magazynDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

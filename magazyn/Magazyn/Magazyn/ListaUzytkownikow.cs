@@ -25,6 +25,7 @@ namespace Magazyn
         private void ListaUzytkownikow_Load(object sender, EventArgs e)
         {
             WczytajUzytkownikow();
+            btnZapomniani.Click += btnZapomniani_Click;
         }
 
         
@@ -138,6 +139,13 @@ namespace Magazyn
                 txtFiltrImie.Clear();
                 txtFiltrNazwisko.Clear();
                 txtFiltrPesel.Clear();
+        }
+
+        private void btnZapomniani_Click(object sender, EventArgs e)
+        {
+            ZapomnianiUzytkownicy zapomnianiForm = new ZapomnianiUzytkownicy();
+            zapomnianiForm.Show();
+            this.Hide();
         }
     }
 }

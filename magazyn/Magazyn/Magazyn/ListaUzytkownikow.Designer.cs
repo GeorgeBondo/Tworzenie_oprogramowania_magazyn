@@ -39,12 +39,14 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
+            this.btnZapomniani = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUzytkownicy)).BeginInit();
             this.SuspendLayout();
             // 
             // btnWroc
             // 
-            this.btnWroc.Location = new System.Drawing.Point(532, 25);
+            this.btnWroc.Location = new System.Drawing.Point(536, 25);
             this.btnWroc.Name = "btnWroc";
             this.btnWroc.Size = new System.Drawing.Size(75, 32);
             this.btnWroc.TabIndex = 1;
@@ -141,6 +143,25 @@
             this.label3.TabIndex = 11;
             this.label3.Text = "PESEL";
             // 
+            // btnZapomniani
+            // 
+            this.btnZapomniani.Location = new System.Drawing.Point(1, 132);
+            this.btnZapomniani.Name = "btnZapomniani";
+            this.btnZapomniani.Size = new System.Drawing.Size(175, 31);
+            this.btnZapomniani.TabIndex = 12;
+            this.btnZapomniani.Text = "Zapomnieni użytkownicy";
+            this.btnZapomniani.UseVisualStyleBackColor = true;
+            this.btnZapomniani.Click += new System.EventHandler(this.btnZapomniani_Click);
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(31, 83);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(100, 43);
+            this.button1.TabIndex = 13;
+            this.button1.Text = "Zapomnij";
+            this.button1.UseVisualStyleBackColor = true;
+            // 
             // ListaUzytkownikow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -148,6 +169,8 @@
             this.BackColor = System.Drawing.Color.Salmon;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(869, 763);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.btnZapomniani);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
@@ -180,5 +203,7 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnZapomniani;
+        private System.Windows.Forms.Button button1;
     }
 }

@@ -26,7 +26,7 @@ namespace Magazyn
                 try
                 {
                     conn.Open();
-                    MessageBox.Show("Połączenie z bazą danych udane! 🎉", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Połączenie z bazą danych udane", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 catch (Exception ex)
                 {

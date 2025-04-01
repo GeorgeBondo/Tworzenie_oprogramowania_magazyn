@@ -70,7 +70,7 @@ namespace Magazyn
             }
 
             // 7. Walidacja hasła (tylko jeśli pole jest widoczne i wymagane)
-            if (!string.IsNullOrEmpty(txtHaslo.Text)) // Usuń ten warunek, jeśli hasło jest obowiązkowe
+            if (!string.IsNullOrEmpty(txtHaslo.Text)) 
             {
                 string haslo = txtHaslo.Text;
                 bool isPasswordValid = Regex.IsMatch(haslo, @"^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[-_!*#$&]).{8,15}$");
@@ -240,6 +240,11 @@ namespace Magazyn
                     conn.Close(); 
                 }
             }
+        }
+
+        private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
         }
     }
 }

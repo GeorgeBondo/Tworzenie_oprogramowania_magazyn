@@ -28,7 +28,7 @@ namespace Magazyn
 
             if (string.IsNullOrEmpty(login) || string.IsNullOrEmpty(haslo))
             {
-                MessageBox.Show("Wprowadź login i hasło!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Wprowadź login i hasło", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
@@ -64,7 +64,7 @@ namespace Magazyn
                             }
                             else
                             {
-                                MessageBox.Show("Nieprawidłowe hasło!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("Błędne dane logowania", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
                         }
                         else
