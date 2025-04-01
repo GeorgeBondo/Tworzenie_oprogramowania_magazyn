@@ -32,7 +32,7 @@ namespace Magazyn
                 return false;
             }
 
-            
+            // 2. Walidacja pesel
             if (!Regex.IsMatch(txtPesel.Text, @"^\d{11}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer PESEL!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
