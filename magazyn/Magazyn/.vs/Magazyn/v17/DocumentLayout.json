@@ -3,7 +3,15 @@
   "WorkspaceRootPath": "D:\\magazyn\\Magazyn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|D:\\magazyn\\Magazyn\\magazyn\\zapomnianiuzytkownicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\zapomnianiuzytkownicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\zapomnianiuzytkownicy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
@@ -21,7 +29,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -29,38 +37,61 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "dbo.Uzytkownik [Data]",
-              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__MAGAZYN_MAGAZYN_MAGAZYN_MAGAZYN.MDF/True/SqlTable/dbo.Uzytkownik.sql",
-              "ToolTip": "dbo.Uzytkownik [Data]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
-              "WhenOpened": "2025-04-01T10:45:51.283Z",
+              "DocumentIndex": 0,
+              "Title": "DodajUzytkownika.cs",
+              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
+              "RelativeDocumentMoniker": "Magazyn\\DodajUzytkownika.cs",
+              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
+              "RelativeToolTip": "Magazyn\\DodajUzytkownika.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwCEAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T16:59:14.589Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
+              "Title": "DodajUzytkownika.cs [Projekt]",
+              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
+              "RelativeDocumentMoniker": "Magazyn\\DodajUzytkownika.cs",
+              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs [Projekt]",
+              "RelativeToolTip": "Magazyn\\DodajUzytkownika.cs [Projekt]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-01T16:59:12.527Z",
+              "EditorCaption": " [Projekt]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "dbo.Uzytkownik.sql",
+              "DocumentMoniker": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__MAGAZYN_MAGAZYN_MAGAZYN_MAGAZYN.MDF/True/SqlTable/dbo.Uzytkownik.sql",
+              "ToolTip": "ViewDataWindow_MSSQL__/_LocalDB__MSSQLLocalDB/D__MAGAZYN_MAGAZYN_MAGAZYN_MAGAZYN.MDF/True/SqlTable/dbo.Uzytkownik.sql",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000826|",
+              "WhenOpened": "2025-04-01T10:45:51.283Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "ZapomnianiUzytkownicy.cs",
               "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\ZapomnianiUzytkownicy.cs",
               "RelativeDocumentMoniker": "Magazyn\\ZapomnianiUzytkownicy.cs",
               "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\ZapomnianiUzytkownicy.cs",
               "RelativeToolTip": "Magazyn\\ZapomnianiUzytkownicy.cs",
-              "ViewState": "AgIAABgAAAAAAAAAAAAYwEIAAAAJAAAAAAAAAA==",
+              "ViewState": "AgIAABgAAAAAAAAAAAAYwB4AAAAPAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-01T08:40:30.707Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "ZapomnianiUzytkownicy.cs [Projekt]",
               "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\ZapomnianiUzytkownicy.cs",
               "RelativeDocumentMoniker": "Magazyn\\ZapomnianiUzytkownicy.cs",
               "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\ZapomnianiUzytkownicy.cs [Projekt]",
               "RelativeToolTip": "Magazyn\\ZapomnianiUzytkownicy.cs [Projekt]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T08:38:50.802Z",
-              "EditorCaption": " [Projekt]"
+              "WhenOpened": "2025-04-01T08:38:50.802Z"
             }
           ]
         }
