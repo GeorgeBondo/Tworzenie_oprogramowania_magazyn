@@ -1,24 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\magazyn\\Magazyn\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\panellogowania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\panellogowania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\panellogowania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\panellogowania.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\helpers\\databasehelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\helpers\\databasehelpers.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\app.config||{FA3CD31E-987B-443A-9B81-186104E8DAC1}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -26,62 +9,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "PanelLogowania.cs",
-              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\PanelLogowania.cs",
-              "RelativeDocumentMoniker": "Magazyn\\PanelLogowania.cs",
-              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\PanelLogowania.cs",
-              "RelativeToolTip": "Magazyn\\PanelLogowania.cs",
-              "ViewState": "AgIAABYAAAAAAAAAAAAgwC0AAAAoAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:41:42.668Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "PanelLogowania.cs [Projekt]",
-              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\PanelLogowania.cs",
-              "RelativeDocumentMoniker": "Magazyn\\PanelLogowania.cs",
-              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\PanelLogowania.cs [Projekt]",
-              "RelativeToolTip": "Magazyn\\PanelLogowania.cs [Projekt]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:40:06.586Z",
-              "EditorCaption": " [Projekt]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "App.config",
-              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\App.config",
-              "RelativeDocumentMoniker": "Magazyn\\App.config",
-              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\App.config",
-              "RelativeToolTip": "Magazyn\\App.config",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAAVAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000601|",
-              "WhenOpened": "2025-04-01T20:37:59.125Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "DatabaseHelpers.cs",
-              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\Helpers\\DatabaseHelpers.cs",
-              "RelativeDocumentMoniker": "Magazyn\\Helpers\\DatabaseHelpers.cs",
-              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\Helpers\\DatabaseHelpers.cs",
-              "RelativeToolTip": "Magazyn\\Helpers\\DatabaseHelpers.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAcAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-04-01T20:37:45.602Z",
-              "EditorCaption": ""
             }
           ]
         }
