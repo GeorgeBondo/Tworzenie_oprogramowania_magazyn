@@ -93,5 +93,15 @@ namespace Magazyn
         {
 
         }
+
+        private void textbox_login_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textbox_haslo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

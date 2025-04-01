@@ -61,6 +61,8 @@
             this.Label = new System.Windows.Forms.Label();
             this.txtUprawnienia = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.login = new System.Windows.Forms.Label();
+            this.loginTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
@@ -71,6 +73,7 @@
             this.txtHaslo.Name = "txtHaslo";
             this.txtHaslo.Size = new System.Drawing.Size(100, 22);
             this.txtHaslo.TabIndex = 0;
+            this.txtHaslo.TextChanged += new System.EventHandler(this.txtHaslo_TextChanged);
             // 
             // txtImie
             // 
@@ -326,6 +329,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.groupBox1.Controls.Add(this.login);
+            this.groupBox1.Controls.Add(this.loginTextBox);
             this.groupBox1.Controls.Add(this.label14);
             this.groupBox1.Controls.Add(this.btnZapisz);
             this.groupBox1.Controls.Add(this.txtDataUrodzenia);
@@ -365,6 +370,24 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "groupBox1";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // login
+            // 
+            this.login.AutoSize = true;
+            this.login.Location = new System.Drawing.Point(504, 238);
+            this.login.Name = "login";
+            this.login.Size = new System.Drawing.Size(40, 16);
+            this.login.TabIndex = 35;
+            this.login.Text = "Login";
+            this.login.Click += new System.EventHandler(this.label15_Click);
+            // 
+            // loginTextBox
+            // 
+            this.loginTextBox.Location = new System.Drawing.Point(390, 238);
+            this.loginTextBox.Name = "loginTextBox";
+            this.loginTextBox.Size = new System.Drawing.Size(100, 22);
+            this.loginTextBox.TabIndex = 34;
+            this.loginTextBox.TextChanged += new System.EventHandler(this.loginTextBox_TextChanged);
             // 
             // label14
             // 
@@ -429,5 +452,7 @@
         private System.Windows.Forms.TextBox txtUprawnienia;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.Label login;
+        private System.Windows.Forms.TextBox loginTextBox;
     }
 }

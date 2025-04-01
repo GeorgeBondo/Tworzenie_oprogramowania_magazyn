@@ -168,7 +168,7 @@ namespace Magazyn
                             WHERE ID_Uzytkownik = @UserId;
 
                             UPDATE Status 
-                            SET data_zapomnienia = GETDATE() 
+                            SET Data_zapomnienia = GETDATE() 
                             WHERE ID_Status = 2;";
 
                         SqlCommand cmd = new SqlCommand(query, conn, transaction);

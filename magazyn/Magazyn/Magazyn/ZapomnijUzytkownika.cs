@@ -16,5 +16,10 @@ namespace Magazyn
         {
             InitializeComponent();
         }
+
+        private void ZapomnijUzytkownika_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

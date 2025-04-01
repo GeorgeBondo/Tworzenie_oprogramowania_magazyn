@@ -93,6 +93,7 @@
             this.textbox_haslo.PasswordChar = '*';
             this.textbox_haslo.Size = new System.Drawing.Size(130, 22);
             this.textbox_haslo.TabIndex = 5;
+            this.textbox_haslo.TextChanged += new System.EventHandler(this.textbox_haslo_TextChanged);
             // 
             // textbox_login
             // 
@@ -100,6 +101,7 @@
             this.textbox_login.Name = "textbox_login";
             this.textbox_login.Size = new System.Drawing.Size(130, 22);
             this.textbox_login.TabIndex = 6;
+            this.textbox_login.TextChanged += new System.EventHandler(this.textbox_login_TextChanged);
             // 
             // PanelLogowania
             // 

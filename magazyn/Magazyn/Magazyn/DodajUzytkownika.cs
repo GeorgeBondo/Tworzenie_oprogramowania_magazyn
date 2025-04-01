@@ -141,9 +141,9 @@ namespace Magazyn
         {
             string query = @"
                 INSERT INTO Uzytkownik 
-                (Haslo, Imię, Nazwisko, PESEL, Data_urodzenia, Pieć, Email, Numer_Telefonu, ID_Adres, ID_Status, ID_Uprawnienia)
+                (Haslo, Imię, Nazwisko, PESEL, Data_urodzenia, Plec, Email, Numer_Telefonu, ID_Adres, ID_Status, ID_Uprawnienia, Login, Data_zapomnienia, ID_Użytkownik_zapomniany, Liczba_blednych_logowan, Data_blokady)
                 VALUES 
-                (@Haslo, @Imie, @Nazwisko, @PESEL, @DataUrodzenia, @Plec, @Email, @Telefon, @AdresId, 1, @UprawnieniaId)";
+                (@Haslo, @Imie, @Nazwisko, @PESEL, @DataUrodzenia, @Plec, @Email, @Telefon, @AdresId, 1, @UprawnieniaId, @Login, @Data_zapomnienia, @ID_Uzytkownik_zapomniany,@Liczba_blednych_logowan, @Data_blokady)";
 
             SqlCommand cmd = new SqlCommand(query, conn, transaction);
             cmd.Parameters.AddWithValue("@Haslo", txtHaslo.Text);
@@ -156,6 +156,7 @@ namespace Magazyn
             cmd.Parameters.AddWithValue("@Telefon", txtTelefon.Text);
             cmd.Parameters.AddWithValue("@AdresId", adresId);
             cmd.Parameters.AddWithValue("@UprawnieniaId", uprawnieniaId);
+            cmd.Parameters.AddWithValue("@Login", loginTextBox.Text);
 
             cmd.ExecuteNonQuery();
         }
@@ -243,6 +244,21 @@ namespace Magazyn
         }
 
         private void groupBox1_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label15_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void loginTextBox_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtHaslo_TextChanged(object sender, EventArgs e)
         {
 
         }

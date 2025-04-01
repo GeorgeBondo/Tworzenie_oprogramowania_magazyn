@@ -85,6 +85,7 @@
             this.txtImie.Name = "txtImie";
             this.txtImie.Size = new System.Drawing.Size(100, 22);
             this.txtImie.TabIndex = 3;
+            this.txtImie.TextChanged += new System.EventHandler(this.txtImie_TextChanged);
             // 
             // txtNazwisko
             // 

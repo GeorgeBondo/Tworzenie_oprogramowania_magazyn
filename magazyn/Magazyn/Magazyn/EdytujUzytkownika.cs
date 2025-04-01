@@ -51,7 +51,7 @@ namespace Magazyn
                         txtNumerPosesji.Text = reader["Numer_posesji"].ToString();
                         txtUlica.Text = reader["Ulica"].ToString();
                         txtNumerLokalu.Text = reader["Numer_lokalu"].ToString();
-                        comboPlec.SelectedItem = reader["Pieć"].ToString() == "K" ? "Kobieta" : "Mężczyzna";
+                        comboPlec.SelectedItem = reader["Plec"].ToString() == "K" ? "Kobieta" : "Mężczyzna";
                         txtDataUrodzenia.Value = Convert.ToDateTime(reader["Data_urodzenia"]);
                     }
                 }
@@ -171,7 +171,7 @@ namespace Magazyn
                                 Nazwisko = @Nazwisko,
                                 PESEL = @PESEL,
                                 Data_urodzenia = @DataUrodzenia,
-                                Pieć = @Plec,
+                                Plec = @Plec,
                                 Email = @Email,
                                 Numer_Telefonu = @Telefon
                             WHERE ID_Uzytkownik = @UserId";
@@ -205,6 +205,11 @@ namespace Magazyn
         }
 
         private void EdytujUzytkownika_Load(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtImie_TextChanged(object sender, EventArgs e)
         {
 
         }
