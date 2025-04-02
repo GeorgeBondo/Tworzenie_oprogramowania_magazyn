@@ -180,7 +180,6 @@ namespace Magazyn
 
                         if (affectedRows > 0)
                         {
-                            // Ręczne odświeżenie danych
                             var bindingSource = new BindingSource();
                             bindingSource.DataSource = dataGridViewUzytkownicy.DataSource;
                             bindingSource.ResetBindings(false);

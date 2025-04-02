@@ -4,7 +4,7 @@ namespace Magazyn.Helpers
 {
     public static class DatabaseHelper
     {
-        private static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\Mikolaj\Desktop\magazyn\Magazyn\Magazyn\magazyn.mdf;Integrated Security=True";
+        private static string connectionString = @"Data Source=(LocalDB)\MSSQLLocalDB;AttachDbFilename=C:\Users\rogac\Documents\GitHub\magazyn\Magazyn\Magazyn\magazyn.mdf;Integrated Security=True";
 
         public static SqlConnection GetConnection()
         {

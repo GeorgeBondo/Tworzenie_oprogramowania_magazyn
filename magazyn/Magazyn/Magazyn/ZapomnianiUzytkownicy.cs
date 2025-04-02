@@ -66,10 +66,9 @@ namespace Magazyn
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
-                    // Debug: sprawdź liczbę rekordów
                     Console.WriteLine($"Liczba rekordów: {dt.Rows.Count}");
 
-                    dataGridViewZapomniani.AutoGenerateColumns = true; // Dodaj tę linię!
+                    dataGridViewZapomniani.AutoGenerateColumns = true; 
                     dataGridViewZapomniani.DataSource = dt;
                 }
             }
@@ -111,5 +110,7 @@ namespace Magazyn
             lista.Show();
             this.Close();
         }
+
+
     }
 }

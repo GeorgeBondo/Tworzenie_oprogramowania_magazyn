@@ -18,7 +18,7 @@ namespace Magazyn
 
         private bool WalidujDane()
         {
-            
+            // Sprawdzanie wyamagnych pól
             if (string.IsNullOrWhiteSpace(txtImie.Text) ||
                 string.IsNullOrWhiteSpace(txtNazwisko.Text) ||
                 string.IsNullOrWhiteSpace(txtPesel.Text) ||
@@ -32,35 +32,35 @@ namespace Magazyn
                 return false;
             }
 
-            // 2. Walidacja pesel
+            // Walidacja pesel
             if (!Regex.IsMatch(txtPesel.Text, @"^\d{11}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer PESEL!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // 3. Walidacja email
+            // Walidacja email
             if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
             {
                 MessageBox.Show("Nieprawidłowy adres email!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // 4. Walidacja telefonu (9 cyfr)
+            // Walidacja telefonu 
             if (!Regex.IsMatch(txtTelefon.Text, @"^\d{9}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer telefonu!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // 5. Walidacja kod pocztowy (format XX-XXX)
+            //  Walidacja kod pocztowy
             if (!Regex.IsMatch(txtKodPocztowy.Text, @"^\d{2}-\d{3}$"))
             {
                 MessageBox.Show("Nieprawidłowy format kodu pocztowego!\nPoprawny format: 00-000", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // 6. Walidacja liter w imieniu, nazwisku i miejscowości
+            // Walidacja liter w imieniu, nazwisku i miejscowości
             if (!Regex.IsMatch(txtImie.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtNazwisko.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtMiejscowosc.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$"))
@@ -69,7 +69,7 @@ namespace Magazyn
                 return false;
             }
 
-            // 7. Walidacja hasła (tylko jeśli pole jest widoczne i wymagane)
+            // Walidacja hasła 
             if (!string.IsNullOrEmpty(txtHaslo.Text)) 
             {
                 string haslo = txtHaslo.Text;
@@ -92,7 +92,7 @@ namespace Magazyn
                 }
             }
 
-            return true; // Wszystkie walidacje przeszły pomyślnie
+            return true;
         }
 
 
