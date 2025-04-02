@@ -18,7 +18,7 @@ namespace Magazyn
 
         private bool WalidujDane()
         {
-            // 1. Sprawdź wymagane pola (oprócz hasła, jeśli nie jest obowiązkowe w edycji)
+            
             if (string.IsNullOrWhiteSpace(txtImie.Text) ||
                 string.IsNullOrWhiteSpace(txtNazwisko.Text) ||
                 string.IsNullOrWhiteSpace(txtPesel.Text) ||
