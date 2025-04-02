@@ -71,11 +71,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(124, 71);
+            this.label1.Location = new System.Drawing.Point(182, 71);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(98, 16);
+            this.label1.Size = new System.Drawing.Size(40, 16);
             this.label1.TabIndex = 3;
-            this.label1.Text = "ID Użytkownika";
+            this.label1.Text = "Login";
             // 
             // label2
             // 
