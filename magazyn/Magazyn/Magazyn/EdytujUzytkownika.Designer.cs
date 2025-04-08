@@ -307,7 +307,7 @@
             this.groupBox1.Size = new System.Drawing.Size(710, 487);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // EdytujUzytkownika
             // 
@@ -318,7 +318,7 @@
             this.ClientSize = new System.Drawing.Size(798, 569);
             this.Controls.Add(this.groupBox1);
             this.Name = "EdytujUzytkownika";
-            this.Text = "Form1";
+            this.Text = "Edycja Użytkownika";
             this.Load += new System.EventHandler(this.EdytujUzytkownika_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

@@ -3,6 +3,9 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Security.Cryptography;
+using System.Text;
+using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Magazyn
@@ -43,20 +46,20 @@ namespace Magazyn
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     string query = @"
-                SELECT 
-                    ID_Uzytkownik AS 'ID',
-                    Imię,
-                    Nazwisko,
-                    PESEL,
-                    Email,
-                    Data_zapomnienia AS 'DataZapomnienia',
-                    'Nieaktywny' AS 'Status'
-                FROM Uzytkownik
-                WHERE 
-                    ID_Status = 2 
-                    AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
-                    AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
-                    AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
+                        SELECT 
+                            ID_Uzytkownik AS 'ID',
+                            Imię,
+                            Nazwisko,
+                            PESEL,
+                            Email,
+                            Data_zapomnienia AS 'DataZapomnienia',
+                            'Nieaktywny' AS 'Status'
+                        FROM Uzytkownik
+                        WHERE 
+                            ID_Status = 2 
+                            AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
+                            AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
+                            AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", filtrImie);
@@ -66,10 +69,18 @@ namespace Magazyn
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
-                    // Debug: sprawdź liczbę rekordów
+                    
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        row["Imię"] = HashToLetters(row["Imię"].ToString());
+                        row["Nazwisko"] = HashToLetters(row["Nazwisko"].ToString());
+                        row["PESEL"] = HashToDigits(row["PESEL"].ToString());
+                        row["Email"] = HashEmail(row["Email"].ToString());
+                    }
+
                     Console.WriteLine($"Liczba rekordów: {dt.Rows.Count}");
 
-                    dataGridViewZapomniani.AutoGenerateColumns = true; // Dodaj tę linię!
+                    dataGridViewZapomniani.AutoGenerateColumns = true;
                     dataGridViewZapomniani.DataSource = dt;
                 }
             }
@@ -103,13 +114,53 @@ namespace Magazyn
             txtFiltrPesel.Clear();
         }
 
-        
-
         private void btnPowrot_Click_1(object sender, EventArgs e)
         {
             ListaUzytkownikow lista = new ListaUzytkownikow();
             lista.Show();
             this.Close();
         }
+
+        #region Funkcje Hashujące
+
+        
+        private static string HashToLetters(string input)
+        {
+            using (var md5 = MD5.Create())
+            {
+                byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
+                StringBuilder sb = new StringBuilder();
+                foreach (byte b in hash)
+                {
+                    
+                    char letter = (char)('A' + (b % 26));
+                    sb.Append(letter);
+                }
+                return sb.ToString();
+            }
+        }
+
+        
+        private static string HashEmail(string email)
+        {
+            string localPart = HashToLetters(email);
+            return $"{localPart}@example.com";
+        }
+
+        
+        private static string HashToDigits(string input)
+        {
+            using (var md5 = MD5.Create())
+            {
+                byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
+                
+                long num = BitConverter.ToInt64(hash, 0);
+                if (num < 0) num = -num;
+                long mod = num % 100000000000; 
+                return mod.ToString("D11");
+            }
+        }
+
+        #endregion
     }
 }

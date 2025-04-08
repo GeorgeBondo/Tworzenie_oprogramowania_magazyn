@@ -184,7 +184,7 @@
             this.Controls.Add(this.dataGridViewUzytkownicy);
             this.Controls.Add(this.btnWroc);
             this.Name = "ListaUzytkownikow";
-            this.Text = "Form1";
+            this.Text = "Lista Użytkowników";
             this.Load += new System.EventHandler(this.ListaUzytkownikow_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUzytkownicy)).EndInit();
             this.ResumeLayout(false);

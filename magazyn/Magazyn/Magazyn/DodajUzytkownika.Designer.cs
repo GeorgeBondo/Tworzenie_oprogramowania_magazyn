@@ -368,7 +368,6 @@
             this.groupBox1.Size = new System.Drawing.Size(687, 434);
             this.groupBox1.TabIndex = 33;
             this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // login
@@ -409,7 +408,7 @@
             this.ClientSize = new System.Drawing.Size(759, 499);
             this.Controls.Add(this.groupBox1);
             this.Name = "DodajUzytkownika";
-            this.Text = "Form1";
+            this.Text = "Dodaj Użytkownika";
             this.Load += new System.EventHandler(this.DodajUzytkownika_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();

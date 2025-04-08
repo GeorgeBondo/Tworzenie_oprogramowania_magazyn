@@ -114,7 +114,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Name = "ResetHasla";
-            this.Text = "Form1";
+            this.Text = "Odzyskiwanie hasła";
             this.Load += new System.EventHandler(this.ResetHasla_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
