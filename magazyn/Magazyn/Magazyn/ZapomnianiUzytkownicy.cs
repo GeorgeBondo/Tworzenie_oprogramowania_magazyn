@@ -69,6 +69,7 @@ namespace Magazyn
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
+<<<<<<< HEAD
                     
                     foreach (DataRow row in dt.Rows)
                     {
@@ -81,6 +82,11 @@ namespace Magazyn
                     Console.WriteLine($"Liczba rekordów: {dt.Rows.Count}");
 
                     dataGridViewZapomniani.AutoGenerateColumns = true;
+=======
+                    Console.WriteLine($"Liczba rekordów: {dt.Rows.Count}");
+
+                    dataGridViewZapomniani.AutoGenerateColumns = true; 
+>>>>>>> e003832b87d69f661b4b9bc824d6ec988cbe8ed5
                     dataGridViewZapomniani.DataSource = dt;
                 }
             }
@@ -121,6 +127,7 @@ namespace Magazyn
             this.Close();
         }
 
+<<<<<<< HEAD
         #region Funkcje Hashujące
 
         
@@ -162,5 +169,8 @@ namespace Magazyn
         }
 
         #endregion
+=======
+
+>>>>>>> e003832b87d69f661b4b9bc824d6ec988cbe8ed5
     }
 }
