@@ -2,15 +2,10 @@
 {
     partial class EdytujUzytkownika
     {
-        /// <summary>
-        /// Required designer variable.
-        /// </summary>
+
         private System.ComponentModel.IContainer components = null;
 
-        /// <summary>
-        /// Clean up any resources being used.
-        /// </summary>
-        /// <param name="disposing">true if managed resources should be disposed; otherwise, false.</param>
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -22,10 +17,7 @@
 
         #region Windows Form Designer generated code
 
-        /// <summary>
-        /// Required method for Designer support - do not modify
-        /// the contents of this method with the code editor.
-        /// </summary>
+
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EdytujUzytkownika));
@@ -307,10 +299,9 @@
             this.groupBox1.Size = new System.Drawing.Size(710, 487);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
-<<<<<<< HEAD
-=======
+
             this.groupBox1.Text = "groupBox1";
->>>>>>> e003832b87d69f661b4b9bc824d6ec988cbe8ed5
+
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // EdytujUzytkownika
