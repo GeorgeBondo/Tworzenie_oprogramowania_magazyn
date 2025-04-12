@@ -198,13 +198,13 @@
         private System.Windows.Forms.Button btnOdswiez;
         private System.Windows.Forms.Button btnEdytuj;
         private System.Windows.Forms.Button btnWyczyśćFiltry;
-        private System.Windows.Forms.TextBox txtFiltrImie;
-        private System.Windows.Forms.TextBox txtFiltrNazwisko;
-        private System.Windows.Forms.TextBox txtFiltrPesel;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button btnZapomniani;
         private System.Windows.Forms.Button btnZapomnij;
+        public System.Windows.Forms.TextBox txtFiltrImie;
+        public System.Windows.Forms.TextBox txtFiltrNazwisko;
+        public System.Windows.Forms.TextBox txtFiltrPesel;
     }
 }

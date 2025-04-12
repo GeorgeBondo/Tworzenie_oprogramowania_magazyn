@@ -3,9 +3,6 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
-using System.Security.Cryptography;
-using System.Text;
-using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
 namespace Magazyn
@@ -23,7 +20,16 @@ namespace Magazyn
         {
             dataGridViewZapomniani.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewZapomniani.MultiSelect = false;
-            dataGridViewZapomniani.CellFormatting += dataGridViewZapomniani_CellFormatting;
+            dataGridViewZapomniani.AutoGenerateColumns = false;
+
+            // Konfiguracja kolumn
+            dataGridViewZapomniani.Columns.Add("ID", "ID");
+            dataGridViewZapomniani.Columns.Add("ImieNazwisko", "Imię i nazwisko");
+            dataGridViewZapomniani.Columns.Add("DataZapomnienia", "Data zapomnienia");
+
+            dataGridViewZapomniani.Columns["ID"].DataPropertyName = "ID";
+            dataGridViewZapomniani.Columns["ImieNazwisko"].DataPropertyName = "ImieNazwisko";
+            dataGridViewZapomniani.Columns["DataZapomnienia"].DataPropertyName = "DataZapomnienia";
         }
 
         private void WireUpEventHandlers()
@@ -43,22 +49,20 @@ namespace Magazyn
         {
             try
             {
+                dataGridViewZapomniani.DataSource = null;
+
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     string query = @"
                         SELECT 
                             ID_Uzytkownik AS 'ID',
-                            Imię,
-                            Nazwisko,
-                            PESEL,
-                            Email,
-                            Data_zapomnienia AS 'DataZapomnienia',
-                            'Nieaktywny' AS 'Status'
+                            'xxxxx xxxxx' AS 'ImieNazwisko',
+                            Data_zapomnienia AS 'DataZapomnienia'
                         FROM Uzytkownik
                         WHERE 
-                            ID_Status = 2 
-                            AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
-                            AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
+                            ID_Status = 2
+                            AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '')
+                            AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '')
                             AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
@@ -69,26 +73,10 @@ namespace Magazyn
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
-<<<<<<< HEAD
-                    
-                    foreach (DataRow row in dt.Rows)
-                    {
-                        row["Imię"] = HashToLetters(row["Imię"].ToString());
-                        row["Nazwisko"] = HashToLetters(row["Nazwisko"].ToString());
-                        row["PESEL"] = HashToDigits(row["PESEL"].ToString());
-                        row["Email"] = HashEmail(row["Email"].ToString());
-                    }
-
-                    Console.WriteLine($"Liczba rekordów: {dt.Rows.Count}");
-
-                    dataGridViewZapomniani.AutoGenerateColumns = true;
-=======
-                    Console.WriteLine($"Liczba rekordów: {dt.Rows.Count}");
-
-                    dataGridViewZapomniani.AutoGenerateColumns = true; 
->>>>>>> e003832b87d69f661b4b9bc824d6ec988cbe8ed5
                     dataGridViewZapomniani.DataSource = dt;
                 }
+
+                dataGridViewZapomniani.Refresh();
             }
             catch (Exception ex)
             {
@@ -96,12 +84,18 @@ namespace Magazyn
             }
         }
 
-        private void dataGridViewZapomniani_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        private void btnWyczyscFiltry_Click(object sender, EventArgs e)
         {
-            if (dataGridViewZapomniani.Columns[e.ColumnIndex].Name == "Status")
-            {
-                e.CellStyle.ForeColor = Color.Red;
-            }
+            txtFiltrImie.Clear();
+            txtFiltrNazwisko.Clear();
+            txtFiltrPesel.Clear();
+            WczytajZapomnianych();
+        }
+
+        private void btnPowrot_Click_1(object sender, EventArgs e)
+        {
+            new ListaUzytkownikow().Show();
+            this.Close();
         }
 
         private void FiltrujUzytkownikow(object sender, EventArgs e)
@@ -112,65 +106,5 @@ namespace Magazyn
                 txtFiltrPesel.Text.Trim()
             );
         }
-
-        private void btnWyczyscFiltry_Click(object sender, EventArgs e)
-        {
-            txtFiltrImie.Clear();
-            txtFiltrNazwisko.Clear();
-            txtFiltrPesel.Clear();
-        }
-
-        private void btnPowrot_Click_1(object sender, EventArgs e)
-        {
-            ListaUzytkownikow lista = new ListaUzytkownikow();
-            lista.Show();
-            this.Close();
-        }
-
-<<<<<<< HEAD
-        #region Funkcje Hashujące
-
-        
-        private static string HashToLetters(string input)
-        {
-            using (var md5 = MD5.Create())
-            {
-                byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
-                StringBuilder sb = new StringBuilder();
-                foreach (byte b in hash)
-                {
-                    
-                    char letter = (char)('A' + (b % 26));
-                    sb.Append(letter);
-                }
-                return sb.ToString();
-            }
-        }
-
-        
-        private static string HashEmail(string email)
-        {
-            string localPart = HashToLetters(email);
-            return $"{localPart}@example.com";
-        }
-
-        
-        private static string HashToDigits(string input)
-        {
-            using (var md5 = MD5.Create())
-            {
-                byte[] hash = md5.ComputeHash(Encoding.UTF8.GetBytes(input));
-                
-                long num = BitConverter.ToInt64(hash, 0);
-                if (num < 0) num = -num;
-                long mod = num % 100000000000; 
-                return mod.ToString("D11");
-            }
-        }
-
-        #endregion
-=======
-
->>>>>>> e003832b87d69f661b4b9bc824d6ec988cbe8ed5
     }
 }

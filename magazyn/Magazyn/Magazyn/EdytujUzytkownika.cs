@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
+using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 
@@ -9,9 +10,8 @@ namespace Magazyn
 {
     public partial class EdytujUzytkownika : Form
     {
-        private int userId;
-        // Słownik do przechowywania oryginalnych danych użytkownika
-        private Dictionary<string, string> originalData = new Dictionary<string, string>();
+        public int userId;
+        public Dictionary<string, string> originalData = new Dictionary<string, string>();
 
         public EdytujUzytkownika(int userId)
         {
@@ -22,7 +22,7 @@ namespace Magazyn
             WczytajDaneUzytkownika();
         }
 
-        private void WczytajDaneUzytkownika()
+        public void WczytajDaneUzytkownika()
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
@@ -55,7 +55,7 @@ namespace Magazyn
                         comboPlec.SelectedItem = reader["Plec"].ToString() == "K" ? "Kobieta" : "Mężczyzna";
                         txtDataUrodzenia.Value = Convert.ToDateTime(reader["Data_urodzenia"]);
 
-                        // Zapisz oryginalne dane do późniejszego porównania
+                        // Zapisz oryginalne dane
                         originalData["Imie"] = txtImie.Text;
                         originalData["Nazwisko"] = txtNazwisko.Text;
                         originalData["Pesel"] = txtPesel.Text;
@@ -102,6 +102,7 @@ namespace Magazyn
 
         private bool WalidujDane()
         {
+            // Sprawdzenie wymaganych pól
             if (string.IsNullOrWhiteSpace(txtImie.Text) ||
                 string.IsNullOrWhiteSpace(txtNazwisko.Text) ||
                 string.IsNullOrWhiteSpace(txtPesel.Text) ||
@@ -115,89 +116,125 @@ namespace Magazyn
                 return false;
             }
 
-            if (!Regex.IsMatch(txtPesel.Text, @"^\d{11}$"))
+            // Walidacja PESEL
+            if (!WalidujPESEL(txtPesel.Text, txtDataUrodzenia.Value, comboPlec.SelectedItem.ToString()))
             {
-                MessageBox.Show("Nieprawidłowy numer PESEL!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nieprawidłowy numer PESEL w stosunku do daty urodzenia lub płci!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$"))
+            // Sprawdź spójność zmian
+            bool zmianaPesel = txtPesel.Text != originalData["Pesel"];
+            bool zmianaData = txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["DataUrodzenia"];
+            bool zmianaPlec = comboPlec.SelectedItem.ToString() != originalData["Plec"];
+
+            if (zmianaPesel && !zmianaData && !zmianaPlec)
+            {
+                MessageBox.Show("Zmiana PESEL wymaga aktualizacji daty urodzenia lub płci!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            if ((zmianaData || zmianaPlec) && !zmianaPesel)
+            {
+                MessageBox.Show("Zmiana daty urodzenia lub płci wymaga aktualizacji PESEL!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+
+            // Walidacja email
+            if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$") || txtEmail.Text.Length > 255)
             {
                 MessageBox.Show("Nieprawidłowy adres email!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
+            // Walidacja telefonu
             if (!Regex.IsMatch(txtTelefon.Text, @"^\d{9}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer telefonu!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
+            // Walidacja kodu pocztowego
             if (!Regex.IsMatch(txtKodPocztowy.Text, @"^\d{2}-\d{3}$"))
             {
-                MessageBox.Show("Nieprawidłowy format kodu pocztowego!\nPoprawny format: 00-000", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nieprawidłowy format kodu pocztowego!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
+            // Walidacja danych tekstowych
             if (!Regex.IsMatch(txtImie.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtNazwisko.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtMiejscowosc.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$"))
             {
-                MessageBox.Show("Imię, nazwisko i miejscowość mogą zawierać tylko litery, spacje, myślniki i apostrofy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Nieprawidłowe znaki w polach tekstowych!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
+
             return true;
         }
 
-        // Metoda porównująca aktualne dane z oryginalnymi
+        private bool WalidujPESEL(string pesel, DateTime dataUrodzenia, string plec)
+        {
+            if (pesel.Length != 11 || !pesel.All(char.IsDigit))
+                return false;
+
+            // Sprawdzenie daty urodzenia
+            string rr = dataUrodzenia.ToString("yy");
+            string mm = dataUrodzenia.Month.ToString("00");
+            string dd = dataUrodzenia.Day.ToString("00");
+            if (pesel.Substring(0, 6) != rr + mm + dd)
+                return false;
+
+            // Sprawdzenie płci
+            int genderDigit = int.Parse(pesel[9].ToString());
+            bool isMale = genderDigit % 2 == 1;
+            if ((plec == "Kobieta" && isMale) || (plec == "Mężczyzna" && !isMale))
+                return false;
+
+            // Sprawdzenie sumy kontrolnej
+            int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
+            int sum = 0;
+            for (int i = 0; i < 10; i++)
+                sum += int.Parse(pesel[i].ToString()) * weights[i];
+
+            int checksum = (10 - (sum % 10)) % 10;
+            return checksum == int.Parse(pesel[10].ToString());
+        }
+
         private bool CzyDokonanoZmian()
         {
-            // Porównanie pól tekstowych
-            if (txtImie.Text != originalData["Imie"] ||
-                txtNazwisko.Text != originalData["Nazwisko"] ||
-                txtPesel.Text != originalData["Pesel"] ||
-                txtEmail.Text != originalData["Email"] ||
-                txtTelefon.Text != originalData["Telefon"] ||
-                txtMiejscowosc.Text != originalData["Miejscowosc"] ||
-                txtKodPocztowy.Text != originalData["KodPocztowy"] ||
-                txtNumerPosesji.Text != originalData["NumerPosesji"] ||
-                txtUlica.Text != originalData["Ulica"] ||
-                txtNumerLokalu.Text != originalData["NumerLokalu"])
-            {
-                return true;
-            }
-
-            // Porównanie pola wyboru płci
-            if (comboPlec.SelectedItem.ToString() != originalData["Plec"])
-            {
-                return true;
-            }
-
-            // Porównanie daty urodzenia (formatujemy datę)
-            if (txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["DataUrodzenia"])
-            {
-                return true;
-            }
-
-            // Żadna zmiana nie została dokonana
-            return false;
+            return txtImie.Text != originalData["Imie"] ||
+                   txtNazwisko.Text != originalData["Nazwisko"] ||
+                   txtPesel.Text != originalData["Pesel"] ||
+                   txtEmail.Text != originalData["Email"] ||
+                   txtTelefon.Text != originalData["Telefon"] ||
+                   txtMiejscowosc.Text != originalData["Miejscowosc"] ||
+                   txtKodPocztowy.Text != originalData["KodPocztowy"] ||
+                   txtNumerPosesji.Text != originalData["NumerPosesji"] ||
+                   txtUlica.Text != originalData["Ulica"] ||
+                   txtNumerLokalu.Text != originalData["NumerLokalu"] ||
+                   comboPlec.SelectedItem.ToString() != originalData["Plec"] ||
+                   txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["DataUrodzenia"];
         }
 
-        private void btnAnuluj_Click_1(object sender, EventArgs e)
+        private bool SprawdzUnikalnosc(SqlConnection conn, SqlTransaction transaction, string pole, string wartosc)
         {
-            ListaUzytkownikow lista = new ListaUzytkownikow();
-            lista.Show();
-            this.Close();
+            string query = $"SELECT COUNT(*) FROM Uzytkownik WHERE {pole} = @Wartosc AND ID_Uzytkownik != @UserId";
+            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
+            {
+                cmd.Parameters.AddWithValue("@Wartosc", wartosc);
+                cmd.Parameters.AddWithValue("@UserId", userId);
+                return (int)cmd.ExecuteScalar() == 0;
+            }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void btnZapisz_Click(object sender, EventArgs e)
         {
             if (!WalidujDane()) return;
 
-            // Sprawdzenie czy użytkownik dokonał zmian
             if (!CzyDokonanoZmian())
             {
-                MessageBox.Show("nie dokonałeś żadnych korekcji", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Nie dokonano żadnych zmian!", "Informacja", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
@@ -208,6 +245,20 @@ namespace Magazyn
                 {
                     try
                     {
+                        // Sprawdź unikalność PESEL i email
+                        string[] pola = { "PESEL", "Email" };
+                        string[] wartosci = { txtPesel.Text, txtEmail.Text };
+
+                        for (int i = 0; i < pola.Length; i++)
+                        {
+                            if (!SprawdzUnikalnosc(conn, transaction, pola[i], wartosci[i]))
+                            {
+                                MessageBox.Show($"{pola[i]} musi być unikalny!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                transaction.Rollback();
+                                return;
+                            }
+                        }
+
                         AktualizujAdres(conn, transaction);
 
                         string query = @"
@@ -249,17 +300,16 @@ namespace Magazyn
             }
         }
 
-        private void EdytujUzytkownika_Load(object sender, EventArgs e)
+        private void btnAnuluj_Click(object sender, EventArgs e)
         {
+            ListaUzytkownikow lista = new ListaUzytkownikow();
+            lista.Show();
+            this.Close();
         }
 
-        private void txtImie_TextChanged(object sender, EventArgs e)
-        {
-        }
-
-        private void groupBox1_Enter(object sender, EventArgs e)
-        {
-        }
+        // Pozostałe metody
+        private void EdytujUzytkownika_Load(object sender, EventArgs e) { }
+        private void txtImie_TextChanged(object sender, EventArgs e) { }
+        private void groupBox1_Enter(object sender, EventArgs e) { }
     }
 }
-

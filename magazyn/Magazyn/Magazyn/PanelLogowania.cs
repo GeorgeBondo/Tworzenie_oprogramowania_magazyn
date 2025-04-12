@@ -21,7 +21,7 @@ namespace Magazyn
         }
 
 
-        private void button_zaloguj_Click(object sender, EventArgs e)
+        public void button_zaloguj_Click(object sender, EventArgs e)
         {
             string login = textbox_login.Text.Trim();
             string haslo = textbox_haslo.Text;

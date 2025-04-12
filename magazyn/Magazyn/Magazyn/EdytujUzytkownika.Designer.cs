@@ -307,10 +307,7 @@
             this.groupBox1.Size = new System.Drawing.Size(710, 487);
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
-<<<<<<< HEAD
-=======
             this.groupBox1.Text = "groupBox1";
->>>>>>> e003832b87d69f661b4b9bc824d6ec988cbe8ed5
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
             // 
             // EdytujUzytkownika
@@ -334,16 +331,6 @@
 
         private System.Windows.Forms.Button btnAnuluj;
         private System.Windows.Forms.Button button1;
-        private System.Windows.Forms.TextBox txtImie;
-        private System.Windows.Forms.TextBox txtNazwisko;
-        private System.Windows.Forms.TextBox txtPesel;
-        private System.Windows.Forms.TextBox txtEmail;
-        private System.Windows.Forms.TextBox txtTelefon;
-        private System.Windows.Forms.TextBox txtMiejscowosc;
-        private System.Windows.Forms.TextBox txtKodPocztowy;
-        private System.Windows.Forms.TextBox txtNumerPosesji;
-        private System.Windows.Forms.TextBox txtUlica;
-        private System.Windows.Forms.TextBox txtNumerLokalu;
         private System.Windows.Forms.ComboBox comboPlec;
         private System.Windows.Forms.DateTimePicker txtDataUrodzenia;
         private System.Windows.Forms.Label label1;
@@ -359,5 +346,15 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.GroupBox groupBox1;
+        public System.Windows.Forms.TextBox txtImie;
+        public System.Windows.Forms.TextBox txtNazwisko;
+        public System.Windows.Forms.TextBox txtPesel;
+        public System.Windows.Forms.TextBox txtEmail;
+        public System.Windows.Forms.TextBox txtTelefon;
+        public System.Windows.Forms.TextBox txtMiejscowosc;
+        public System.Windows.Forms.TextBox txtKodPocztowy;
+        public System.Windows.Forms.TextBox txtNumerPosesji;
+        public System.Windows.Forms.TextBox txtUlica;
+        public System.Windows.Forms.TextBox txtNumerLokalu;
     }
 }

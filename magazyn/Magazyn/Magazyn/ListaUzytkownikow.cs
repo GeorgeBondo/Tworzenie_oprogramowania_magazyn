@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Linq;
 using System.Windows.Forms;
 
 namespace Magazyn
@@ -36,10 +37,12 @@ namespace Magazyn
             WczytajUzytkownikow();
         }
 
-        private void WczytajUzytkownikow(string filtrImie = "", string filtrNazwisko = "", string filtrPesel = "")
+        private void WczytajUzytkownikow(bool forceReload = false)
         {
             try
             {
+                DataTable dt = new DataTable();
+
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     string query = @"
@@ -56,22 +59,24 @@ namespace Magazyn
                             Data_zapomnienia
                         FROM Uzytkownik
                         WHERE 
-                            ID_Status = 1 AND
-                            (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') AND
-                            (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') AND
-                            (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
+                            ID_Status = 1 
+                            AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
+                            AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
+                            AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')
+                            AND NEWID() IS NOT NULL"; // Wymusza ponowne wykonanie zapytania
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", filtrImie);
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrNazwisko", filtrNazwisko);
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrPesel", filtrPesel);
+                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", txtFiltrImie.Text.Trim());
+                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrNazwisko", txtFiltrNazwisko.Text.Trim());
+                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrPesel", txtFiltrPesel.Text.Trim());
 
-                    DataTable dt = new DataTable();
                     adapter.Fill(dt);
-
-                    dataGridViewUzytkownicy.DataSource = dt;
-                    dataGridViewUzytkownicy.Columns["Data_zapomnienia"].Visible = false;
                 }
+
+                dataGridViewUzytkownicy.DataSource = null;
+                dataGridViewUzytkownicy.DataSource = dt;
+                dataGridViewUzytkownicy.Columns["Data_zapomnienia"].Visible = false;
+                dataGridViewUzytkownicy.Refresh();
             }
             catch (Exception ex)
             {
@@ -81,11 +86,7 @@ namespace Magazyn
 
         private void FiltrujUzytkownikow(object sender, EventArgs e)
         {
-            WczytajUzytkownikow(
-                txtFiltrImie.Text.Trim(),
-                txtFiltrNazwisko.Text.Trim(),
-                txtFiltrPesel.Text.Trim()
-            );
+            WczytajUzytkownikow();
         }
 
         private void btnWyczyśćFiltry_Click(object sender, EventArgs e)
@@ -117,13 +118,12 @@ namespace Magazyn
 
         private void btnOdswiez_Click(object sender, EventArgs e)
         {
-            WczytajUzytkownikow();
+            WczytajUzytkownikow(true);
         }
 
         private void btnEdytuj_Click(object sender, EventArgs e)
         {
             if (!ValidateSelection()) return;
-
             int selectedUserId = GetSelectedUserId();
             OpenForm(new EdytujUzytkownika(selectedUserId));
         }
@@ -133,14 +133,11 @@ namespace Magazyn
             OpenForm(new ZapomnianiUzytkownicy());
         }
 
-        
-
         private bool ValidateSelection()
         {
             if (dataGridViewUzytkownicy.SelectedRows.Count == 0)
             {
-                MessageBox.Show("Wybierz użytkownika z listy!", "Błąd",
-                    MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Wybierz użytkownika z listy!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
             return true;
@@ -157,52 +154,90 @@ namespace Magazyn
             this.Hide();
         }
 
+        private string GeneratePESELForForgottenUser()
+        {
+            Random rand = new Random();
+            string basePESEL = "002101"; // 2000-01-01
+            string randomPart = rand.Next(0, 1000).ToString("D3");
+            int genderDigit;
+
+            do
+            {
+                genderDigit = rand.Next(0, 10);
+            } while (genderDigit % 2 == 0);
+
+            string peselWithoutChecksum = basePESEL + randomPart + genderDigit;
+
+            int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
+            int sum = 0;
+
+            for (int i = 0; i < 10; i++)
+                sum += int.Parse(peselWithoutChecksum[i].ToString()) * weights[i];
+
+            int checksum = (10 - (sum % 10)) % 10;
+
+            return peselWithoutChecksum + checksum.ToString();
+        }
+
         private void ZapomnijUzytkownika(int userId)
         {
             try
             {
+                string newPesel = GeneratePESELForForgottenUser();
+
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     conn.Open();
-                    using (SqlCommand cmd = new SqlCommand())
+                    using (SqlTransaction transaction = conn.BeginTransaction())
                     {
-                        cmd.Connection = conn;
-                        cmd.CommandText = @"
-                    UPDATE Uzytkownik 
-                    SET 
-                        ID_Status = 2,
-                        Data_zapomnienia = GETDATE()
-                    WHERE ID_Uzytkownik = @UserId";
-
-                        cmd.Parameters.AddWithValue("@UserId", userId);
-
-                        int affectedRows = cmd.ExecuteNonQuery();
-
-                        if (affectedRows > 0)
+                        try
                         {
-                            var bindingSource = new BindingSource();
-                            bindingSource.DataSource = dataGridViewUzytkownicy.DataSource;
-                            bindingSource.ResetBindings(false);
+                            using (SqlCommand cmd = conn.CreateCommand())
+                            {
+                                cmd.Transaction = transaction;
+                                cmd.CommandText = @"
+                                    UPDATE Uzytkownik 
+                                    SET 
+                                        Imię = 'xxxxx',
+                                        Nazwisko = 'xxxxx',
+                                        PESEL = @NewPESEL,
+                                        Data_urodzenia = '2000-01-01',
+                                        Plec = 'M',
+                                        ID_Status = 2,
+                                        Data_zapomnienia = GETDATE(),
+                                        ID_Uprawnienia = NULL
+                                    WHERE ID_Uzytkownik = @UserId";
 
-                            WczytajUzytkownikow();
+                                cmd.Parameters.AddWithValue("@NewPESEL", newPesel);
+                                cmd.Parameters.AddWithValue("@UserId", userId);
+
+                                int affectedRows = cmd.ExecuteNonQuery();
+
+                                if (affectedRows == 0)
+                                {
+                                    transaction.Rollback();
+                                    MessageBox.Show("Nie znaleziono użytkownika!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                                    return;
+                                }
+
+                                transaction.Commit();
+                            }
                         }
-                        else
+                        catch (Exception ex)
                         {
-                            MessageBox.Show("Nie znaleziono użytkownika o podanym ID!",
-                                          "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                            transaction.Rollback();
+                            throw new Exception($"Błąd transakcji: {ex.Message}");
                         }
                     }
                 }
             }
-            catch (SqlException sqlEx)
+            catch (SqlException sqlEx) when (sqlEx.Number == 2627)
             {
-                MessageBox.Show($"Błąd bazy danych: {sqlEx.Message}\nKod błędu: {sqlEx.Number}",
-                              "Błąd SQL", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Wygenerowany PESEL już istnieje. Spróbuj ponownie.", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd ogólny: {ex.Message}",
-                              "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -218,7 +253,7 @@ namespace Magazyn
 
                 var result = MessageBox.Show(
                     $"Czy na pewno chcesz oznaczyć użytkownika {userName} jako zapomnianego?",
-                    "Potwierdzenie operacji",
+                    "Potwierdzenie",
                     MessageBoxButtons.YesNo,
                     MessageBoxIcon.Warning
                 );
@@ -226,13 +261,12 @@ namespace Magazyn
                 if (result == DialogResult.Yes)
                 {
                     ZapomnijUzytkownika(userId);
-                    MessageBox.Show("Operacja zakończona pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    MessageBox.Show("Użytkownik został zapomniany.", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd: {ex.Message}\nSzczegóły: {ex.StackTrace}",
-                              "Krytyczny błąd aplikacji", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Krytyczny błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
     }

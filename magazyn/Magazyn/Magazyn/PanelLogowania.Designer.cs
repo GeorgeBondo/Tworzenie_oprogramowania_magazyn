@@ -131,8 +131,8 @@
         private System.Windows.Forms.Button button_wyczysc;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.TextBox textbox_haslo;
-        private System.Windows.Forms.TextBox textbox_login;
+        public System.Windows.Forms.TextBox textbox_haslo;
+        public System.Windows.Forms.TextBox textbox_login;
     }
 }
 
