@@ -21,8 +21,7 @@ namespace Magazyn
             dataGridViewZapomniani.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dataGridViewZapomniani.MultiSelect = false;
             dataGridViewZapomniani.AutoGenerateColumns = false;
-
-            // Konfiguracja kolumn
+            
             dataGridViewZapomniani.Columns.Add("ID", "ID");
             dataGridViewZapomniani.Columns.Add("ImieNazwisko", "Imię i nazwisko");
             dataGridViewZapomniani.Columns.Add("DataZapomnienia", "Data zapomnienia");
@@ -32,11 +31,11 @@ namespace Magazyn
             dataGridViewZapomniani.Columns["DataZapomnienia"].DataPropertyName = "DataZapomnienia";
         }
 
+
         private void WireUpEventHandlers()
         {
-            txtFiltrImie.TextChanged += FiltrujUzytkownikow;
-            txtFiltrNazwisko.TextChanged += FiltrujUzytkownikow;
-            txtFiltrPesel.TextChanged += FiltrujUzytkownikow;
+            txtFiltrId.TextChanged += FiltrujUzytkownikow;
+            dateTimePickerFiltr.ValueChanged += FiltrujUzytkownikow;
             btnWyczyscFiltry.Click += btnWyczyscFiltry_Click;
         }
 
@@ -45,38 +44,52 @@ namespace Magazyn
             WczytajZapomnianych();
         }
 
-        private void WczytajZapomnianych(string filtrImie = "", string filtrNazwisko = "", string filtrPesel = "")
+        private void WczytajZapomnianych(string idFiltr = "", DateTime? dataFiltr = null)
         {
             try
             {
-                dataGridViewZapomniani.DataSource = null;
-
                 using (SqlConnection conn = DatabaseHelper.GetConnection())
                 {
                     string query = @"
-                        SELECT 
-                            ID_Uzytkownik AS 'ID',
-                            'xxxxx xxxxx' AS 'ImieNazwisko',
-                            Data_zapomnienia AS 'DataZapomnienia'
-                        FROM Uzytkownik
-                        WHERE 
-                            ID_Status = 2
-                            AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '')
-                            AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '')
-                            AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')";
+                SELECT 
+                    ID_Uzytkownik AS [ID],
+                    'xxxxx xxxxx' AS [ImieNazwisko],
+                    Data_zapomnienia AS [DataZapomnienia]
+                FROM Uzytkownik
+                WHERE 
+                    ID_Status = 2
+                    AND (ID_Uzytkownik = @IdFiltr OR @IdFiltr IS NULL)
+                    AND (
+                        (@DataFiltr IS NULL) 
+                        OR 
+                        CONVERT(DATE, Data_zapomnienia) = CONVERT(DATE, @DataFiltr)
+                    )";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", filtrImie);
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrNazwisko", filtrNazwisko);
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrPesel", filtrPesel);
+
+                    if (int.TryParse(idFiltr, out int parsedId))
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@IdFiltr", parsedId);
+                    }
+                    else
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@IdFiltr", DBNull.Value);
+                    }
+
+                    if (dateTimePickerFiltr.Checked && dataFiltr.HasValue)
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@DataFiltr", dataFiltr.Value.ToString("yyyy-MM-dd"));
+                    }
+                    else
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@DataFiltr", DBNull.Value);
+                    }
 
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
 
                     dataGridViewZapomniani.DataSource = dt;
                 }
-
-                dataGridViewZapomniani.Refresh();
             }
             catch (Exception ex)
             {
@@ -86,9 +99,8 @@ namespace Magazyn
 
         private void btnWyczyscFiltry_Click(object sender, EventArgs e)
         {
-            txtFiltrImie.Clear();
-            txtFiltrNazwisko.Clear();
-            txtFiltrPesel.Clear();
+            txtFiltrId.Clear();
+            dateTimePickerFiltr.Checked = false;
             WczytajZapomnianych();
         }
 
@@ -100,11 +112,16 @@ namespace Magazyn
 
         private void FiltrujUzytkownikow(object sender, EventArgs e)
         {
+            DateTime? selectedDate = dateTimePickerFiltr.Checked
+                ? dateTimePickerFiltr.Value.Date
+                : (DateTime?)null;
+
             WczytajZapomnianych(
-                txtFiltrImie.Text.Trim(),
-                txtFiltrNazwisko.Text.Trim(),
-                txtFiltrPesel.Text.Trim()
+                txtFiltrId.Text.Trim(),
+                selectedDate
             );
         }
+
+
     }
 }
