@@ -68,6 +68,7 @@
             this.btnAnuluj.TabIndex = 0;
             this.btnAnuluj.Text = "Anuluj";
             this.btnAnuluj.UseVisualStyleBackColor = true;
+            this.btnAnuluj.Click += new System.EventHandler(this.btnAnuluj_Click_1);
             // 
             // btnZapisz
             // 

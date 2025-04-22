@@ -63,7 +63,7 @@ namespace Magazyn
                             AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
                             AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
                             AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')
-                            AND NEWID() IS NOT NULL"; // Wymusza ponowne wykonanie zapytania
+                            AND NEWID() IS NOT NULL"; 
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", txtFiltrImie.Text.Trim());
@@ -157,7 +157,7 @@ namespace Magazyn
         private string GeneratePESELForForgottenUser()
         {
             Random rand = new Random();
-            string basePESEL = "002101"; // 2000-01-01
+            string basePESEL = "002101"; 
             string randomPart = rand.Next(0, 1000).ToString("D3");
             int genderDigit;
 

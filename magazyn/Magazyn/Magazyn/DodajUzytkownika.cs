@@ -19,7 +19,7 @@ namespace Magazyn
 
         private bool WalidujDane()
         {
-            // Sprawdzenie wymaganych pól
+
             if (string.IsNullOrWhiteSpace(loginTextBox.Text) ||
                 string.IsNullOrWhiteSpace(txtImie.Text) ||
                 string.IsNullOrWhiteSpace(txtNazwisko.Text) ||
@@ -34,14 +34,12 @@ namespace Magazyn
                 return false;
             }
 
-            // Walidacja loginu
             if (!Regex.IsMatch(loginTextBox.Text, @"^[a-zA-Z0-9_]{3,20}$"))
             {
                 MessageBox.Show("Login może zawierać tylko litery, cyfry i podkreślenia (3-20 znaków)!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Walidacja hasła
             if (!string.IsNullOrEmpty(txtHaslo.Text))
             {
                 string haslo = txtHaslo.Text;
@@ -64,35 +62,34 @@ namespace Magazyn
                 }
             }
 
-            // Walidacja PESEL
+
             if (!WalidujPESEL(txtPesel.Text, txtDataUrodzenia.Value, comboPlec.SelectedItem.ToString()))
             {
                 MessageBox.Show("Nieprawidłowy numer PESEL!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Walidacja email
+
             if (!Regex.IsMatch(txtEmail.Text, @"^[^@\s]+@[^@\s]+\.[^@\s]+$") || txtEmail.Text.Length > 255)
             {
                 MessageBox.Show("Nieprawidłowy adres email!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Walidacja telefonu
+     
             if (!Regex.IsMatch(txtTelefon.Text, @"^\d{9}$"))
             {
                 MessageBox.Show("Nieprawidłowy numer telefonu!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Walidacja kodu pocztowego
+
             if (!Regex.IsMatch(txtKodPocztowy.Text, @"^\d{2}-\d{3}$"))
             {
                 MessageBox.Show("Nieprawidłowy format kodu pocztowego!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
 
-            // Walidacja danych osobowych
             if (!Regex.IsMatch(txtImie.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtNazwisko.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$") ||
                 !Regex.IsMatch(txtMiejscowosc.Text, @"^[a-zA-ZąćęłńóśźżĄĆĘŁŃÓŚŹŻ\s\-']+$"))
@@ -106,30 +103,49 @@ namespace Magazyn
 
         private bool WalidujPESEL(string pesel, DateTime dataUrodzenia, string plec)
         {
-            if (pesel.Length != 11 || !pesel.All(char.IsDigit))
+            if (pesel == null || pesel.Length != 11 || !pesel.All(char.IsDigit))
                 return false;
 
-            // Sprawdzenie daty urodzenia
-            string rr = dataUrodzenia.ToString("yy");
-            string mm = dataUrodzenia.Month.ToString("00");
-            string dd = dataUrodzenia.Day.ToString("00");
-            if (pesel.Substring(0, 6) != rr + mm + dd)
+    
+            int year = dataUrodzenia.Year;
+            int month = dataUrodzenia.Month;
+            int day = dataUrodzenia.Day;
+
+
+            int monthOffset = (year / 100 - 18) * 20;
+
+
+            int offset;
+            if (year >= 1800 && year <= 1899) offset = 80;
+            else if (year >= 1900 && year <= 1999) offset = 0;
+            else if (year >= 2000 && year <= 2099) offset = 20;
+            else if (year >= 2100 && year <= 2199) offset = 40;
+            else if (year >= 2200 && year <= 2299) offset = 60;
+            else
+                return false;  
+
+            int peselMonth = month + offset;
+
+    
+            string expectedDatePart = dataUrodzenia.ToString("yy")
+                                    + peselMonth.ToString("00")
+                                    + day.ToString("00");
+            if (pesel.Substring(0, 6) != expectedDatePart)
                 return false;
 
-            // Sprawdzenie płci
-            int genderDigit = int.Parse(pesel[9].ToString());
-            bool isMale = genderDigit % 2 == 1;
+            int genderDigit = pesel[9] - '0';
+            bool isMale = (genderDigit % 2) == 1;
             if ((plec == "Kobieta" && isMale) || (plec == "Mężczyzna" && !isMale))
                 return false;
 
-            // Sprawdzenie sumy kontrolnej
+  
             int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
             int sum = 0;
             for (int i = 0; i < 10; i++)
-                sum += int.Parse(pesel[i].ToString()) * weights[i];
-
+                sum += (pesel[i] - '0') * weights[i];
             int checksum = (10 - (sum % 10)) % 10;
-            return checksum == int.Parse(pesel[10].ToString());
+
+            return checksum == (pesel[10] - '0');
         }
 
         private int DodajAdres(SqlConnection conn, SqlTransaction transaction)
@@ -196,7 +212,7 @@ namespace Magazyn
                 {
                     try
                     {
-                        // Sprawdzenie unikalności
+   
                         string[] pola = { "Login", "PESEL", "Email" };
                         string[] wartosci = { loginTextBox.Text, txtPesel.Text, txtEmail.Text };
 
@@ -249,7 +265,7 @@ namespace Magazyn
             txtDataUrodzenia.Value = DateTime.Now;
         }
 
-        // Pozostałe metody
+
         private void DodajUzytkownika_Load(object sender, EventArgs e) { }
         private void groupBox1_Enter(object sender, EventArgs e) { }
         private void label15_Click(object sender, EventArgs e) { }
