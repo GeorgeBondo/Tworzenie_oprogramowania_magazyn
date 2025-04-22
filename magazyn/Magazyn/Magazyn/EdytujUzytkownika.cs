@@ -228,7 +228,21 @@ namespace Magazyn
             }
         }
 
-        private void btnZapisz_Click(object sender, EventArgs e)
+        
+
+        private void btnAnuluj_Click(object sender, EventArgs e)
+        {
+            ListaUzytkownikow lista = new ListaUzytkownikow();
+            lista.Show();
+            this.Close();
+        }
+
+        // Pozostałe metody
+        private void EdytujUzytkownika_Load(object sender, EventArgs e) { }
+        private void txtImie_TextChanged(object sender, EventArgs e) { }
+        private void groupBox1_Enter(object sender, EventArgs e) { }
+
+        private void btnZapisz_Click_1(object sender, EventArgs e)
         {
             if (!WalidujDane()) return;
 
@@ -298,18 +312,7 @@ namespace Magazyn
                     }
                 }
             }
-        }
 
-        private void btnAnuluj_Click(object sender, EventArgs e)
-        {
-            ListaUzytkownikow lista = new ListaUzytkownikow();
-            lista.Show();
-            this.Close();
         }
-
-        // Pozostałe metody
-        private void EdytujUzytkownika_Load(object sender, EventArgs e) { }
-        private void txtImie_TextChanged(object sender, EventArgs e) { }
-        private void groupBox1_Enter(object sender, EventArgs e) { }
     }
 }

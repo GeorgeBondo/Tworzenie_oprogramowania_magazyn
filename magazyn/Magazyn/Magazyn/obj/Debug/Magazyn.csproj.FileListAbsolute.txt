@@ -12,7 +12,6 @@ D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.pdb
 D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.DodajUzytkownika.resources
 D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.EdytujUzytkownika.resources
 D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.Uprawnienia.resources
-D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.ZapomnijUzytkownika.resources
 D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.ListaUzytkownikow.resources
 D:\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.PanelAdmina.resources
 D:\magazyn\Magazyn\Magazyn\bin\Debug\BCrypt.Net-Next.dll
