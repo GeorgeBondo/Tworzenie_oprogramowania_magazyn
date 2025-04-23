@@ -266,8 +266,8 @@ namespace Magazyn
                     try
                     {
 
-                        string[] pola = { "PESEL", "Email" };
-                        string[] wartosci = { txtPesel.Text, txtEmail.Text };
+                        string[] pola = { "PESEL", "Email", "Numer_Telefonu" };
+                        string[] wartosci = { txtPesel.Text, txtEmail.Text, txtTelefon.Text };
 
                         for (int i = 0; i < pola.Length; i++)
                         {

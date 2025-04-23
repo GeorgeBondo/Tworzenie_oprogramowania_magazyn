@@ -3,6 +3,14 @@
   "WorkspaceRootPath": "D:\\magazyn\\Magazyn\\",
   "Documents": [
     {
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\edytujuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\edytujuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\edytujuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\edytujuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
       "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|d:\\magazyn\\magazyn\\magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\dodajuzytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
@@ -27,19 +35,44 @@
             {
               "$type": "Document",
               "DocumentIndex": 0,
+              "Title": "EdytujUzytkownika.cs",
+              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\EdytujUzytkownika.cs",
+              "RelativeDocumentMoniker": "Magazyn\\EdytujUzytkownika.cs",
+              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\EdytujUzytkownika.cs",
+              "RelativeToolTip": "Magazyn\\EdytujUzytkownika.cs",
+              "ViewState": "AgIAAP0AAAAAAAAAAAAcwBoBAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T19:49:33.57Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "EdytujUzytkownika.cs [Projekt]",
+              "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\EdytujUzytkownika.cs",
+              "RelativeDocumentMoniker": "Magazyn\\EdytujUzytkownika.cs",
+              "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\EdytujUzytkownika.cs [Projekt]",
+              "RelativeToolTip": "Magazyn\\EdytujUzytkownika.cs [Projekt]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-23T19:49:31.743Z",
+              "EditorCaption": " [Projekt]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "DodajUzytkownika.cs",
               "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
               "RelativeDocumentMoniker": "Magazyn\\DodajUzytkownika.cs",
               "ToolTip": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
               "RelativeToolTip": "Magazyn\\DodajUzytkownika.cs",
-              "ViewState": "AgIAALsAAAAAAAAAAAAQwMEAAAAeAAAAAAAAAA==",
+              "ViewState": "AgIAALQAAAAAAAAAAAAowMEAAAAgAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2025-04-22T14:37:40.52Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 3,
               "Title": "DodajUzytkownika.cs [Projekt]",
               "DocumentMoniker": "D:\\magazyn\\Magazyn\\Magazyn\\DodajUzytkownika.cs",
               "RelativeDocumentMoniker": "Magazyn\\DodajUzytkownika.cs",
