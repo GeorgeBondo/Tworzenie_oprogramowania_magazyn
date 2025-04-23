@@ -213,8 +213,8 @@ namespace Magazyn
                     try
                     {
    
-                        string[] pola = { "Login", "PESEL", "Email" };
-                        string[] wartosci = { loginTextBox.Text, txtPesel.Text, txtEmail.Text };
+                        string[] pola = { "Login", "PESEL", "Email", "Numer_Telefonu" };
+                        string[] wartosci = { loginTextBox.Text, txtPesel.Text, txtEmail.Text, txtTelefon.Text };
 
                         for (int i = 0; i < pola.Length; i++)
                         {
