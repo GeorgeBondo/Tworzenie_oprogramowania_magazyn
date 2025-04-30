@@ -29,6 +29,7 @@ namespace Magazyn
             txtFiltrImie.TextChanged += FiltrujUzytkownikow;
             txtFiltrNazwisko.TextChanged += FiltrujUzytkownikow;
             txtFiltrPesel.TextChanged += FiltrujUzytkownikow;
+            txtFiltrUprawnienia.TextChanged += FiltrujUzytkownikow;
             btnWyczyśćFiltry.Click += btnWyczyśćFiltry_Click;
         }
 
@@ -47,29 +48,40 @@ namespace Magazyn
                 {
                     string query = @"
                         SELECT 
-                            ID_Uzytkownik AS 'ID',
-                            Imię,
-                            Nazwisko,
-                            Email,
-                            PESEL,
-                            CASE 
-                                WHEN ID_Status = 1 THEN 'Aktywny'
-                                ELSE 'Nieaktywny'
-                            END AS 'Status',
-                            Data_zapomnienia
-                        FROM Uzytkownik
-                        WHERE 
-                            ID_Status = 1 
-                            AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
-                            AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
-                            AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')
-                            AND NEWID() IS NOT NULL"; 
+                    ID_Uzytkownik AS 'ID',
+                    Imię,
+                    Nazwisko,
+                    Email,
+                    PESEL,
+                    CASE
+                        WHEN ID_Uprawnienia = 1 THEN 'Admin'
+                        ELSE 'Magazyn'
+                    END AS 'Uprawnienia',
+                    CASE 
+                        WHEN ID_Status = 1 THEN 'Aktywny'
+                        ELSE 'Nieaktywny'
+                    END AS 'Status',
+                    Data_zapomnienia
+                FROM Uzytkownik
+                WHERE 
+                    ID_Status = 1 
+                    AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
+                    AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
+                    AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')
+                    AND (
+                        (LOWER(@FiltrUprawnienia) = 'admin' AND ID_Uprawnienia = 1)
+                        OR
+                        (LOWER(@FiltrUprawnienia) = 'magazyn' AND ID_Uprawnienia = 2)
+                        OR
+                        @FiltrUprawnienia = ''
+                    )";
 
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", txtFiltrImie.Text.Trim());
                     adapter.SelectCommand.Parameters.AddWithValue("@FiltrNazwisko", txtFiltrNazwisko.Text.Trim());
                     adapter.SelectCommand.Parameters.AddWithValue("@FiltrPesel", txtFiltrPesel.Text.Trim());
-
+                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrUprawnienia", txtFiltrUprawnienia.Text.Trim().ToLower());
+                    
                     adapter.Fill(dt);
                 }
 
@@ -94,6 +106,7 @@ namespace Magazyn
             txtFiltrImie.Clear();
             txtFiltrNazwisko.Clear();
             txtFiltrPesel.Clear();
+            txtFiltrUprawnienia.Clear();
         }
 
         private void dataGridViewUzytkownicy_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -269,5 +282,6 @@ namespace Magazyn
                 MessageBox.Show($"Krytyczny błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
     }
 }

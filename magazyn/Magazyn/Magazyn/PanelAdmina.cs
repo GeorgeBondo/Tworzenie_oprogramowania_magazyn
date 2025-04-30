@@ -17,6 +17,7 @@ namespace Magazyn
         public PanelAdmina()
         {
             InitializeComponent();
+            btnListaUprawnien.Click += btnListaUprawnien_Click;
         }
 
         private void button_testujPolaczenie_Click(object sender, EventArgs e)
@@ -62,6 +63,14 @@ namespace Magazyn
         {
 
         }
+
+        private void btnListaUprawnien_Click(object sender, EventArgs e)
+        {
+            ListaUprawnien listaForm = new ListaUprawnien();
+            listaForm.Show();
+            this.Hide();
+        }
+
     }
     
 }

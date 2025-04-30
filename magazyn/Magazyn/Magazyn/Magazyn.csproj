@@ -238,6 +238,12 @@
       <DependentUpon>EdytujUzytkownika.cs</DependentUpon>
     </Compile>
     <Compile Include="Helpers\DatabaseHelpers.cs" />
+    <Compile Include="ListaUprawnien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ListaUprawnien.Designer.cs">
+      <DependentUpon>ListaUprawnien.cs</DependentUpon>
+    </Compile>
     <Compile Include="NoweHasloForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -287,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="EdytujUzytkownika.resx">
       <DependentUpon>EdytujUzytkownika.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ListaUprawnien.resx">
+      <DependentUpon>ListaUprawnien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="NoweHasloForm.resx">
       <DependentUpon>NoweHasloForm.cs</DependentUpon>
