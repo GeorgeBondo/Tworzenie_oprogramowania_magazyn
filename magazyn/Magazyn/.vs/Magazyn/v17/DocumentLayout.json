@@ -1,7 +1,20 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\magazyn\\Magazyn\\",
-  "Documents": [],
+  "WorkspaceRootPath": "C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\magazyn\\listauprawnien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\listauprawnien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|c:\\users\\mikolaj\\desktop\\tworzenie_oprogramowania_magazyn\\magazyn\\magazyn\\magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -9,21 +22,49 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": -1,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Bookmark",
               "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
-            }
-          ]
-        },
-        {
-          "DockedWidth": 73,
-          "SelectedChildIndex": -1,
-          "Children": [
+            },
             {
-              "$type": "Bookmark",
-              "Name": "ST:0:0:{d78612c7-9962-4b83-95d9-268046dad23a}"
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "InformacjeUprawnienia.cs",
+              "DocumentMoniker": "C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\InformacjeUprawnienia.cs",
+              "RelativeDocumentMoniker": "Magazyn\\InformacjeUprawnienia.cs",
+              "ToolTip": "C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\InformacjeUprawnienia.cs",
+              "RelativeToolTip": "Magazyn\\InformacjeUprawnienia.cs",
+              "ViewState": "AgIAABEAAAAAAAAAAAAAwBoAAAAMAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T11:50:28.983Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "InformacjeUprawnienia.cs [Projekt]",
+              "DocumentMoniker": "C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\InformacjeUprawnienia.cs",
+              "RelativeDocumentMoniker": "Magazyn\\InformacjeUprawnienia.cs",
+              "ToolTip": "C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\InformacjeUprawnienia.cs [Projekt]",
+              "RelativeToolTip": "Magazyn\\InformacjeUprawnienia.cs [Projekt]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T11:28:35.585Z",
+              "EditorCaption": " [Projekt]"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "ListaUprawnien.cs",
+              "DocumentMoniker": "C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\ListaUprawnien.cs",
+              "RelativeDocumentMoniker": "Magazyn\\ListaUprawnien.cs",
+              "ToolTip": "C:\\Users\\Mikolaj\\Desktop\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\ListaUprawnien.cs",
+              "RelativeToolTip": "Magazyn\\ListaUprawnien.cs",
+              "ViewState": "AgIAABkAAAAAAAAAAIA+wDUAAAAQAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-04T11:24:01.487Z",
+              "EditorCaption": ""
             }
           ]
         }

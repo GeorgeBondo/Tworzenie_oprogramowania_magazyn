@@ -17,8 +17,11 @@ namespace Magazyn
         public ListaUprawnien()
         {
             InitializeComponent();
+            
             WczytajUprawnienia();
         }
+
+        
 
         private void WczytajUprawnienia()
         {
@@ -30,8 +33,28 @@ namespace Magazyn
                     SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                     DataTable dt = new DataTable();
                     adapter.Fill(dt);
+
                     dataGridViewUprawnienia.DataSource = dt;
                 }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Błąd: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void BtnInfo_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                if (dataGridViewUprawnienia.SelectedRows.Count == 0) return;
+
+                int selectedId = Convert.ToInt32(dataGridViewUprawnienia.SelectedRows[0].Cells["ID_Uprawnienia"].Value);
+
+                
+                InformacjeUprawnienia form = new InformacjeUprawnienia(selectedId, this); 
+                this.Hide();
+                form.Show();
             }
             catch (Exception ex)
             {
