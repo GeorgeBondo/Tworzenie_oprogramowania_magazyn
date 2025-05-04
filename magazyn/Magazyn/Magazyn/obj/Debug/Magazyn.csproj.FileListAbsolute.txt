@@ -369,3 +369,4 @@ D:\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\bin\Debug\System.Tex
 D:\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\bin\Debug\System.Threading.AccessControl.xml
 D:\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\bin\Debug\System.ValueTuple.xml
 D:\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\bin\Debug\System.Web.Services.Description.pdb
+C:\Users\rogac\Documents\GitHub\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.ListaUprawnien.resources
