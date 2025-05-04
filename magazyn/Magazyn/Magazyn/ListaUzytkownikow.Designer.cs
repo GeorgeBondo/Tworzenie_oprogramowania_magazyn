@@ -41,12 +41,14 @@
             this.label3 = new System.Windows.Forms.Label();
             this.btnZapomniani = new System.Windows.Forms.Button();
             this.btnZapomnij = new System.Windows.Forms.Button();
+            this.comboUprawnienia = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUzytkownicy)).BeginInit();
             this.SuspendLayout();
             // 
             // btnWroc
             // 
-            this.btnWroc.Location = new System.Drawing.Point(536, 25);
+            this.btnWroc.Location = new System.Drawing.Point(629, 25);
             this.btnWroc.Name = "btnWroc";
             this.btnWroc.Size = new System.Drawing.Size(75, 32);
             this.btnWroc.TabIndex = 1;
@@ -62,12 +64,12 @@
             this.dataGridViewUzytkownicy.Name = "dataGridViewUzytkownicy";
             this.dataGridViewUzytkownicy.RowHeadersWidth = 51;
             this.dataGridViewUzytkownicy.RowTemplate.Height = 24;
-            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(845, 523);
+            this.dataGridViewUzytkownicy.Size = new System.Drawing.Size(1035, 523);
             this.dataGridViewUzytkownicy.TabIndex = 2;
             // 
             // btnOdswiez
             // 
-            this.btnOdswiez.Location = new System.Drawing.Point(223, 25);
+            this.btnOdswiez.Location = new System.Drawing.Point(346, 25);
             this.btnOdswiez.Name = "btnOdswiez";
             this.btnOdswiez.Size = new System.Drawing.Size(75, 32);
             this.btnOdswiez.TabIndex = 3;
@@ -77,7 +79,7 @@
             // 
             // btnEdytuj
             // 
-            this.btnEdytuj.Location = new System.Drawing.Point(317, 12);
+            this.btnEdytuj.Location = new System.Drawing.Point(427, 12);
             this.btnEdytuj.Name = "btnEdytuj";
             this.btnEdytuj.Size = new System.Drawing.Size(196, 58);
             this.btnEdytuj.TabIndex = 4;
@@ -87,7 +89,7 @@
             // 
             // btnWyczyśćFiltry
             // 
-            this.btnWyczyśćFiltry.Location = new System.Drawing.Point(614, 122);
+            this.btnWyczyśćFiltry.Location = new System.Drawing.Point(878, 122);
             this.btnWyczyśćFiltry.Name = "btnWyczyśćFiltry";
             this.btnWyczyśćFiltry.Size = new System.Drawing.Size(128, 41);
             this.btnWyczyśćFiltry.TabIndex = 5;
@@ -145,7 +147,7 @@
             // 
             // btnZapomniani
             // 
-            this.btnZapomniani.Location = new System.Drawing.Point(1, 132);
+            this.btnZapomniani.Location = new System.Drawing.Point(12, 122);
             this.btnZapomniani.Name = "btnZapomniani";
             this.btnZapomniani.Size = new System.Drawing.Size(175, 31);
             this.btnZapomniani.TabIndex = 12;
@@ -155,7 +157,7 @@
             // 
             // btnZapomnij
             // 
-            this.btnZapomnij.Location = new System.Drawing.Point(31, 83);
+            this.btnZapomnij.Location = new System.Drawing.Point(12, 73);
             this.btnZapomnij.Name = "btnZapomnij";
             this.btnZapomnij.Size = new System.Drawing.Size(100, 43);
             this.btnZapomnij.TabIndex = 13;
@@ -163,13 +165,32 @@
             this.btnZapomnij.UseVisualStyleBackColor = true;
             this.btnZapomnij.Click += new System.EventHandler(this.btnZapomnij_Click_1);
             // 
+            // comboUprawnienia
+            // 
+            this.comboUprawnienia.FormattingEnabled = true;
+            this.comboUprawnienia.Location = new System.Drawing.Point(878, 200);
+            this.comboUprawnienia.Name = "comboUprawnienia";
+            this.comboUprawnienia.Size = new System.Drawing.Size(121, 24);
+            this.comboUprawnienia.TabIndex = 14;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(896, 178);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(82, 16);
+            this.label4.TabIndex = 15;
+            this.label4.Text = "Uprawnienia";
+            // 
             // ListaUzytkownikow
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Salmon;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(869, 763);
+            this.ClientSize = new System.Drawing.Size(1059, 763);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.comboUprawnienia);
             this.Controls.Add(this.btnZapomnij);
             this.Controls.Add(this.btnZapomniani);
             this.Controls.Add(this.label3);
@@ -206,5 +227,7 @@
         public System.Windows.Forms.TextBox txtFiltrImie;
         public System.Windows.Forms.TextBox txtFiltrNazwisko;
         public System.Windows.Forms.TextBox txtFiltrPesel;
+        private System.Windows.Forms.ComboBox comboUprawnienia;
+        private System.Windows.Forms.Label label4;
     }
 }

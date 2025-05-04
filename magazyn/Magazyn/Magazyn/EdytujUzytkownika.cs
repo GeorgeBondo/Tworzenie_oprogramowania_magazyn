@@ -1,6 +1,7 @@
 ﻿using Magazyn.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -19,6 +20,7 @@ namespace Magazyn
             this.userId = userId;
             comboPlec.Items.Add("Kobieta");
             comboPlec.Items.Add("Mężczyzna");
+            LoadUprawnienia();
             WczytajDaneUzytkownika();
         }
 
@@ -30,6 +32,7 @@ namespace Magazyn
                     SELECT U.*, A.* 
                     FROM Uzytkownik U 
                     INNER JOIN Adres A ON U.ID_Adres = A.ID_Adres 
+                    LEFT JOIN Uprawnienia Up ON U.ID_Uprawnienia = Up.ID_Uprawnienia
                     WHERE ID_Uzytkownik = @UserId";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -54,6 +57,7 @@ namespace Magazyn
                         txtNumerLokalu.Text = reader["Numer_lokalu"].ToString();
                         comboPlec.SelectedItem = reader["Plec"].ToString() == "K" ? "Kobieta" : "Mężczyzna";
                         txtDataUrodzenia.Value = Convert.ToDateTime(reader["Data_urodzenia"]);
+                        comboUprawnienia.SelectedValue = reader["ID_Uprawnienia"];
 
 
                         originalData["Imie"] = txtImie.Text;
@@ -68,6 +72,7 @@ namespace Magazyn
                         originalData["NumerLokalu"] = txtNumerLokalu.Text;
                         originalData["Plec"] = comboPlec.SelectedItem.ToString();
                         originalData["DataUrodzenia"] = txtDataUrodzenia.Value.ToString("yyyy-MM-dd");
+                        originalData["Uprawnienia"] = comboUprawnienia.SelectedValue?.ToString();
                     }
                 }
                 catch (Exception ex)
@@ -228,7 +233,10 @@ namespace Magazyn
                    txtUlica.Text != originalData["Ulica"] ||
                    txtNumerLokalu.Text != originalData["NumerLokalu"] ||
                    comboPlec.SelectedItem.ToString() != originalData["Plec"] ||
-                   txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["DataUrodzenia"];
+                   txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["DataUrodzenia"] ||
+                   comboUprawnienia.SelectedValue?.ToString() != originalData["Uprawnienia"];
+
+
         }
 
         private bool SprawdzUnikalnosc(SqlConnection conn, SqlTransaction transaction, string pole, string wartosc)
@@ -241,9 +249,23 @@ namespace Magazyn
                 return (int)cmd.ExecuteScalar() == 0;
             }
         }
+        private void LoadUprawnienia()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                string query = "SELECT ID_Uprawnienia, nazwa FROM Uprawnienia";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+
+                comboUprawnienia.DataSource = dt;
+                comboUprawnienia.DisplayMember = "nazwa";
+                comboUprawnienia.ValueMember = "ID_Uprawnienia";
+            }
+        }
 
 
-  
+
         private void EdytujUzytkownika_Load(object sender, EventArgs e) { }
         private void txtImie_TextChanged(object sender, EventArgs e) { }
         private void groupBox1_Enter(object sender, EventArgs e) { }
@@ -290,6 +312,7 @@ namespace Magazyn
                                 Data_urodzenia = @DataUrodzenia,
                                 Plec = @Plec,
                                 Email = @Email,
+                                ID_Uprawnienia = @Uprawnienia,
                                 Numer_Telefonu = @Telefon
                             WHERE ID_Uzytkownik = @UserId";
 
@@ -302,6 +325,7 @@ namespace Magazyn
                         cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                         cmd.Parameters.AddWithValue("@Telefon", txtTelefon.Text);
                         cmd.Parameters.AddWithValue("@UserId", userId);
+                        cmd.Parameters.AddWithValue("@Uprawnienia", comboUprawnienia.SelectedValue);
 
                         cmd.ExecuteNonQuery();
                         transaction.Commit();

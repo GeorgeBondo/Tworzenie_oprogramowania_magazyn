@@ -1,5 +1,6 @@
 ﻿using Magazyn.Helpers;
 using System;
+using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text.RegularExpressions;
@@ -12,6 +13,7 @@ namespace Magazyn
         public DodajUzytkownika()
         {
             InitializeComponent();
+            LoadUprawnienia();
             comboPlec.Items.Add("Kobieta");
             comboPlec.Items.Add("Mężczyzna");
             comboPlec.SelectedIndex = 0;
@@ -100,7 +102,20 @@ namespace Magazyn
 
             return true;
         }
+        private void LoadUprawnienia()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                string query = "SELECT ID_Uprawnienia, nazwa FROM Uprawnienia";
+                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
 
+                comboUprawnienia.DataSource = dt;
+                comboUprawnienia.DisplayMember = "nazwa";
+                comboUprawnienia.ValueMember = "ID_Uprawnienia";
+            }
+        }
         private bool WalidujPESEL(string pesel, DateTime dataUrodzenia, string plec)
         {
             if (pesel == null || pesel.Length != 11 || !pesel.All(char.IsDigit))
@@ -170,9 +185,9 @@ namespace Magazyn
         private void DodajUzytkownikaDoBazy(SqlConnection conn, SqlTransaction transaction, int adresId)
         {
             string query = @"INSERT INTO Uzytkownik 
-                           (Login, Haslo, Imię, Nazwisko, PESEL, Data_urodzenia, Plec, Email, Numer_Telefonu, ID_Adres, ID_Status)
+                           (Login, Haslo, Imię, Nazwisko, PESEL, Data_urodzenia, Plec, Email, Numer_Telefonu, ID_Adres, ID_Status, ID_Uprawnienia)
                            VALUES 
-                           (@Login, @Haslo, @Imie, @Nazwisko, @PESEL, @DataUrodzenia, @Plec, @Email, @Telefon, @AdresId, 1)";
+                           (@Login, @Haslo, @Imie, @Nazwisko, @PESEL, @DataUrodzenia, @Plec, @Email, @Telefon, @AdresId, 1, @Uprawnienia)";
 
             using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
             {
@@ -186,7 +201,7 @@ namespace Magazyn
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@Telefon", txtTelefon.Text);
                 cmd.Parameters.AddWithValue("@AdresId", adresId);
-
+                cmd.Parameters.AddWithValue("@Uprawnienia", comboUprawnienia.SelectedValue);
                 cmd.ExecuteNonQuery();
             }
         }

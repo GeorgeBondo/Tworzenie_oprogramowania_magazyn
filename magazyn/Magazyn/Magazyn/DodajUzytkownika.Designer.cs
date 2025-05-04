@@ -59,11 +59,11 @@
             this.btnWroc = new System.Windows.Forms.Button();
             this.btnWyczysc = new System.Windows.Forms.Button();
             this.Label = new System.Windows.Forms.Label();
-            this.txtUprawnienia = new System.Windows.Forms.TextBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.login = new System.Windows.Forms.Label();
             this.loginTextBox = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
+            this.comboUprawnienia = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -313,22 +313,16 @@
             // Label
             // 
             this.Label.AutoSize = true;
-            this.Label.Location = new System.Drawing.Point(568, 290);
+            this.Label.Location = new System.Drawing.Point(589, 287);
             this.Label.Name = "Label";
             this.Label.Size = new System.Drawing.Size(82, 16);
             this.Label.TabIndex = 31;
             this.Label.Text = "Uprawnienia";
             // 
-            // txtUprawnienia
-            // 
-            this.txtUprawnienia.Location = new System.Drawing.Point(462, 285);
-            this.txtUprawnienia.Name = "txtUprawnienia";
-            this.txtUprawnienia.Size = new System.Drawing.Size(100, 22);
-            this.txtUprawnienia.TabIndex = 32;
-            // 
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.groupBox1.Controls.Add(this.comboUprawnienia);
             this.groupBox1.Controls.Add(this.login);
             this.groupBox1.Controls.Add(this.loginTextBox);
             this.groupBox1.Controls.Add(this.label14);
@@ -336,7 +330,6 @@
             this.groupBox1.Controls.Add(this.txtDataUrodzenia);
             this.groupBox1.Controls.Add(this.Label);
             this.groupBox1.Controls.Add(this.comboPlec);
-            this.groupBox1.Controls.Add(this.txtUprawnienia);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.btnWroc);
             this.groupBox1.Controls.Add(this.label7);
@@ -398,6 +391,14 @@
             this.label14.TabIndex = 33;
             this.label14.Text = "*Żółte pola nie są wymagalne";
             // 
+            // comboUprawnienia
+            // 
+            this.comboUprawnienia.FormattingEnabled = true;
+            this.comboUprawnienia.Location = new System.Drawing.Point(462, 284);
+            this.comboUprawnienia.Name = "comboUprawnienia";
+            this.comboUprawnienia.Size = new System.Drawing.Size(121, 24);
+            this.comboUprawnienia.TabIndex = 36;
+            // 
             // DodajUzytkownika
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -450,7 +451,7 @@
         public System.Windows.Forms.TextBox txtNumerPosesji;
         public System.Windows.Forms.TextBox txtUlica;
         public System.Windows.Forms.TextBox txtKodPocztowy;
-        public System.Windows.Forms.TextBox txtUprawnienia;
         public System.Windows.Forms.TextBox loginTextBox;
+        private System.Windows.Forms.ComboBox comboUprawnienia;
     }
 }

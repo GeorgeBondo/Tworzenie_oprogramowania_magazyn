@@ -15,6 +15,7 @@ namespace Magazyn
             InitializeComponent();
             ConfigureDataGridView();
             WireUpEventHandlers();
+            LoadUprawnienia();
         }
 
         private void ConfigureDataGridView()
@@ -29,7 +30,35 @@ namespace Magazyn
             txtFiltrImie.TextChanged += FiltrujUzytkownikow;
             txtFiltrNazwisko.TextChanged += FiltrujUzytkownikow;
             txtFiltrPesel.TextChanged += FiltrujUzytkownikow;
+            comboUprawnienia.SelectedIndexChanged += FiltrujUzytkownikow;
             btnWyczyśćFiltry.Click += btnWyczyśćFiltry_Click;
+        }
+
+        private void LoadUprawnienia()
+        {
+            using (SqlConnection conn = DatabaseHelper.GetConnection())
+            {
+                try
+                {
+                    string query = "SELECT ID_Uprawnienia, nazwa FROM Uprawnienia";
+                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
+                    DataTable dt = new DataTable();
+                    adapter.Fill(dt);
+
+                    DataRow row = dt.NewRow();
+                    row["nazwa"] = "Wszystkie";
+                    row["ID_Uprawnienia"] = -1;
+                    dt.Rows.InsertAt(row, 0);
+
+                    comboUprawnienia.DataSource = dt;
+                    comboUprawnienia.DisplayMember = "nazwa";
+                    comboUprawnienia.ValueMember = "ID_Uprawnienia";
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"Błąd ładowania uprawnień: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void ListaUzytkownikow_Load(object sender, EventArgs e)
@@ -41,49 +70,63 @@ namespace Magazyn
         {
             try
             {
-                DataTable dt = new DataTable();
-
-                using (SqlConnection conn = DatabaseHelper.GetConnection())
+                var dt = new DataTable();
+                using (var conn = DatabaseHelper.GetConnection())
                 {
                     string query = @"
-                        SELECT 
-                            ID_Uzytkownik AS 'ID',
-                            Imię,
-                            Nazwisko,
-                            Email,
-                            PESEL,
-                            CASE 
-                                WHEN ID_Status = 1 THEN 'Aktywny'
-                                ELSE 'Nieaktywny'
-                            END AS 'Status',
-                            Data_zapomnienia
-                        FROM Uzytkownik
-                        WHERE 
-                            ID_Status = 1 
-                            AND (Imię LIKE @FiltrImie + '%' OR @FiltrImie = '') 
-                            AND (Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '') 
-                            AND (PESEL LIKE @FiltrPesel + '%' OR @FiltrPesel = '')
-                            AND NEWID() IS NOT NULL"; 
+                SELECT 
+                    u.ID_Uzytkownik AS ID,
+                    u.Imię,
+                    u.Nazwisko,
+                    u.Email,
+                    u.PESEL,
+                    CASE WHEN u.ID_Status = 1 THEN 'Aktywny' ELSE 'Nieaktywny' END AS Status,
+                    CASE u.ID_Uprawnienia
+                        WHEN 1 THEN 'Administrator'
+                        WHEN 2 THEN 'Magazynier'
+                        WHEN 3 THEN 'Brygadzista'
+                        WHEN 4 THEN 'Kierownik'
+                        WHEN 5 THEN 'Kontroler jakości'
+                        ELSE 'Brak uprawnienia'
+                    END AS Uprawnienie,
+                    u.Data_zapomnienia
+                FROM Uzytkownik u
+                WHERE 
+                    u.ID_Status = 1
+                    AND (u.Imię     LIKE @FiltrImie     + '%' OR @FiltrImie     = '')
+                    AND (u.Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '')
+                    AND (u.PESEL    LIKE @FiltrPesel    + '%' OR @FiltrPesel    = '')
+                    AND (@Uprawnienia = -1 OR u.ID_Uprawnienia = @Uprawnienia)
+                    AND NEWID() IS NOT NULL;";
 
-                    SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", txtFiltrImie.Text.Trim());
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrNazwisko", txtFiltrNazwisko.Text.Trim());
-                    adapter.SelectCommand.Parameters.AddWithValue("@FiltrPesel", txtFiltrPesel.Text.Trim());
+                    using (var adapter = new SqlDataAdapter(query, conn))
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@FiltrImie", txtFiltrImie.Text.Trim());
+                        adapter.SelectCommand.Parameters.AddWithValue("@FiltrNazwisko", txtFiltrNazwisko.Text.Trim());
+                        adapter.SelectCommand.Parameters.AddWithValue("@FiltrPesel", txtFiltrPesel.Text.Trim());
 
-                    adapter.Fill(dt);
+                        var drv = comboUprawnienia.SelectedItem as DataRowView;
+                        int filtrUprawnienia = -1;
+                        if (drv != null)
+                            filtrUprawnienia = Convert.ToInt32(drv["ID_Uprawnienia"]);
+
+                        adapter.SelectCommand.Parameters.AddWithValue("@Uprawnienia", filtrUprawnienia);
+
+                        adapter.Fill(dt);
+                    }
                 }
 
-                dataGridViewUzytkownicy.DataSource = null;
                 dataGridViewUzytkownicy.DataSource = dt;
-                dataGridViewUzytkownicy.Columns["Data_zapomnienia"].Visible = false;
+                if (dataGridViewUzytkownicy.Columns.Contains("Data_zapomnienia"))
+                    dataGridViewUzytkownicy.Columns["Data_zapomnienia"].Visible = false;
                 dataGridViewUzytkownicy.Refresh();
             }
             catch (Exception ex)
             {
-                MessageBox.Show($"Błąd ładowania danych: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show($"Błąd ładowania danych: {ex.Message}", "Błąd",
+                                MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void FiltrujUzytkownikow(object sender, EventArgs e)
         {
             WczytajUzytkownikow();
@@ -94,6 +137,7 @@ namespace Magazyn
             txtFiltrImie.Clear();
             txtFiltrNazwisko.Clear();
             txtFiltrPesel.Clear();
+            comboUprawnienia.SelectedIndex = 0;
         }
 
         private void dataGridViewUzytkownicy_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

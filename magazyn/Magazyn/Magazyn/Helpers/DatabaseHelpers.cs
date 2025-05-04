@@ -11,7 +11,6 @@ namespace Magazyn.Helpers
             return new SqlConnection(connectionString);
         }
 
-        // Dodatkowe metody pomocnicze (opcjonalnie)
         public static void ExecuteNonQuery(string query)
         {
             using (SqlConnection conn = GetConnection())

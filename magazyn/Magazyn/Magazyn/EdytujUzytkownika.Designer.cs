@@ -56,6 +56,8 @@
             this.label11 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.comboUprawnienia = new System.Windows.Forms.ComboBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -156,7 +158,7 @@
             // 
             // txtNumerLokalu
             // 
-            this.txtNumerLokalu.Location = new System.Drawing.Point(376, 218);
+            this.txtNumerLokalu.Location = new System.Drawing.Point(376, 222);
             this.txtNumerLokalu.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtNumerLokalu.Name = "txtNumerLokalu";
             this.txtNumerLokalu.Size = new System.Drawing.Size(48, 22);
@@ -281,7 +283,7 @@
             // label12
             // 
             this.label12.AutoSize = true;
-            this.label12.Location = new System.Drawing.Point(429, 222);
+            this.label12.Location = new System.Drawing.Point(430, 225);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(86, 16);
             this.label12.TabIndex = 26;
@@ -290,6 +292,8 @@
             // groupBox1
             // 
             this.groupBox1.BackColor = System.Drawing.SystemColors.MenuBar;
+            this.groupBox1.Controls.Add(this.label13);
+            this.groupBox1.Controls.Add(this.comboUprawnienia);
             this.groupBox1.Controls.Add(this.btnAnuluj);
             this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.label10);
@@ -324,6 +328,23 @@
             this.groupBox1.TabIndex = 27;
             this.groupBox1.TabStop = false;
             this.groupBox1.Enter += new System.EventHandler(this.groupBox1_Enter);
+            // 
+            // comboUprawnienia
+            // 
+            this.comboUprawnienia.FormattingEnabled = true;
+            this.comboUprawnienia.Location = new System.Drawing.Point(376, 311);
+            this.comboUprawnienia.Name = "comboUprawnienia";
+            this.comboUprawnienia.Size = new System.Drawing.Size(121, 24);
+            this.comboUprawnienia.TabIndex = 27;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(504, 313);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(82, 16);
+            this.label13.TabIndex = 28;
+            this.label13.Text = "Uprawnienia";
             // 
             // EdytujUzytkownika
             // 
@@ -372,5 +393,7 @@
         public System.Windows.Forms.TextBox txtNumerPosesji;
         public System.Windows.Forms.TextBox txtUlica;
         public System.Windows.Forms.TextBox txtNumerLokalu;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox comboUprawnienia;
     }
 }
