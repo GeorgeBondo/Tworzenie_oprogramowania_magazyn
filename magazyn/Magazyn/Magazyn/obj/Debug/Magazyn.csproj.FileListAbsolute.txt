@@ -473,3 +473,4 @@ C:\Users\Mikolaj\Desktop\Tworzenie_oprogramowania_magazyn-main\magazyn\Magazyn\M
 C:\Users\Mikolaj\Desktop\Tworzenie_oprogramowania_magazyn-main\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.exe
 C:\Users\Mikolaj\Desktop\Tworzenie_oprogramowania_magazyn-main\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.pdb
 C:\Users\Mikolaj\Desktop\Tworzenie_oprogramowania_magazyn-main\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.InformacjeUprawnienia.resources
+C:\Users\rogac\Documents\GitHub\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.InformacjeUprawnienia.resources

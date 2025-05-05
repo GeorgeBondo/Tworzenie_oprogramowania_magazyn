@@ -88,7 +88,7 @@ namespace Magazyn
                         WHEN 4 THEN 'Kierownik'
                         WHEN 5 THEN 'Kontroler jakości'
                         ELSE 'Brak uprawnienia'
-                    END AS Uprawnienie,
+                    END AS Stanowisko,
                     u.Data_zapomnienia
                 FROM Uzytkownik u
                 WHERE 
