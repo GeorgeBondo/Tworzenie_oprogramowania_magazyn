@@ -37,20 +37,18 @@
             // dataGridViewUprawnienia
             // 
             this.dataGridViewUprawnienia.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridViewUprawnienia.Location = new System.Drawing.Point(16, 143);
-            this.dataGridViewUprawnienia.Margin = new System.Windows.Forms.Padding(4);
+            this.dataGridViewUprawnienia.Location = new System.Drawing.Point(12, 116);
             this.dataGridViewUprawnienia.Name = "dataGridViewUprawnienia";
             this.dataGridViewUprawnienia.RowHeadersWidth = 51;
-            this.dataGridViewUprawnienia.Size = new System.Drawing.Size(1035, 396);
+            this.dataGridViewUprawnienia.Size = new System.Drawing.Size(776, 322);
             this.dataGridViewUprawnienia.TabIndex = 0;
             // 
             // btnWrocUpr
             // 
             this.btnWrocUpr.BackColor = System.Drawing.Color.White;
-            this.btnWrocUpr.Location = new System.Drawing.Point(951, 15);
-            this.btnWrocUpr.Margin = new System.Windows.Forms.Padding(4);
+            this.btnWrocUpr.Location = new System.Drawing.Point(713, 12);
             this.btnWrocUpr.Name = "btnWrocUpr";
-            this.btnWrocUpr.Size = new System.Drawing.Size(100, 28);
+            this.btnWrocUpr.Size = new System.Drawing.Size(75, 23);
             this.btnWrocUpr.TabIndex = 1;
             this.btnWrocUpr.Text = "Wróć";
             this.btnWrocUpr.UseVisualStyleBackColor = false;
@@ -58,26 +56,26 @@
             // 
             // BtnInfo
             // 
-            this.BtnInfo.Location = new System.Drawing.Point(791, 60);
+            this.BtnInfo.Location = new System.Drawing.Point(678, 49);
+            this.BtnInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.BtnInfo.Name = "BtnInfo";
-            this.BtnInfo.Size = new System.Drawing.Size(260, 37);
+            this.BtnInfo.Size = new System.Drawing.Size(110, 30);
             this.BtnInfo.TabIndex = 2;
-            this.BtnInfo.Text = "Informacje o uprawnieniach";
+            this.BtnInfo.Text = "Nadaj uprawnienia";
             this.BtnInfo.UseVisualStyleBackColor = true;
             this.BtnInfo.Click += new System.EventHandler(this.BtnInfo_Click);
             // 
             // ListaUprawnien
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.Salmon;
-            this.ClientSize = new System.Drawing.Size(1067, 554);
+            this.ClientSize = new System.Drawing.Size(800, 450);
             this.Controls.Add(this.BtnInfo);
             this.Controls.Add(this.btnWrocUpr);
             this.Controls.Add(this.dataGridViewUprawnienia);
-            this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "ListaUprawnien";
-            this.Text = "ListaUprawnien";
+            this.Text = "Lista Uprawnień";
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewUprawnienia)).EndInit();
             this.ResumeLayout(false);
 

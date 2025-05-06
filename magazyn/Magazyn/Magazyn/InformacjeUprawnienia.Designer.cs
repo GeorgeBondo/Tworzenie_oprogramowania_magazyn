@@ -39,7 +39,7 @@
             this.lblNazwa.AutoSize = true;
             this.lblNazwa.Location = new System.Drawing.Point(446, 18);
             this.lblNazwa.Name = "lblNazwa";
-            this.lblNazwa.Size = new System.Drawing.Size(48, 16);
+            this.lblNazwa.Size = new System.Drawing.Size(40, 13);
             this.lblNazwa.TabIndex = 0;
             this.lblNazwa.Text = "Nazwa";
             this.lblNazwa.Click += new System.EventHandler(this.lblNazwa_Click);
@@ -81,6 +81,7 @@
             this.Controls.Add(this.txtOpis);
             this.Controls.Add(this.lblNazwa);
             this.Name = "InformacjeUprawnienia";
+            this.Text = "Nadawanie Uprawnień";
             this.ResumeLayout(false);
             this.PerformLayout();
 

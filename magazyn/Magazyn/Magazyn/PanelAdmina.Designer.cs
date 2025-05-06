@@ -49,10 +49,10 @@
             // 
             // btnDodaj
             // 
-            this.btnDodaj.Location = new System.Drawing.Point(172, 65);
+            this.btnDodaj.Location = new System.Drawing.Point(160, 65);
             this.btnDodaj.Margin = new System.Windows.Forms.Padding(2);
             this.btnDodaj.Name = "btnDodaj";
-            this.btnDodaj.Size = new System.Drawing.Size(124, 32);
+            this.btnDodaj.Size = new System.Drawing.Size(149, 32);
             this.btnDodaj.TabIndex = 1;
             this.btnDodaj.Text = "Dodaj Użytkownika";
             this.btnDodaj.UseVisualStyleBackColor = true;
@@ -60,10 +60,10 @@
             // 
             // btnLista
             // 
-            this.btnLista.Location = new System.Drawing.Point(172, 110);
+            this.btnLista.Location = new System.Drawing.Point(160, 110);
             this.btnLista.Margin = new System.Windows.Forms.Padding(2);
             this.btnLista.Name = "btnLista";
-            this.btnLista.Size = new System.Drawing.Size(124, 32);
+            this.btnLista.Size = new System.Drawing.Size(149, 32);
             this.btnLista.TabIndex = 3;
             this.btnLista.Text = "Lista Użytkowników";
             this.btnLista.UseVisualStyleBackColor = true;
@@ -82,11 +82,11 @@
             // 
             // btnListaUprawnien
             // 
-            this.btnListaUprawnien.Location = new System.Drawing.Point(172, 156);
+            this.btnListaUprawnien.Location = new System.Drawing.Point(160, 160);
             this.btnListaUprawnien.Name = "btnListaUprawnien";
-            this.btnListaUprawnien.Size = new System.Drawing.Size(124, 32);
+            this.btnListaUprawnien.Size = new System.Drawing.Size(149, 32);
             this.btnListaUprawnien.TabIndex = 7;
-            this.btnListaUprawnien.Text = "Lista Stanowisk";
+            this.btnListaUprawnien.Text = "Zarządzanie Uprawnieniami";
             this.btnListaUprawnien.UseVisualStyleBackColor = true;
             // 
             // PanelAdmina
