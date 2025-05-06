@@ -86,7 +86,7 @@
             this.btnListaUprawnien.Name = "btnListaUprawnien";
             this.btnListaUprawnien.Size = new System.Drawing.Size(149, 32);
             this.btnListaUprawnien.TabIndex = 7;
-            this.btnListaUprawnien.Text = "Zarządzanie Uprawnieniami";
+            this.btnListaUprawnien.Text = "Lista Stanowisk";
             this.btnListaUprawnien.UseVisualStyleBackColor = true;
             // 
             // PanelAdmina

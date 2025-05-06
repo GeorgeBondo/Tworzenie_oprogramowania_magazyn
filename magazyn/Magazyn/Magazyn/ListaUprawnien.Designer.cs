@@ -56,12 +56,12 @@
             // 
             // BtnInfo
             // 
-            this.BtnInfo.Location = new System.Drawing.Point(678, 49);
-            this.BtnInfo.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.BtnInfo.Location = new System.Drawing.Point(623, 49);
+            this.BtnInfo.Margin = new System.Windows.Forms.Padding(2);
             this.BtnInfo.Name = "BtnInfo";
-            this.BtnInfo.Size = new System.Drawing.Size(110, 30);
+            this.BtnInfo.Size = new System.Drawing.Size(165, 30);
             this.BtnInfo.TabIndex = 2;
-            this.BtnInfo.Text = "Nadaj uprawnienia";
+            this.BtnInfo.Text = "Informacje o uprawnieniach";
             this.BtnInfo.UseVisualStyleBackColor = true;
             this.BtnInfo.Click += new System.EventHandler(this.BtnInfo_Click);
             // 

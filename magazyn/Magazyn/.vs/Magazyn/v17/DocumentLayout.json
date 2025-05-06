@@ -3,19 +3,11 @@
   "WorkspaceRootPath": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|c:\\users\\rogac\\documents\\github\\tworzenie_oprogramowania_magazyn\\magazyn\\magazyn\\magazyn\\listauprawnien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\magazyn\\listauprawnien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\listauprawnien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|c:\\users\\rogac\\documents\\github\\tworzenie_oprogramowania_magazyn\\magazyn\\magazyn\\magazyn\\paneladmina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\paneladmina.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|c:\\users\\rogac\\documents\\github\\tworzenie_oprogramowania_magazyn\\magazyn\\magazyn\\magazyn\\listauzytkownikow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\listauzytkownikow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|c:\\users\\rogac\\documents\\github\\tworzenie_oprogramowania_magazyn\\magazyn\\magazyn\\magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
       "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     }
   ],
@@ -26,35 +18,11 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 1,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "PanelAdmina.cs [Projekt]",
-              "DocumentMoniker": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\PanelAdmina.cs",
-              "RelativeDocumentMoniker": "Magazyn\\PanelAdmina.cs",
-              "ToolTip": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\PanelAdmina.cs [Projekt]",
-              "RelativeToolTip": "Magazyn\\PanelAdmina.cs [Projekt]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T16:51:26.212Z",
-              "EditorCaption": " [Projekt]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ListaUzytkownikow.cs [Projekt]",
-              "DocumentMoniker": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\ListaUzytkownikow.cs",
-              "RelativeDocumentMoniker": "Magazyn\\ListaUzytkownikow.cs",
-              "ToolTip": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\ListaUzytkownikow.cs [Projekt]",
-              "RelativeToolTip": "Magazyn\\ListaUzytkownikow.cs [Projekt]",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T16:48:00.816Z",
-              "EditorCaption": " [Projekt]"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
               "Title": "InformacjeUprawnienia.cs [Projekt]",
               "DocumentMoniker": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\InformacjeUprawnienia.cs",
               "RelativeDocumentMoniker": "Magazyn\\InformacjeUprawnienia.cs",
