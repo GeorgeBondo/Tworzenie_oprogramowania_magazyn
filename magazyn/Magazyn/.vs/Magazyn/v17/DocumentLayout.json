@@ -1,14 +1,14 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\",
+  "WorkspaceRootPath": "C:\\Users\\Mikolaj\\Desktop\\magazyn\\Magazyn\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\magazyn\\listauprawnien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\listauprawnien.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|c:\\users\\mikolaj\\desktop\\magazyn\\magazyn\\magazyn\\zmianahas\u0142aprzezu\u017Cytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\zmianahas\u0142aprzezu\u017Cytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
-      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\informacjeuprawnienia.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|c:\\users\\mikolaj\\desktop\\magazyn\\magazyn\\magazyn\\zmianahas\u0142aprzezu\u017Cytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\zmianahas\u0142aprzezu\u017Cytkownika.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,30 +18,35 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{b1e99781-ab81-11d0-b683-00aa00a3ee26}"
+            },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "InformacjeUprawnienia.cs [Projekt]",
-              "DocumentMoniker": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\InformacjeUprawnienia.cs",
-              "RelativeDocumentMoniker": "Magazyn\\InformacjeUprawnienia.cs",
-              "ToolTip": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\InformacjeUprawnienia.cs [Projekt]",
-              "RelativeToolTip": "Magazyn\\InformacjeUprawnienia.cs [Projekt]",
+              "Title": "ZmianaHas\u0142aPrzezU\u017Cytkownika.cs",
+              "DocumentMoniker": "C:\\Users\\Mikolaj\\Desktop\\magazyn\\Magazyn\\Magazyn\\ZmianaHas\u0142aPrzezU\u017Cytkownika.cs",
+              "RelativeDocumentMoniker": "Magazyn\\ZmianaHas\u0142aPrzezU\u017Cytkownika.cs",
+              "ToolTip": "C:\\Users\\Mikolaj\\Desktop\\magazyn\\Magazyn\\Magazyn\\ZmianaHas\u0142aPrzezU\u017Cytkownika.cs",
+              "RelativeToolTip": "Magazyn\\ZmianaHas\u0142aPrzezU\u017Cytkownika.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAF0AAAAxAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T16:43:54.119Z",
-              "EditorCaption": " [Projekt]"
+              "WhenOpened": "2025-05-11T12:34:39.733Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "ListaUprawnien.cs [Projekt]",
-              "DocumentMoniker": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\ListaUprawnien.cs",
-              "RelativeDocumentMoniker": "Magazyn\\ListaUprawnien.cs",
-              "ToolTip": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\ListaUprawnien.cs [Projekt]",
-              "RelativeToolTip": "Magazyn\\ListaUprawnien.cs [Projekt]",
+              "Title": "ZmianaHas\u0142aPrzezU\u017Cytkownika.cs [Projekt]",
+              "DocumentMoniker": "C:\\Users\\Mikolaj\\Desktop\\magazyn\\Magazyn\\Magazyn\\ZmianaHas\u0142aPrzezU\u017Cytkownika.cs",
+              "RelativeDocumentMoniker": "Magazyn\\ZmianaHas\u0142aPrzezU\u017Cytkownika.cs",
+              "ToolTip": "C:\\Users\\Mikolaj\\Desktop\\magazyn\\Magazyn\\Magazyn\\ZmianaHas\u0142aPrzezU\u017Cytkownika.cs [Projekt]",
+              "RelativeToolTip": "Magazyn\\ZmianaHas\u0142aPrzezU\u017Cytkownika.cs [Projekt]",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-05-06T16:43:48.491Z",
+              "WhenOpened": "2025-05-11T12:18:57.586Z",
               "EditorCaption": " [Projekt]"
             }
           ]

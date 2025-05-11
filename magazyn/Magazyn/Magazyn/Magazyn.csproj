@@ -256,6 +256,12 @@
     <Compile Include="NoweHasloForm.Designer.cs">
       <DependentUpon>NoweHasloForm.cs</DependentUpon>
     </Compile>
+    <Compile Include="PanelUżytkownika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="PanelUżytkownika.Designer.cs">
+      <DependentUpon>PanelUżytkownika.cs</DependentUpon>
+    </Compile>
     <Compile Include="Uprawnienia.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -294,6 +300,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ZmianaHasłaPrzezUżytkownika.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ZmianaHasłaPrzezUżytkownika.Designer.cs">
+      <DependentUpon>ZmianaHasłaPrzezUżytkownika.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="DodajUzytkownika.resx">
       <DependentUpon>DodajUzytkownika.cs</DependentUpon>
     </EmbeddedResource>
@@ -308,6 +320,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="NoweHasloForm.resx">
       <DependentUpon>NoweHasloForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PanelUżytkownika.resx">
+      <DependentUpon>PanelUżytkownika.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Uprawnienia.resx">
       <DependentUpon>Uprawnienia.cs</DependentUpon>
@@ -332,9 +347,13 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="ResetHasla.resx">
       <DependentUpon>ResetHasla.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ZmianaHasłaPrzezUżytkownika.resx">
+      <DependentUpon>ZmianaHasłaPrzezUżytkownika.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
@@ -358,6 +377,8 @@
       <DependentUpon>magazyn.mdf</DependentUpon>
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <None Include="Resources\tło.jpg" />
+    <None Include="Resources\tło_szerokie.jpg" />
   </ItemGroup>
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">

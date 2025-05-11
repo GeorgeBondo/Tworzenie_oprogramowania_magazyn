@@ -36,12 +36,13 @@
             this.txtLogin = new System.Windows.Forms.TextBox();
             this.txtEmail = new System.Windows.Forms.TextBox();
             this.btnWroc = new System.Windows.Forms.Button();
+            this.btnWygeneruj = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(206, 36);
+            this.label1.Location = new System.Drawing.Point(150, 33);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(311, 16);
             this.label1.TabIndex = 0;
@@ -50,7 +51,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(193, 71);
+            this.label2.Location = new System.Drawing.Point(150, 71);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(40, 16);
             this.label2.TabIndex = 1;
@@ -59,7 +60,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(193, 109);
+            this.label3.Location = new System.Drawing.Point(150, 109);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(41, 16);
             this.label3.TabIndex = 2;
@@ -67,24 +68,24 @@
             // 
             // btnGeneruj
             // 
-            this.btnGeneruj.Location = new System.Drawing.Point(291, 146);
+            this.btnGeneruj.Location = new System.Drawing.Point(245, 148);
             this.btnGeneruj.Name = "btnGeneruj";
             this.btnGeneruj.Size = new System.Drawing.Size(120, 29);
             this.btnGeneruj.TabIndex = 5;
             this.btnGeneruj.Text = "Odzyskaj hasło";
             this.btnGeneruj.UseVisualStyleBackColor = true;
-            this.btnGeneruj.Click += new System.EventHandler(this.btnGeneruj_Click_1);
+            this.btnGeneruj.Click += new System.EventHandler(this.btnOdzyskaj_Click);
             // 
             // txtLogin
             // 
-            this.txtLogin.Location = new System.Drawing.Point(279, 65);
+            this.txtLogin.Location = new System.Drawing.Point(232, 65);
             this.txtLogin.Name = "txtLogin";
             this.txtLogin.Size = new System.Drawing.Size(148, 22);
             this.txtLogin.TabIndex = 6;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(279, 106);
+            this.txtEmail.Location = new System.Drawing.Point(232, 106);
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(148, 22);
             this.txtEmail.TabIndex = 7;
@@ -92,7 +93,7 @@
             // btnWroc
             // 
             this.btnWroc.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.btnWroc.Location = new System.Drawing.Point(352, 210);
+            this.btnWroc.Location = new System.Drawing.Point(518, 251);
             this.btnWroc.Name = "btnWroc";
             this.btnWroc.Size = new System.Drawing.Size(75, 23);
             this.btnWroc.TabIndex = 9;
@@ -100,12 +101,23 @@
             this.btnWroc.UseVisualStyleBackColor = true;
             this.btnWroc.Click += new System.EventHandler(this.btnWroc_Click);
             // 
+            // btnWygeneruj
+            // 
+            this.btnWygeneruj.Location = new System.Drawing.Point(206, 195);
+            this.btnWygeneruj.Name = "btnWygeneruj";
+            this.btnWygeneruj.Size = new System.Drawing.Size(186, 35);
+            this.btnWygeneruj.TabIndex = 10;
+            this.btnWygeneruj.Text = "Generuj nowe haslo";
+            this.btnWygeneruj.UseVisualStyleBackColor = true;
+            this.btnWygeneruj.Click += new System.EventHandler(this.btnWygeneruj_Click);
+            // 
             // ResetHasla
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("$this.BackgroundImage")));
             this.ClientSize = new System.Drawing.Size(624, 296);
+            this.Controls.Add(this.btnWygeneruj);
             this.Controls.Add(this.btnWroc);
             this.Controls.Add(this.txtEmail);
             this.Controls.Add(this.txtLogin);
@@ -115,7 +127,6 @@
             this.Controls.Add(this.label1);
             this.Name = "ResetHasla";
             this.Text = "Odzyskiwanie hasła";
-            this.Load += new System.EventHandler(this.ResetHasla_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -130,5 +141,6 @@
         private System.Windows.Forms.TextBox txtLogin;
         private System.Windows.Forms.TextBox txtEmail;
         private System.Windows.Forms.Button btnWroc;
+        private System.Windows.Forms.Button btnWygeneruj;
     }
 }

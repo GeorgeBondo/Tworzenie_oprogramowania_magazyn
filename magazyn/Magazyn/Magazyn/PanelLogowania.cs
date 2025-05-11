@@ -38,7 +38,6 @@ namespace Magazyn
                 {
                     conn.Open();
 
-                    
                     string query = @"
                 SELECT U.*, S.Status 
                 FROM Uzytkownik U
@@ -52,14 +51,21 @@ namespace Magazyn
                     {
                         if (reader.Read())
                         {
-                           
                             string storedPassword = reader["Haslo"].ToString();
+                            int idUprawnienia = Convert.ToInt32(reader["ID_Uprawnienia"]);
 
-                            
                             if (haslo == storedPassword)
                             {
-                                PanelAdmina adminPanel = new PanelAdmina();
-                                adminPanel.Show();
+                                if (idUprawnienia == 1)
+                                {
+                                    PanelAdmina adminPanel = new PanelAdmina();
+                                    adminPanel.Show();
+                                }
+                                else
+                                {
+                                    PanelUżytkownika userPanel = new PanelUżytkownika();
+                                    userPanel.Show();
+                                }
                                 this.Hide();
                             }
                             else
@@ -81,7 +87,7 @@ namespace Magazyn
         }
 
 
-       
+
         private void button_haslo_Click(object sender, EventArgs e)
         {
             ResetHasla resetForm = new ResetHasla(this);
