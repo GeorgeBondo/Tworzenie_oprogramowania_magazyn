@@ -76,7 +76,7 @@ namespace Magazyn
                     string query = @"
                 SELECT 
                     u.ID_Uzytkownik AS ID,
-                    u.Imię,
+                    u.Imie,
                     u.Nazwisko,
                     u.Email,
                     u.PESEL,
@@ -93,7 +93,7 @@ namespace Magazyn
                 FROM Uzytkownik u
                 WHERE 
                     u.ID_Status = 1
-                    AND (u.Imię     LIKE @FiltrImie     + '%' OR @FiltrImie     = '')
+                    AND (u.Imie     LIKE @FiltrImie     + '%' OR @FiltrImie     = '')
                     AND (u.Nazwisko LIKE @FiltrNazwisko + '%' OR @FiltrNazwisko = '')
                     AND (u.PESEL    LIKE @FiltrPesel    + '%' OR @FiltrPesel    = '')
                     AND (@Uprawnienia = -1 OR u.ID_Uprawnienia = @Uprawnienia)
@@ -242,13 +242,13 @@ namespace Magazyn
                                 cmd.CommandText = @"
                                     UPDATE Uzytkownik 
                                     SET 
-                                        Imię = 'xxxxx',
+                                        Imie = 'xxxxx',
                                         Nazwisko = 'xxxxx',
                                         PESEL = @NewPESEL,
                                         Data_urodzenia = '2000-01-01',
                                         Plec = 'M',
                                         ID_Status = 2,
-                                        Data_zapomnienia = GETDATE(),
+                                        Data_Zapomnienia = GETDATE(),
                                         ID_Uprawnienia = NULL
                                     WHERE ID_Uzytkownik = @UserId";
 
@@ -293,7 +293,7 @@ namespace Magazyn
 
                 var selectedRow = dataGridViewUzytkownicy.SelectedRows[0];
                 int userId = Convert.ToInt32(selectedRow.Cells["ID"].Value);
-                string userName = $"{selectedRow.Cells["Imię"].Value} {selectedRow.Cells["Nazwisko"].Value}";
+                string userName = $"{selectedRow.Cells["Imie"].Value} {selectedRow.Cells["Nazwisko"].Value}";
 
                 var result = MessageBox.Show(
                     $"Czy na pewno chcesz oznaczyć użytkownika {userName} jako zapomnianego?",

@@ -45,7 +45,7 @@ namespace Magazyn
 
                     if (reader.Read())
                     {
-                        txtImie.Text = reader["Imię"].ToString();
+                        txtImie.Text = reader["Imie"].ToString();
                         txtNazwisko.Text = reader["Nazwisko"].ToString();
                         txtPesel.Text = reader["PESEL"].ToString();
                         txtEmail.Text = reader["Email"].ToString();
