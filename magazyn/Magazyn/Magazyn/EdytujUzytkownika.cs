@@ -22,6 +22,8 @@ namespace Magazyn
             comboPlec.Items.Add("Mężczyzna");
             LoadUprawnienia();
             WczytajDaneUzytkownika();
+
+            txthaslo.PasswordChar = '*';
         }
 
         public void WczytajDaneUzytkownika()
@@ -29,10 +31,13 @@ namespace Magazyn
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
                 string query = @"
-                    SELECT U.*, A.* 
-                    FROM Uzytkownik U 
-                    INNER JOIN Adres A ON U.ID_Adres = A.ID_Adres 
-                    LEFT JOIN Uprawnienia Up ON U.ID_Uprawnienia = Up.ID_Uprawnienia
+                    SELECT 
+                        ID_Uzytkownik, Login, Haslo, Imie, Nazwisko, PESEL,
+                        Data_urodzenia, Plec, Email, Numer_Telefonu, ID_Status,
+                        ID_Uprawnienia, Data_Zapomnienia, Liczba_blednych_logowan,
+                        Data_blokady, ID_Uzytkownik_zapominajacy, Miejscowosc,
+                        Kod_pocztowy, Ulica, Numer_budynku, Numer_lokalu
+                    FROM Uzytkownik 
                     WHERE ID_Uzytkownik = @UserId";
 
                 SqlCommand cmd = new SqlCommand(query, conn);
@@ -50,13 +55,14 @@ namespace Magazyn
                         txtPesel.Text = reader["PESEL"].ToString();
                         txtEmail.Text = reader["Email"].ToString();
                         txtTelefon.Text = reader["Numer_Telefonu"].ToString();
-                        txtMiejscowosc.Text = reader["Miejscowość"].ToString();
+                        txtMiejscowosc.Text = reader["Miejscowosc"].ToString();
                         txtKodPocztowy.Text = reader["Kod_pocztowy"].ToString();
-                        txtNumerPosesji.Text = reader["Numer_posesji"].ToString();
+                        txtNumerPosesji.Text = reader["Numer_budynku"].ToString();
                         txtUlica.Text = reader["Ulica"].ToString();
                         txtNumerLokalu.Text = reader["Numer_lokalu"].ToString();
                         comboPlec.SelectedItem = reader["Plec"].ToString() == "K" ? "Kobieta" : "Mężczyzna";
                         txtDataUrodzenia.Value = Convert.ToDateTime(reader["Data_urodzenia"]);
+                        txthaslo.Text = reader["Haslo"].ToString();
                         comboUprawnienia.SelectedValue = reader["ID_Uprawnienia"];
 
 
@@ -66,44 +72,24 @@ namespace Magazyn
                         originalData["Email"] = txtEmail.Text;
                         originalData["Telefon"] = txtTelefon.Text;
                         originalData["Miejscowosc"] = txtMiejscowosc.Text;
-                        originalData["KodPocztowy"] = txtKodPocztowy.Text;
-                        originalData["NumerPosesji"] = txtNumerPosesji.Text;
+                        originalData["Kod_pocztowy"] = txtKodPocztowy.Text;
+                        originalData["Numer_budynku"] = txtNumerPosesji.Text;
                         originalData["Ulica"] = txtUlica.Text;
-                        originalData["NumerLokalu"] = txtNumerLokalu.Text;
+                        originalData["Numer_lokalu"] = txtNumerLokalu.Text;
                         originalData["Plec"] = comboPlec.SelectedItem.ToString();
-                        originalData["DataUrodzenia"] = txtDataUrodzenia.Value.ToString("yyyy-MM-dd");
-                        originalData["Uprawnienia"] = comboUprawnienia.SelectedValue?.ToString();
+                        originalData["Data_urodzenia"] = txtDataUrodzenia.Value.ToString("yyyy-MM-dd");
+                        originalData["Haslo"] = txthaslo.Text;
+                        originalData["ID_Uprawnienia"] = comboUprawnienia.SelectedValue?.ToString();
                     }
                 }
                 catch (Exception ex)
                 {
                     MessageBox.Show($"Błąd ładowania danych: {ex.Message}", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
+
             }
         }
-
-        private void AktualizujAdres(SqlConnection conn, SqlTransaction transaction)
-        {
-            string query = @"
-                UPDATE Adres 
-                SET 
-                    Miejscowość = @Miejscowosc,
-                    Kod_pocztowy = @KodPocztowy,
-                    Ulica = @Ulica,
-                    Numer_posesji = @NumerPosesji,
-                    Numer_lokalu = @NumerLokalu
-                WHERE ID_Adres = (SELECT ID_Adres FROM Uzytkownik WHERE ID_Uzytkownik = @UserId)";
-
-            SqlCommand cmd = new SqlCommand(query, conn, transaction);
-            cmd.Parameters.AddWithValue("@Miejscowosc", txtMiejscowosc.Text);
-            cmd.Parameters.AddWithValue("@KodPocztowy", txtKodPocztowy.Text);
-            cmd.Parameters.AddWithValue("@Ulica", string.IsNullOrEmpty(txtUlica.Text) ? DBNull.Value : (object)txtUlica.Text);
-            cmd.Parameters.AddWithValue("@NumerPosesji", txtNumerPosesji.Text);
-            cmd.Parameters.AddWithValue("@NumerLokalu", string.IsNullOrEmpty(txtNumerLokalu.Text) ? DBNull.Value : (object)txtNumerLokalu.Text);
-            cmd.Parameters.AddWithValue("@UserId", userId);
-
-            cmd.ExecuteNonQuery();
-        }
+        
 
         private bool WalidujDane()
         {
@@ -115,12 +101,19 @@ namespace Magazyn
                 string.IsNullOrWhiteSpace(txtTelefon.Text) ||
                 string.IsNullOrWhiteSpace(txtMiejscowosc.Text) ||
                 string.IsNullOrWhiteSpace(txtKodPocztowy.Text) ||
-                string.IsNullOrWhiteSpace(txtNumerPosesji.Text))
+                string.IsNullOrWhiteSpace(txtNumerPosesji.Text) ||
+                string.IsNullOrWhiteSpace(txthaslo.Text))
             {
                 MessageBox.Show("Wypełnij wszystkie wymagane pola!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return false;
             }
 
+            if (!WalidujHaslo(txthaslo.Text))
+            {
+                MessageBox.Show("Nowe hasło musi zawierać:\n- 8-15 znaków\n- 1 wielką literę\n- 1 małą literę\n- 1 znak specjalny",
+                    "Błąd walidacji", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
             if (!WalidujPESEL(txtPesel.Text, txtDataUrodzenia.Value, comboPlec.SelectedItem.ToString()))
             {
@@ -129,8 +122,8 @@ namespace Magazyn
             }
 
 
-            bool zmianaPesel = txtPesel.Text != originalData["Pesel"];
-            bool zmianaData = txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["DataUrodzenia"];
+            bool zmianaPesel = txtPesel.Text != originalData["PESEL"];
+            bool zmianaData = txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["Data_urodzenia"];
             bool zmianaPlec = comboPlec.SelectedItem.ToString() != originalData["Plec"];
 
             if (zmianaPesel && !zmianaData && !zmianaPlec)
@@ -176,6 +169,12 @@ namespace Magazyn
             }
 
             return true;
+        }
+
+        private bool WalidujHaslo(string haslo)
+        {
+            var regex = new Regex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#$%^&*()_+=\[{\]};:<>|./?,-]).{8,15}$");
+            return regex.IsMatch(haslo);
         }
 
         private bool WalidujPESEL(string pesel, DateTime dataUrodzenia, string plec)
@@ -224,17 +223,18 @@ namespace Magazyn
         {
             return txtImie.Text != originalData["Imie"] ||
                    txtNazwisko.Text != originalData["Nazwisko"] ||
-                   txtPesel.Text != originalData["Pesel"] ||
+                   txtPesel.Text != originalData["PESEL"] ||
                    txtEmail.Text != originalData["Email"] ||
-                   txtTelefon.Text != originalData["Telefon"] ||
+                   txtTelefon.Text != originalData["Numer_Telefonu"] ||
                    txtMiejscowosc.Text != originalData["Miejscowosc"] ||
-                   txtKodPocztowy.Text != originalData["KodPocztowy"] ||
-                   txtNumerPosesji.Text != originalData["NumerPosesji"] ||
+                   txtKodPocztowy.Text != originalData["Kod_pocztowy"] ||
+                   txtNumerPosesji.Text != originalData["Numer_budynku"] ||
                    txtUlica.Text != originalData["Ulica"] ||
-                   txtNumerLokalu.Text != originalData["NumerLokalu"] ||
+                   txtNumerLokalu.Text != originalData["Numer_lokalu"] ||
                    comboPlec.SelectedItem.ToString() != originalData["Plec"] ||
-                   txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["DataUrodzenia"] ||
-                   comboUprawnienia.SelectedValue?.ToString() != originalData["Uprawnienia"];
+                   txtDataUrodzenia.Value.ToString("yyyy-MM-dd") != originalData["Data_urodzenia"] ||
+                   txthaslo.Text != originalData["Haslo"] ||
+                   comboUprawnienia.SelectedValue?.ToString() != originalData["ID_Uprawnienia"];
 
 
         }
@@ -253,13 +253,13 @@ namespace Magazyn
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
             {
-                string query = "SELECT ID_Uprawnienia, nazwa FROM Uprawnienia";
+                string query = "SELECT ID_Uprawnienia, Nazwa FROM Uprawnienia";
                 SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
                 DataTable dt = new DataTable();
                 adapter.Fill(dt);
 
                 comboUprawnienia.DataSource = dt;
-                comboUprawnienia.DisplayMember = "nazwa";
+                comboUprawnienia.DisplayMember = "Nazwa";
                 comboUprawnienia.ValueMember = "ID_Uprawnienia";
             }
         }
@@ -301,19 +301,27 @@ namespace Magazyn
                             }
                         }
 
-                        AktualizujAdres(conn, transaction);
+
+                        string Haslo = !string.IsNullOrEmpty(txthaslo.Text) ?
+                            txthaslo.Text :
+                            originalData["Haslo"];
 
                         string query = @"
-                            UPDATE Uzytkownik 
-                            SET 
-                                Imię = @Imie,
+                            UPDATE Uzytkownik SET
+                                Imie = @Imie,
                                 Nazwisko = @Nazwisko,
                                 PESEL = @PESEL,
                                 Data_urodzenia = @DataUrodzenia,
                                 Plec = @Plec,
                                 Email = @Email,
+                                Numer_Telefonu = @Telefon,
+                                Haslo = @Haslo,
                                 ID_Uprawnienia = @Uprawnienia,
-                                Numer_Telefonu = @Telefon
+                                Miejscowość = @Miejscowosc,
+                                Kod_pocztowy = @KodPocztowy,
+                                Ulica = @Ulica,
+                                Numer_budynku = @NumerPosesji,
+                                Numer_lokalu = @NumerLokalu
                             WHERE ID_Uzytkownik = @UserId";
 
                         SqlCommand cmd = new SqlCommand(query, conn, transaction);
@@ -325,7 +333,13 @@ namespace Magazyn
                         cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                         cmd.Parameters.AddWithValue("@Telefon", txtTelefon.Text);
                         cmd.Parameters.AddWithValue("@UserId", userId);
+                        cmd.Parameters.AddWithValue("@Haslo", txthaslo.Text);
                         cmd.Parameters.AddWithValue("@Uprawnienia", comboUprawnienia.SelectedValue);
+                        cmd.Parameters.AddWithValue("@Miejscowosc", txtMiejscowosc.Text);
+                        cmd.Parameters.AddWithValue("@KodPocztowy", txtKodPocztowy.Text);
+                        cmd.Parameters.AddWithValue("@Ulica", string.IsNullOrEmpty(txtUlica.Text) ? DBNull.Value : (object)txtUlica.Text);
+                        cmd.Parameters.AddWithValue("@NumerPosesji", txtNumerPosesji.Text);
+                        cmd.Parameters.AddWithValue("@NumerLokalu", string.IsNullOrEmpty(txtNumerLokalu.Text) ? DBNull.Value : (object)txtNumerLokalu.Text);
 
                         cmd.ExecuteNonQuery();
                         transaction.Commit();

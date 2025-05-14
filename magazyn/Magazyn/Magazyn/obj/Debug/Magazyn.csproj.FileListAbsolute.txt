@@ -650,3 +650,5 @@ C:\Users\Mikolaj\Desktop\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.PanelUżytkow
 C:\Users\Mikolaj\Desktop\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.ZmianaHasłaPrzezUżytkownika.resources
 C:\Users\Mikolaj\Desktop\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.PanelUżytkownika.resources
 C:\Users\Mikolaj\Desktop\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.ZmianaHasłaPrzezUżytkownika.resources
+C:\Users\rogac\Documents\GitHub\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.PanelUżytkownika.resources
+C:\Users\rogac\Documents\GitHub\Tworzenie_oprogramowania_magazyn\magazyn\Magazyn\Magazyn\obj\Debug\Magazyn.ZmianaHasłaPrzezUżytkownika.resources
