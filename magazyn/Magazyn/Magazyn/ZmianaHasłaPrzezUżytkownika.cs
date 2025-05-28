@@ -93,7 +93,6 @@ namespace Magazyn
             string stareHaslo = txtStareHaslo.Text;
             string noweHaslo = txtNoweHaslo.Text;
 
-            // Walidacja pustych pól
             if (string.IsNullOrEmpty(login))
             {
                 MessageBox.Show("Wprowadź login!", "Błąd",
@@ -115,7 +114,6 @@ namespace Magazyn
                 return;
             }
 
-            // Weryfikacja starego hasła
             if (!SprawdzStareHaslo(login, stareHaslo))
             {
                 MessageBox.Show("Nieprawidłowe stare hasło lub login!", "Błąd",
@@ -123,7 +121,6 @@ namespace Magazyn
                 return;
             }
 
-            // Walidacja nowego hasła
             if (!WalidujNoweHaslo(noweHaslo))
             {
                 MessageBox.Show("Nowe hasło musi zawierać:\n- 8-15 znaków\n- 1 wielką literę\n- 1 małą literę\n- 1 znak specjalny",
@@ -131,8 +128,11 @@ namespace Magazyn
                 return;
             }
 
-            // Aktualizacja hasła
             ZaktualizujHaslo(login, noweHaslo);
+
+            PanelUżytkownika Form = new PanelUżytkownika();
+            Form.Show();
+            this.Close();
         }
     }
 }

@@ -25,23 +25,18 @@ namespace Magazyn
 
             char[] password = new char[10];
 
-            // 3 wielkie litery
             for (int i = 0; i < 3; i++)
                 password[i] = upper[rand.Next(upper.Length)];
 
-            // 3 małe litery
             for (int i = 3; i < 6; i++)
                 password[i] = lower[rand.Next(lower.Length)];
 
-            // 2 cyfry
             for (int i = 6; i < 8; i++)
                 password[i] = digits[rand.Next(digits.Length)];
 
-            // 2 znaki specjalne
             for (int i = 8; i < 10; i++)
                 password[i] = specials[rand.Next(specials.Length)];
 
-            // Mieszanie znaków
             for (int i = 0; i < password.Length; i++)
             {
                 int j = rand.Next(i, password.Length);
@@ -69,7 +64,6 @@ namespace Magazyn
                 {
                     conn.Open();
 
-                    // Sprawdź czy użytkownik istnieje
                     string checkQuery = "SELECT COUNT(*) FROM Uzytkownik WHERE Login = @Login AND Email = @Email";
                     SqlCommand checkCmd = new SqlCommand(checkQuery, conn);
                     checkCmd.Parameters.AddWithValue("@Login", login);
@@ -84,10 +78,8 @@ namespace Magazyn
                         return;
                     }
 
-                    // Generuj nowe hasło
                     string newPassword = GenerateNewPassword();
 
-                    // Aktualizuj hasło w bazie
                     string updateQuery = "UPDATE Uzytkownik SET Haslo = @Haslo WHERE Login = @Login AND Email = @Email";
                     SqlCommand updateCmd = new SqlCommand(updateQuery, conn);
                     updateCmd.Parameters.AddWithValue("@Haslo", newPassword);
@@ -139,7 +131,6 @@ namespace Magazyn
                 {
                     conn.Open();
 
-                    // Pobierz hasło z bazy
                     string query = "SELECT Haslo FROM Uzytkownik WHERE Login = @Login AND Email = @Email";
                     SqlCommand cmd = new SqlCommand(query, conn);
                     cmd.Parameters.AddWithValue("@Login", login);
