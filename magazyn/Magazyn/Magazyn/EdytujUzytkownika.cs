@@ -68,7 +68,7 @@ namespace Magazyn
 
                         originalData["Imie"] = txtImie.Text;
                         originalData["Nazwisko"] = txtNazwisko.Text;
-                        originalData["Pesel"] = txtPesel.Text;
+                        originalData["PESEL"] = txtPesel.Text;
                         originalData["Email"] = txtEmail.Text;
                         originalData["Telefon"] = txtTelefon.Text;
                         originalData["Miejscowosc"] = txtMiejscowosc.Text;
@@ -93,6 +93,11 @@ namespace Magazyn
 
         private bool WalidujDane()
         {
+            if (comboUprawnienia.SelectedValue == null)
+            {
+                MessageBox.Show("Wybierz uprawnienia!", "Błąd", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return false;
+            }
 
             if (string.IsNullOrWhiteSpace(txtImie.Text) ||
                 string.IsNullOrWhiteSpace(txtNazwisko.Text) ||
@@ -208,7 +213,7 @@ namespace Magazyn
             if ((plec == "Kobieta" && isMale) || (plec == "Mężczyzna" && !isMale))
                 return false;
 
- 
+
             int[] weights = { 1, 3, 7, 9, 1, 3, 7, 9, 1, 3 };
             int sum = 0;
             for (int i = 0; i < 10; i++)
@@ -246,9 +251,11 @@ namespace Magazyn
             {
                 cmd.Parameters.AddWithValue("@Wartosc", wartosc);
                 cmd.Parameters.AddWithValue("@UserId", userId);
-                return (int)cmd.ExecuteScalar() == 0;
+                int count = (int)cmd.ExecuteScalar();
+                return count == 0;
             }
         }
+
         private void LoadUprawnienia()
         {
             using (SqlConnection conn = DatabaseHelper.GetConnection())
@@ -317,7 +324,7 @@ namespace Magazyn
                                 Numer_Telefonu = @Telefon,
                                 Haslo = @Haslo,
                                 ID_Uprawnienia = @Uprawnienia,
-                                Miejscowość = @Miejscowosc,
+                                Miejscowosc = @Miejscowosc,
                                 Kod_pocztowy = @KodPocztowy,
                                 Ulica = @Ulica,
                                 Numer_budynku = @NumerPosesji,
@@ -334,7 +341,7 @@ namespace Magazyn
                         cmd.Parameters.AddWithValue("@Telefon", txtTelefon.Text);
                         cmd.Parameters.AddWithValue("@UserId", userId);
                         cmd.Parameters.AddWithValue("@Haslo", txthaslo.Text);
-                        cmd.Parameters.AddWithValue("@Uprawnienia", comboUprawnienia.SelectedValue);
+                        cmd.Parameters.AddWithValue("@Uprawnienia", comboUprawnienia.SelectedValue ?? (object)DBNull.Value);
                         cmd.Parameters.AddWithValue("@Miejscowosc", txtMiejscowosc.Text);
                         cmd.Parameters.AddWithValue("@KodPocztowy", txtKodPocztowy.Text);
                         cmd.Parameters.AddWithValue("@Ulica", string.IsNullOrEmpty(txtUlica.Text) ? DBNull.Value : (object)txtUlica.Text);
