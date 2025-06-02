@@ -1,12 +1,37 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|c:\\users\\rogac\\documents\\github\\tworzenie_oprogramowania_magazyn\\magazyn\\magazyn\\magazyn\\listauzytkownikow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{8F1C64D3-159D-4034-AF2B-EFD7F7B30B9B}|Magazyn\\Magazyn.csproj|solutionrelative:magazyn\\listauzytkownikow.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ListaUzytkownikow.cs",
+              "DocumentMoniker": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\ListaUzytkownikow.cs",
+              "RelativeDocumentMoniker": "Magazyn\\ListaUzytkownikow.cs",
+              "ToolTip": "C:\\Users\\rogac\\Documents\\GitHub\\Tworzenie_oprogramowania_magazyn\\magazyn\\Magazyn\\Magazyn\\ListaUzytkownikow.cs",
+              "RelativeToolTip": "Magazyn\\ListaUzytkownikow.cs",
+              "ViewState": "AQIAABsAAAAAAAAAAAAowAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-28T15:07:38.752Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

@@ -70,7 +70,7 @@ namespace Magazyn
                         originalData["Nazwisko"] = txtNazwisko.Text;
                         originalData["PESEL"] = txtPesel.Text;
                         originalData["Email"] = txtEmail.Text;
-                        originalData["Telefon"] = txtTelefon.Text;
+                        originalData["Numer_Telefonu"] = txtTelefon.Text;
                         originalData["Miejscowosc"] = txtMiejscowosc.Text;
                         originalData["Kod_pocztowy"] = txtKodPocztowy.Text;
                         originalData["Numer_budynku"] = txtNumerPosesji.Text;
