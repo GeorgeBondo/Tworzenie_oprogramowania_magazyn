@@ -163,36 +163,19 @@ namespace Magazyn
             return checksum == (pesel[10] - '0');
         }
 
-        private int DodajAdres(SqlConnection conn, SqlTransaction transaction)
-        {
-            string query = @"INSERT INTO Adres 
-                           (Miejscowość, Kod_pocztowy, Ulica, Numer_posesji, Numer_lokalu)
-                           OUTPUT INSERTED.ID_Adres
-                           VALUES (@Miejscowosc, @KodPocztowy, @Ulica, @NumerPosesji, @NumerLokalu)";
 
-            using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
-            {
-                cmd.Parameters.AddWithValue("@Miejscowosc", txtMiejscowosc.Text);
-                cmd.Parameters.AddWithValue("@KodPocztowy", txtKodPocztowy.Text);
-                cmd.Parameters.AddWithValue("@Ulica", string.IsNullOrEmpty(txtUlica.Text) ? DBNull.Value : (object)txtUlica.Text);
-                cmd.Parameters.AddWithValue("@NumerPosesji", txtNumerPosesji.Text);
-                cmd.Parameters.AddWithValue("@NumerLokalu", string.IsNullOrEmpty(txtNumerLokalu.Text) ? DBNull.Value : (object)txtNumerLokalu.Text);
-
-                return Convert.ToInt32(cmd.ExecuteScalar());
-            }
-        }
-
-        private void DodajUzytkownikaDoBazy(SqlConnection conn, SqlTransaction transaction, int adresId)
+        private void DodajUzytkownikaDoBazy(SqlConnection conn, SqlTransaction transaction)
         {
             string query = @"INSERT INTO Uzytkownik 
-                           (Login, Haslo, Imię, Nazwisko, PESEL, Data_urodzenia, Plec, Email, Numer_Telefonu, ID_Adres, ID_Status, ID_Uprawnienia)
+                           (Login, Haslo, Imie, Nazwisko, PESEL, Data_urodzenia, Plec, Email, Numer_Telefonu, ID_Status, ID_Uprawnienia, Miejscowosc, Kod_pocztowy, Ulica, Numer_budynku, Numer_lokalu)
                            VALUES 
-                           (@Login, @Haslo, @Imie, @Nazwisko, @PESEL, @DataUrodzenia, @Plec, @Email, @Telefon, @AdresId, 1, @Uprawnienia)";
+                           (@Login, @Haslo, @Imie, @Nazwisko, @PESEL, @DataUrodzenia, @Plec, @Email, @Telefon, 1, @Uprawnienia, @Miejscowosc, @KodPocztowy, @Ulica, @NumerBudynku, @NumerLokalu)";
 
             using (SqlCommand cmd = new SqlCommand(query, conn, transaction))
             {
                 cmd.Parameters.AddWithValue("@Login", loginTextBox.Text);
                 cmd.Parameters.AddWithValue("@Haslo", txtHaslo.Text);
+
                 cmd.Parameters.AddWithValue("@Imie", txtImie.Text);
                 cmd.Parameters.AddWithValue("@Nazwisko", txtNazwisko.Text);
                 cmd.Parameters.AddWithValue("@PESEL", txtPesel.Text);
@@ -200,8 +183,15 @@ namespace Magazyn
                 cmd.Parameters.AddWithValue("@Plec", comboPlec.SelectedItem.ToString() == "Kobieta" ? "K" : "M");
                 cmd.Parameters.AddWithValue("@Email", txtEmail.Text);
                 cmd.Parameters.AddWithValue("@Telefon", txtTelefon.Text);
-                cmd.Parameters.AddWithValue("@AdresId", adresId);
+
+                cmd.Parameters.AddWithValue("@Miejscowosc", txtMiejscowosc.Text);
+                cmd.Parameters.AddWithValue("@KodPocztowy", txtKodPocztowy.Text);
+                cmd.Parameters.AddWithValue("@Ulica", string.IsNullOrEmpty(txtUlica.Text) ? DBNull.Value : (object)txtUlica.Text);
+                cmd.Parameters.AddWithValue("@NumerBudynku", txtNumerPosesji.Text);
+                cmd.Parameters.AddWithValue("@NumerLokalu", string.IsNullOrEmpty(txtNumerLokalu.Text) ? DBNull.Value : (object)txtNumerLokalu.Text);
+
                 cmd.Parameters.AddWithValue("@Uprawnienia", comboUprawnienia.SelectedValue);
+
                 cmd.ExecuteNonQuery();
             }
         }
@@ -241,8 +231,7 @@ namespace Magazyn
                             }
                         }
 
-                        int adresId = DodajAdres(conn, transaction);
-                        DodajUzytkownikaDoBazy(conn, transaction, adresId);
+                        DodajUzytkownikaDoBazy(conn, transaction);
 
                         transaction.Commit();
                         MessageBox.Show("Użytkownik dodany pomyślnie!", "Sukces", MessageBoxButtons.OK, MessageBoxIcon.Information);

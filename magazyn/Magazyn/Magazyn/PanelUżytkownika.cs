@@ -30,5 +30,10 @@ namespace Magazyn
             loginForm.Show();
             this.Close();
         }
+
+        private void PanelUżytkownika_Load(object sender, EventArgs e)
+        {
+
+        }
     }
 }

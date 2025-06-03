@@ -85,8 +85,8 @@ namespace Magazyn
                         WHEN 1 THEN 'Administrator'
                         WHEN 2 THEN 'Magazynier'
                         WHEN 3 THEN 'Brygadzista'
-                        WHEN 4 THEN 'Kierownik'
-                        WHEN 5 THEN 'Kontroler jakości'
+                        WHEN 5 THEN 'Kierownik'
+                        WHEN 4 THEN 'Kontroler jakości'
                         ELSE 'Brak uprawnienia'
                     END AS Stanowisko,
                     u.Data_zapomnienia

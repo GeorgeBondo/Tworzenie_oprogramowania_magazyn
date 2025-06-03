@@ -63,6 +63,7 @@
             this.Controls.Add(this.btnZmien);
             this.Name = "PanelUżytkownika";
             this.Text = "PanelUżytkownika";
+            this.Load += new System.EventHandler(this.PanelUżytkownika_Load);
             this.ResumeLayout(false);
 
         }
